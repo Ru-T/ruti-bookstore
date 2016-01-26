@@ -5,5 +5,4 @@ FactoryGirl.define do
     author "MyString"
     price 1
   end
-
 end
