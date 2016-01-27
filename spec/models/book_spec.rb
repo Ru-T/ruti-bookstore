@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Book, type: :model do
 
-  let(:book) {FactoryGirl.create(:book)}
+  let(:book) { FactoryGirl.create(:book) }
+  let(:book1) { create(:book) }
 
   describe "validations" do
     it "is valid without category or description" do
@@ -23,6 +24,13 @@ RSpec.describe Book, type: :model do
 
     it "must have price to be valid" do
       expect(FactoryGirl.build(:book, price: nil)).to_not be_valid
+    end
+  end
+
+  describe '.default scope' do
+    it 'orders by most recently published' do
+      book2 = FactoryGirl.create(:book)
+      expect(Book.first).to eq book2
     end
   end
 
