@@ -7,6 +7,7 @@
   <p> <%= book.price %> </p>
   <p> <%= book.category %> </p>
   <p> <%= book.description %> </p>
+  <p><%= link_to 'View Book', book %></p>
 <% end %>
 
 <%= will_paginate @books, renderer: BootstrapPagination::Rails %>
