@@ -1,30 +1,30 @@
 Feature: Bookstore Administration Panel
   Scenario: Admin Authentication
-    Given I have an admin account
+    #Given I have an admin account
     When I visit the admin panel url
     And I enter my admin email
     And I enter my admin password
-    And I click submit
+    And I click the "Login" button
     Then I see the admin panel
 
   Scenario: Invalid Login
-    Given I do not have an admin account
+    #Given I do not have an admin account
     When I visit the admin panel url
     And I enter my admin email
     And I enter my admin password
-    And I click submit
+    And I click the "Login" button
     Then I see a flash notification that tell me that my email does not exist in the system
 
   Scenario: Adding a book
     Given I am logged into the admin panel
     And I am logged into the site
     When I visit the admin books url
-    And I click "Add a Book"
+    And I click the "New Book" button
     And I enter the title "Test Book"
     And I enter the price "135.99"
     And I enter the published date "2015-08-10"
     And I enter the author "Some Person"
-    And I click "Submit"
+    And I click "Create Book" button
     And I visit the admin books url
     Then I see the book "Test Book"
     When I visit the public book index
