@@ -28,7 +28,7 @@ class BooksController < ApplicationController
   end
 
   def sort_column
-    sortable_columns.include?(params[:column]) ? params[:column] : "title"
+    sortable_columns.include?(params[:column]) ? params[:column] : "published_date"
   end
 
   def sort_direction
