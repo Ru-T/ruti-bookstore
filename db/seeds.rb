@@ -9,7 +9,7 @@
 end
 
 
-User.create!(email: "ruti@sb.com",
+User.create!(email: "rwajnberg@gmail.com",
             password: "password"
             )
 
