@@ -6,12 +6,12 @@ Feature: User Account Creation
     When I click the "Sign up" link
     And I enter my email address
     And I enter a password with correct confirmation
-    #And I click the "Sign up" button
-    #Then I am told to check my email for a confirmation link
-    #And I am sent a confirmation email
-    #When I visit the link in that email
-    #Then My email address becomes confirmed
-    #And I am redirected to the book index page
+    And I click the "Sign up" button
+    Then I am told to check my email for a confirmation link
+    And I am sent a confirmation email
+    When I visit the link in that email
+    Then My email address becomes confirmed
+    And I am redirected to the book index page
 
   Scenario: Invalid Password
     Given I do not have an account on the site
@@ -31,4 +31,4 @@ Feature: User Account Creation
     And I enter "garbage" as my email address
     And I enter a password with correct confirmation
     And I click the "Sign up" button
-    #Then I am notified that my email address is invalid.
+    Then I am notified that my email address is invalid.

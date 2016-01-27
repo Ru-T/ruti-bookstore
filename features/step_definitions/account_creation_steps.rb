@@ -31,19 +31,25 @@ When(/^I click the "(.*?)" button$/) do |button|
 end
 
 Then(/^I am told to check my email for a confirmation link$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(page).to have_content("")
 end
 
 Then(/^I am sent a confirmation email$/) do
-  pending # express the regexp above with the code you wish you had
+  ActionMailer::Base.deliveries.last.body.match("You can confirm your account email through the link below:")
 end
 
 When(/^I visit the link in that email$/) do
-  pending # express the regexp above with the code you wish you had
-end
+  ctoken = ActionMailer::Base.deliveries.last.body.match(/confirmation_token=\w*/)
+  visit "/users/confirmation?#{ctoken}"
+ end
 
 Then(/^My email address becomes confirmed$/) do
-  pending # express the regexp above with the code you wish you had
+  user = User.find_for_authentication(email: 'newuser@test.com')
+  expect(user).to be_confirmed
+end
+
+Then(/^I am redirected to the book index page$/) do
+  visit books_path
 end
 
 When(/^I enter a password with incorrect confirmation$/) do
@@ -60,5 +66,5 @@ When(/^I enter "(.*?)" as my email address$/) do |arg1|
 end
 
 Then(/^I am notified that my email address is invalid\.$/) do
-  expect(page).to have_content("Please")
+  expect(page).to have_content("Email is invalid")
 end
