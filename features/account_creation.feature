@@ -29,6 +29,6 @@ Feature: User Account Creation
     Then I am presented with a login page
     When I click the "Sign up" link
     And I enter "garbage" as my email address
-    And I enter a password with correct password confirmation
+    And I enter a password with correct confirmation
     And I click the "Sign up" button
     Then I am notified that my email address is invalid.
