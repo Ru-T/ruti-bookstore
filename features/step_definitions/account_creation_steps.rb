@@ -31,7 +31,7 @@ When(/^I click the "(.*?)" button$/) do |button|
 end
 
 Then(/^I am told to check my email for a confirmation link$/) do
-  expect(page).to have_content("")
+  expect(page).to have_content("A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.")
 end
 
 Then(/^I am sent a confirmation email$/) do
