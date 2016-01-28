@@ -4,7 +4,7 @@
   <p> <%= purchase.user.email %> </p>
   <p> <%= purchase.book.title %> </p>
   <p> <%= purchase.quantity %>
-      <%= link_to 'Edit Quantity', edit_pending_purchase_path(purchase) %>
+      <%= link_to 'Edit Quantity', edit_pending_purchase_path(purchase), id: "edit_quantity" %>
   </p>
   <p> <%= purchase.price_at_purchase %> </p>
   <%= form_for(@pending_purchases.find_by_book_id(purchase.book.id),

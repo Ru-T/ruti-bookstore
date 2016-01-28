@@ -3,7 +3,7 @@ Given(/^there are some books in the database$/) do
 end
 
 When(/^I click the "(.*?)" button for the first book$/) do |button|
-  find("#new_pending_purchase", match: :first).click
+  find("#add_to_cart", match: :first).click
 end
 
 When(/^I enter (\d+) for the quantity$/) do |quantity|
@@ -11,7 +11,7 @@ When(/^I enter (\d+) for the quantity$/) do |quantity|
 end
 
 Then(/^the book is added to my cart with quantity (\d+)$/) do |quantity|
-  expect(PendingPurchase.last.quantity).to eq quantity
+  expect(PendingPurchase.last.quantity).to eq quantity.to_i
 end
 
 When(/^I visit my cart$/) do
@@ -19,11 +19,12 @@ When(/^I visit my cart$/) do
 end
 
 Then(/^I see the book in my cart with quantity (\d+)$/) do |quantity|
-  pending # express the regexp above with the code you wish you had
+  expect(page).to have_content(quantity)
+  expect(PendingPurchase.last.quantity).to eq quantity.to_i
 end
 
 When(/^I adjust the quantity of the book to (\d+)$/) do |quantity|
-  find("Edit Quantity", match: :first).click
+  find("#edit_quantity", match: :first).click
   fill_in "Quantity", with: quantity
   click_on "Update Pending purchase"
 end

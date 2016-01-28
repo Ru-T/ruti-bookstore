@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :books, only: [:index]
-  resources :pending_purchases, only: [:index, :create, :edit, :update, :destroy]
+  resources :pending_purchases, except: [:new]
   devise_for :users, controllers: { registrations: "registrations" }
 end
