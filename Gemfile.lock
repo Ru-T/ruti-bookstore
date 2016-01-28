@@ -277,6 +277,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   awesome_print
+  bootstrap-sass
   capybara
   capybara-screenshot
   coffee-rails (~> 4.1.0)
@@ -287,6 +288,7 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   pry-byebug
   rails (= 4.2.5)
   rspec-rails
