@@ -49,11 +49,11 @@ Feature: Bookstore Administration Panel
     Given I am logged into the admin panel
     And I am logged into the site
     Given there is a book named "Book To Be Edited"
-    #And the book is valued at "$135.99"
+    And the book is valued at "$135.99"
     When I visit the admin books url
     And I click the edit link for the book "Book To Be Edited"
     And I change the book name to "Book That Has Been Edited"
-    #And I change the book price to "222.22"
+    And I change the book price to "222.22"
     And I click the "Update Book" button
     And I visit the admin books url
     Then I see the book "Book That Has Been Edited"
