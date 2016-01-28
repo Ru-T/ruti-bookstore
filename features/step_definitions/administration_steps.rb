@@ -34,9 +34,7 @@ Given(/^I am logged into the admin panel$/) do
 end
 
 Given(/^I am logged into the site$/) do
-  FactoryGirl.create(:user, email: "ruti@test.com")
-  ctoken = ActionMailer::Base.deliveries.last.body.match(/confirmation_token=\w*/)
-  visit "/users/confirmation?#{ctoken}"
+  FactoryGirl.create(:user, email: "ruti@test.com", confirmed_at: Date.current)
   visit root_path
   fill_in "Email", with: "ruti@test.com"
   fill_in "Password", with: "password"
@@ -55,10 +53,26 @@ When(/^I enter the price "(.*?)"$/) do |price|
   fill_in "Price", with: price
 end
 
-When(/^I enter the published date "(.*?)"$/) do |date|
-  select "2016", from: "book_published_date_1i"
-  select "January", from: "book_published_date_2i"
-  select "26", from: "book_published_date_3i"
+And(/^I select the date "([^"]*)" for "(.*?)"$/) do |in_date_str, field|
+  def select_date(date, options = {})
+    date = Date.parse(date) if date.class == String
+    field = options[:from]
+    base_id = find(:xpath, ".//label[contains(.,'#{field}')]")[:for]
+
+    year_format = options[:year_format] || '%Y'
+    year = date.strftime(year_format)
+
+    month_format = options[:month_format] || '%B'
+    month = date.strftime(month_format)
+
+    day_format = options[:day_format] || '%-d'
+    day = date.strftime(day_format)
+
+    select year,  from: "book_published_date_1i"
+    select month, from: "book_published_date_2i"
+    select day,   from: "book_published_date_3i"
+  end
+  select_date(in_date_str, from: field)
 end
 
 When(/^I enter the author "(.*?)"$/) do |author|

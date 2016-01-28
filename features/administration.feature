@@ -22,7 +22,7 @@ Feature: Bookstore Administration Panel
     And I click the "New Book" button
     And I enter the title "Test Book"
     And I enter the price "135.99"
-    And I enter the published date "2016-01-26"
+    And I select the date "2016-01-26" for "Published date"
     And I enter the author "Some Person"
     And I click the "Create Book" button
     And I visit the admin books url
