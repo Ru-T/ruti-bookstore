@@ -7,7 +7,7 @@ class PendingPurchasesController < ApplicationController
 
   def create
     book = Book.find(params[:book_id])
-    current_user.pending_purchase(book)
+    current_user.add_to_cart(book)
     redirect_to pending_purchases_path, notice: "This book has been added to your cart"
   end
 
