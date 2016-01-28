@@ -1,4 +1,4 @@
-Given(/^there are (\d+) books in the database$/) do |number|
+Given(/^there are 100 books in the database$/) do
   FactoryGirl.create_list(:book, 100)
 end
 
@@ -11,7 +11,7 @@ Then(/^the books are ordered by published date$/) do
   expect(Book.last).to eq Book.order(:published_date).last
 end
 
-Then(/^the list of (\d+) books are paginated in pages of (\d+) books per page$/) do |number_of_books, number_of_pages|
+Then(/^the list of 100 books are paginated in pages of 25 books per page$/) do 
   expect(page).to have_link("View Book", count: 25)
   find("//*[@class='pagination']//a[text()='2']").click
   expect(page).to have_link("View Book", count: 25)

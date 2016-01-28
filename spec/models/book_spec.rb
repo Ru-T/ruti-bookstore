@@ -33,5 +33,4 @@ RSpec.describe Book, type: :model do
       expect(Book.first).to eq book2
     end
   end
-
 end
