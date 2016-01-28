@@ -2,9 +2,9 @@ class BooksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_book, only: [:show]
   helper_method :sort_column, :sort_direction
-  
+
   def index
-    @books = Book.order("#{sort_column} #{sort_direction}").paginate(page: params[:page], per_page: 25)
+    @books = Book.order("#{sort_column} #{sort_direction}").page params[:page]
   end
 
   private
