@@ -1,5 +1,5 @@
 Given(/^I have an admin account$/) do
-  AdminUser.create!(email: "admin@example.com", password: "password")
+  FactoryGirl.create(:admin_user)
 end
 
 When(/^I visit the admin panel url$/) do
@@ -26,7 +26,7 @@ Then(/^I see a flash notification that tell me that my email does not exist in t
 end
 
 Given(/^I am logged into the admin panel$/) do
-  AdminUser.create!(email: "admin@example.com", password: "password")
+  FactoryGirl.create(:admin_user)
   visit new_admin_user_session_path
   fill_in 'Email', with: 'admin@example.com'
   fill_in 'Password', with: 'password'
@@ -34,7 +34,7 @@ Given(/^I am logged into the admin panel$/) do
 end
 
 Given(/^I am logged into the site$/) do
-  User.create!(email: "ruti@test.com", password: "password")
+  FactoryGirl.create(:user, email: "ruti@test.com")
   ctoken = ActionMailer::Base.deliveries.last.body.match(/confirmation_token=\w*/)
   visit "/users/confirmation?#{ctoken}"
   visit root_path
@@ -82,7 +82,7 @@ Then(/^I see the book author "(.*?)"$/) do |author|
 end
 
 Given(/^there is a book named "(.*?)"$/) do |title|
-  book = FactoryGirl.create(:book, title: title)
+  FactoryGirl.create(:book, title: title)
 end
 
 When(/^I click the delete link for the book "(.*?)"$/) do |link|
