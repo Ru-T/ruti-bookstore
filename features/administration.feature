@@ -1,4 +1,5 @@
 Feature: Bookstore Administration Panel
+@wip
   Scenario: Admin Authentication
     Given I have an admin account
     When I visit the admin panel url
@@ -6,7 +7,7 @@ Feature: Bookstore Administration Panel
     And I enter my admin password
     And I click the "Login" button
     Then I see the admin panel
-
+@wip
   Scenario: Invalid Login
     Given I do not have an admin account
     When I visit the admin panel url
@@ -14,7 +15,7 @@ Feature: Bookstore Administration Panel
     And I enter my admin password
     And I click the "Login" button
     Then I see a flash notification that tell me that my email does not exist in the system
-
+@wip
   Scenario: Adding a book
     Given I am logged into the admin panel
     And I am logged into the site
@@ -31,7 +32,7 @@ Feature: Bookstore Administration Panel
     Then I see the book "Test Book"
     And I see the book published date "2016-01-26"
     And I see the book author "Some Person"
-
+@wip
   @javascript
   Scenario: Deleting a book
     Given I am logged into the admin panel
@@ -44,7 +45,7 @@ Feature: Bookstore Administration Panel
     Then I don't see "Book To Be Deleted"
     When I visit the public book index
     Then I don't see "Book To Be Deleted"
-
+@wip
   Scenario: Editing a book
     Given I am logged into the admin panel
     And I am logged into the site
