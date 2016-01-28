@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'bootstrap-sass'
 gem 'kaminari'
@@ -39,6 +40,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
