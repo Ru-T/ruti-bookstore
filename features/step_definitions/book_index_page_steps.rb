@@ -21,18 +21,6 @@ Then(/^the list of (\d+) books are paginated in pages of (\d+) books per page$/)
   expect(page).to have_link("View Book", count: 25)
 end
 
-Given(/^some books have been ordered$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-When(/^I sort by "(.*?)"$/) do |field|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^the books are re\-sorted based on the amount of times they are purchased$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
 When(/^I enter a book's title into the book search field$/) do
   fill_in 'Title contains', with: Book.find(1).title
 end
