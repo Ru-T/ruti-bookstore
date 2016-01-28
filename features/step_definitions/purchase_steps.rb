@@ -3,19 +3,19 @@ Given(/^there are some books in the database$/) do
 end
 
 When(/^I click the "(.*?)" button for the first book$/) do |button|
-  find("#new_pending_purchase".first).click
+  find("#new_pending_purchase", match: :first).click
 end
 
-When(/^I enter (\d+) for the quantity$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^I enter (\d+) for the quantity$/) do |quantity|
+  fill_in "Quantity", with: quantity
 end
 
 Then(/^the book is added to my cart with quantity (\d+)$/) do |quantity|
-  pending # express the regexp above with the code you wish you had
+  expect(PendingPurchase.last.quantity).to eq quantity
 end
 
 When(/^I visit my cart$/) do
-  pending # express the regexp above with the code you wish you had
+  visit pending_purchases_path
 end
 
 Then(/^I see the book in my cart with quantity (\d+)$/) do |quantity|
@@ -23,5 +23,7 @@ Then(/^I see the book in my cart with quantity (\d+)$/) do |quantity|
 end
 
 When(/^I adjust the quantity of the book to (\d+)$/) do |quantity|
-  pending # express the regexp above with the code you wish you had
+  find("Edit Quantity", match: :first).click
+  fill_in "Quantity", with: quantity
+  click_on "Update Pending purchase"
 end
