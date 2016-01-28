@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'books#index'
   resources :books, only: [:index]
+  resources :pending_purchases, only: [:index]
   devise_for :users, controllers: { registrations: "registrations" }
 end
