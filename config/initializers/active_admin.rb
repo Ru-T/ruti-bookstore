@@ -1,5 +1,5 @@
 ActiveAdmin.setup do |config|
-
+  
   config.site_title = "Ruti Bookstore"
 
   # This setting changes the method which Active Admin calls
