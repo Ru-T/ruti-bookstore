@@ -20,10 +20,10 @@ class PendingPurchasesController < ApplicationController
 
   def update
     if @pending_purchase.update(pending_purchase_params)
-      redirect to pending_purchases_path, notice: "The quantity of your book has been updated"
+      redirect_to pending_purchases_path, notice: "The quantity of your book has been updated"
     else
       render :edit
-    end    
+    end
   end
 
   private
