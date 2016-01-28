@@ -11,6 +11,12 @@ class PendingPurchasesController < ApplicationController
     redirect_to pending_purchases_path, notice: "This book has been added to your cart"
   end
 
+  def destroy
+    book = Book.find(params[:book_id])
+    current_user.remove_from_cart(book)
+    redirect_to pending_purchases_path, notice: "This book has been removed from your cart"
+  end
+
   private
 
   # strong params
