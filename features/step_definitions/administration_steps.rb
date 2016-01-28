@@ -34,9 +34,12 @@ Given(/^I am logged into the admin panel$/) do
 end
 
 Given(/^I am logged into the site$/) do
+  User.create!(email: "ruti@test.com", password: "password")
+  ctoken = ActionMailer::Base.deliveries.last.body.match(/confirmation_token=\w*/)
+  visit "/users/confirmation?#{ctoken}"
   visit root_path
-  fill_in 'Email', with: 'newuser@test.com'
-  fill_in 'Password', with: 'password'
+  fill_in "Email", with: "ruti@test.com"
+  fill_in "Password", with: "password"
   click_on "Log in"
 end
 
@@ -77,7 +80,7 @@ Then(/^I see the book author "(.*?)"$/) do |author|
 end
 
 Given(/^there is a book named "(.*?)"$/) do |title|
-  Book.create!(title: title, published_date: 01-01-2016, author: "Author", price: 15)
+  book = FactoryGirl.create(:book, title: title)
 end
 
 When(/^I click the delete link for the book "(.*?)"$/) do |link|
@@ -101,7 +104,7 @@ Then(/^I don't see "(.*?)"$/) do |title|
 end
 
 Given(/^the book is valued at "(.*?)"$/) do |price|
-  Book.create!(title: "Book To Be Edited", published_date: "2016-01-13", author: "Author", price: price)
+  FactoryGirl.create(:book, price: price)
 end
 
 When(/^I change the book name to "(.*?)"$/) do |new_title|
