@@ -1,5 +1,5 @@
-Given(/^there are (\d+) books in the database$/) do |arg1|
-  FactoryGirl.create_list(:book, 100)
+Given(/^there are (\d+) books in the database$/) do |number|
+  FactoryGirl.create_list(:book, number)
 end
 
 Then(/^I see a list of books in the database$/) do
@@ -18,7 +18,7 @@ Given(/^some books have been ordered$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I sort by "(.*?)"$/) do |arg1|
+When(/^I sort by "(.*?)"$/) do |field|
   pending # express the regexp above with the code you wish you had
 end
 
