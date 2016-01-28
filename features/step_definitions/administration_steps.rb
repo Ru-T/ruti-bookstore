@@ -95,7 +95,7 @@ Then(/^I see the book author "(.*?)"$/) do |author|
   expect(page).to have_content(author)
 end
 
-Given(/^there is a book named "(.*?)"$/) do |title|
+And(/^there is a book named "(.*?)"$/) do |title|
   @book = FactoryGirl.create(:book, title: title)
 end
 

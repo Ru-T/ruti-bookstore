@@ -36,7 +36,7 @@ Feature: Bookstore Administration Panel
   Scenario: Deleting a book
     Given I am logged into the admin panel
     And I am logged into the site
-    Given there is a book named "Book To Be Deleted"
+    And there is a book named "Book To Be Deleted"
     When I visit the admin books url
     And I click the delete link for the book "Book To Be Deleted"
     Then I see a prompt requesting that I confirm my decision to delete the book
@@ -48,7 +48,7 @@ Feature: Bookstore Administration Panel
   Scenario: Editing a book
     Given I am logged into the admin panel
     And I am logged into the site
-    Given there is a book named "Book To Be Edited"
+    And there is a book named "Book To Be Edited"
     And the book is valued at "$135.99"
     When I visit the admin books url
     And I click the edit link for the book "Book To Be Edited"
