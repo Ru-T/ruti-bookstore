@@ -96,15 +96,15 @@ Then(/^I see the book author "(.*?)"$/) do |author|
 end
 
 Given(/^there is a book named "(.*?)"$/) do |title|
-  FactoryGirl.create(:book, title: title)
+  @book = FactoryGirl.create(:book, title: title)
 end
 
 When(/^I click the delete link for the book "(.*?)"$/) do |link|
-  find(".delete_link", match: :first).click
+  find("#book_#{@book.id}").find(".delete_link").click
 end
 
 When(/^I click the edit link for the book "(.*?)"$/) do |link|
-  find(".edit_link", match: :first).click
+  find("#book_#{@book.id}").find(".edit_link").click
 end
 
 Then(/^I see a prompt requesting that I confirm my decision to delete the book$/) do
