@@ -5,6 +5,12 @@ class PendingPurchasesController < ApplicationController
     @pending_purchases = PendingPurchase.all
   end
 
+  def create
+    book = Book.find(params[:book_id])
+    current_user.pending_purchase(book)
+    redirect_to pending_purchases_path, notice: "This book has been added to your cart"
+  end
+
   private
 
   # strong params

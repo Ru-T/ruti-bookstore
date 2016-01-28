@@ -4,5 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :pending_purchases       
+  has_many :pending_purchases
+
+  def pending_purchase(book)
+    pending_purchases.create!(book_id: book.id,
+                              price_at_purchase: book.price,
+                              quantity: 1
+                              )
+  end
 end
