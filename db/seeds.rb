@@ -18,3 +18,7 @@ User.create!(email: "rwajnberg@gmail.com",
               password: Faker::Internet.password(8),
               )
 end
+
+AdminUser.create!(email: 'admin@example.com',
+                  password: 'password',
+                  password_confirmation: 'password')
