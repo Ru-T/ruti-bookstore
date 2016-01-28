@@ -1,4 +1,4 @@
-Given(/^there are (\d+) books in the database$/) do |arg1|
+Given(/^there are (\d+) books in the database$/) do |number|
   pending # express the regexp above with the code you wish you had
 end
 
@@ -22,7 +22,7 @@ Given(/^some books have been ordered$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I sort by "(.*?)"$/) do |arg1|
+When(/^I sort by "(.*?)"$/) do |field|
   pending # express the regexp above with the code you wish you had
 end
 
