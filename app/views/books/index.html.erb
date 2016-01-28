@@ -5,11 +5,11 @@
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Published Date</th>
-      <th>Author</th>
-      <th>Price</th>
-      <th>Category</th>
+      <th><%= sort_link(@q, :title) %></th>
+      <th><%= sort_link(@q, :published_date) %></th>
+      <th><%= sort_link(@q, :author) %></th>
+      <th><%= sort_link(@q, :price) %></th>
+      <th><%= sort_link(@q, :category) %></th>
       <th>Description</th>
     </tr>
   </thead>
