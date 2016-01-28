@@ -56,7 +56,9 @@ When(/^I enter the price "(.*?)"$/) do |price|
 end
 
 When(/^I enter the published date "(.*?)"$/) do |date|
-  page.execute_script("$('#datepicker').val(date)")
+  select "2016", from: "book_published_date_1i"
+  select "January", from: "book_published_date_2i"
+  select "26", from: "book_published_date_3i"
 end
 
 When(/^I enter the author "(.*?)"$/) do |author|

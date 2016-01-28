@@ -22,14 +22,14 @@ Feature: Bookstore Administration Panel
     And I click the "New Book" button
     And I enter the title "Test Book"
     And I enter the price "135.99"
-    And I enter the published date "2016-01-10"
+    And I enter the published date "2016-01-26"
     And I enter the author "Some Person"
     And I click the "Create Book" button
     And I visit the admin books url
     Then I see the book "Test Book"
     When I visit the public book index
     Then I see the book "Test Book"
-    And I see the book published date "2016-01-10"
+    And I see the book published date "2016-01-26"
     And I see the book author "Some Person"
 
   @javascript
@@ -45,7 +45,6 @@ Feature: Bookstore Administration Panel
     When I visit the public book index
     Then I don't see "Book To Be Deleted"
 
-  @javascript
   Scenario: Editing a book
     Given I am logged into the admin panel
     And I am logged into the site
