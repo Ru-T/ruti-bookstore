@@ -1,5 +1,5 @@
 Given(/^I have an admin account$/) do
-  # Admin.find(email: 'admin@example.com')
+  AdminUser.create!(email: "admin@example.com", password: "password")
 end
 
 When(/^I visit the admin panel url$/) do
@@ -19,7 +19,6 @@ Then(/^I see the admin panel$/) do
 end
 
 Given(/^I do not have an admin account$/) do
-  # express the regexp above with the code you wish you had
 end
 
 Then(/^I see a flash notification that tell me that my email does not exist in the system$/) do
@@ -27,6 +26,7 @@ Then(/^I see a flash notification that tell me that my email does not exist in t
 end
 
 Given(/^I am logged into the admin panel$/) do
+  AdminUser.create!(email: "admin@example.com", password: "password")
   visit new_admin_user_session_path
   fill_in 'Email', with: 'admin@example.com'
   fill_in 'Password', with: 'password'
@@ -52,8 +52,8 @@ When(/^I enter the price "(.*?)"$/) do |price|
   fill_in "Price", with: price
 end
 
-When(/^I enter the published date "(.*?)"$/) do |published_date|
-  fill_in "Published date", with: published_date
+When(/^I enter the published date "(.*?)"$/) do |date|
+  page.execute_script("$('#datepicker').val(date)")
 end
 
 When(/^I enter the author "(.*?)"$/) do |author|
@@ -77,27 +77,31 @@ Then(/^I see the book author "(.*?)"$/) do |author|
 end
 
 Given(/^there is a book named "(.*?)"$/) do |title|
-  expect(page).to have_content(title)
+  Book.create!(title: title, published_date: 01-01-2016, author: "Author", price: 15)
 end
 
-When(/^I click "(.*?)" for the book "(.*?)"$/) do |button, title|
-  pending # express the regexp above with the code you wish you had
+When(/^I click the delete link for the book "(.*?)"$/) do |link|
+  find(".delete_link", match: :first).click
+end
+
+When(/^I click the edit link for the book "(.*?)"$/) do |link|
+  find(".edit_link", match: :first).click
 end
 
 Then(/^I see a prompt requesting that I confirm my decision to delete the book$/) do
-  pending # express the regexp above with the code you wish you had
+  page.driver.browser.switch_to.alert.text
 end
 
 When(/^I confirm my decision to delete the book$/) do
-  pending # express the regexp above with the code you wish you had
+  page.driver.browser.switch_to.alert.accept
 end
 
 Then(/^I don't see "(.*?)"$/) do |title|
   expect(page).not_to have_content(title)
 end
 
-Given(/^there is a book named "(.*?)" valued at "(.*?)"$/) do |title, price|
-  pending # express the regexp above with the code you wish you had
+Given(/^the book is valued at "(.*?)"$/) do |price|
+  Book.create!(title: "Book To Be Edited", published_date: "2016-01-13", author: "Author", price: price)
 end
 
 When(/^I change the book name to "(.*?)"$/) do |new_title|
