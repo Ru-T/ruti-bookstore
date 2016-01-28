@@ -1,5 +1,6 @@
 class PendingPurchasesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_pending_purchase, only: [:edit, :update]
 
   def index
     @pending_purchases = PendingPurchase.where(user: current_user)
@@ -17,7 +18,19 @@ class PendingPurchasesController < ApplicationController
     redirect_to pending_purchases_path, notice: "This book has been removed from your cart"
   end
 
+  def update
+    if @pending_purchase.update(pending_purchase_params)
+      redirect to pending_purchases_path, notice: "The quantity of your book has been updated"
+    else
+      render :edit
+    end    
+  end
+
   private
+
+  def set_pending_purchase
+    @pending_purchase = PendingPurchase.find(params[:id])
+  end
 
   # strong params
   def pending_purchase_params
