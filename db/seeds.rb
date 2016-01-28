@@ -28,5 +28,5 @@ AdminUser.create!(email: 'admin@example.com',
                           book_id: rand(1...100),
                           price_at_purchase: rand(1...100),
                           quantity: 1
-                          )
+                         )
 end

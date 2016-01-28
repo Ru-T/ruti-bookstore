@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PendingPurchase, type: :model do
-
-  let(:pending_purchase) {FactoryGirl.create(:pending_purchase)}
+  let(:pending_purchase) { FactoryGirl.create(:pending_purchase) }
 
   describe "validations" do
     it "is valid without quantity or price_at_purchase" do

@@ -2,7 +2,7 @@ Given(/^there are some books in the database$/) do
   FactoryGirl.create_list(:book, 100)
 end
 
-When(/^I click the "(.*?)" button for the first book$/) do |button|
+When(/^I click the Add to cart button for the first book$/) do
   find("#add_to_cart", match: :first).click
 end
 
