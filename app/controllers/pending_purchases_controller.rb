@@ -2,7 +2,7 @@ class PendingPurchasesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @pending_purchases = PendingPurchase.all
+    @pending_purchases = PendingPurchase.where(user: current_user)
   end
 
   def create
