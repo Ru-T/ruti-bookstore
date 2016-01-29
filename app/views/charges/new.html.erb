@@ -13,6 +13,8 @@
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="Your Books"
+          data-billing-address=true
+          data-shipping-address=true
           data-amount="500"
           data-locale="auto"></script>
 <% end %>
