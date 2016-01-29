@@ -1,0 +1,9 @@
+<%= search_form_for @q do |f| %>
+
+  Search for a book title that contains:
+
+  <%= f.label :title_cont %>
+  <%= f.search_field :title_cont %>
+
+  <%= f.submit %>
+<% end %>

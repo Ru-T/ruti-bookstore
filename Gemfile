@@ -22,7 +22,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'activeadmin'
+
+gem 'bootstrap-sass'
+gem 'kaminari'
+
+gem 'ransack'
 
 gem 'rubocop'
 # Use ActiveModel has_secure_password

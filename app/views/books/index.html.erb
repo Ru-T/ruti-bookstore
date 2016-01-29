@@ -1,10 +1,31 @@
-<h1> Books </h1>
+<h1>Books</h1>
 
-<% @books.each do |book| %>
-  <p> <%= book.title %> </p>
-  <p> <%= book.published_date %> </p>
-  <p> <%= book.author %> </p>
-  <p> <%= book.price %> </p>
-  <p> <%= book.category %> </p>
-  <p> <%= book.description %> </p>
-<% end %>
+<%= render 'search_form' %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :title) %></th>
+      <th><%= sort_link(@q, :published_date) %></th>
+      <th><%= sort_link(@q, :author) %></th>
+      <th><%= sort_link(@q, :price) %></th>
+      <th><%= sort_link(@q, :category) %></th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td> <%= book.title %> </td>
+        <td> <%= book.published_date %> </td>
+        <td> <%= book.author %> </td>
+        <td> <%= book.price %> </td>
+        <td> <%= book.category %> </td>
+        <td> <%= book.description %> </td>
+        <td><%= link_to 'View Book', book %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @books %>
