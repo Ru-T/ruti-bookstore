@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show]
   devise_for :users, controllers: { registrations: "registrations" }
   resources :pending_purchases, except: [:new]
-  resources :charges, only: [:new, :create]
+  resources :charges
 end
