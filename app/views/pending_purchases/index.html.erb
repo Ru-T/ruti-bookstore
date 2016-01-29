@@ -1,0 +1,16 @@
+<div class="container">
+  <h1> My Shopping Cart </h1>
+
+  <% @pending_purchases.each do |purchase| %>
+    <p> <%= purchase.user.email %> </p>
+    <p> <%= purchase.book.title %> </p>
+    <p> <%= purchase.quantity %>
+        <%= link_to 'Edit Quantity', edit_pending_purchase_path(purchase), id: "edit_quantity" %>
+    </p>
+    <p> <%= purchase.price_at_purchase %> </p>
+    <%= form_for(current_user.pending_purchases.find_by_book_id(purchase.book.id),
+                 method: :delete) do |f| %>
+      <%= f.submit "Remove from Cart" %>
+    <% end %>
+  <% end %>
+</div>
