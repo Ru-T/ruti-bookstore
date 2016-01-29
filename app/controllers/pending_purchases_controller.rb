@@ -13,9 +13,9 @@ class PendingPurchasesController < ApplicationController
   end
 
   def destroy
-    book = Book.find(params[:book_id])
+    book = PendingPurchase.find(params[:id]).book
     current_user.remove_from_cart(book)
-    redirect_to pending_purchases_path, notice: "This book has been removed from your cart"
+    redirect_to books_path, notice: "This book has been removed from your cart"
   end
 
   def update

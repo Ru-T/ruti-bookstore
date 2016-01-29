@@ -8,9 +8,8 @@
         <%= link_to 'Edit Quantity', edit_pending_purchase_path(purchase), id: "edit_quantity" %>
     </p>
     <p> <%= purchase.price_at_purchase %> </p>
-    <%= form_for(@pending_purchases.find_by_book_id(purchase.book.id),
+    <%= form_for(current_user.pending_purchases.find_by_book_id(purchase.book.id),
                   method: :delete) do |f| %>
-      <%= hidden_field_tag :book_id, purchase.book.id %>
       <%= f.submit "Remove from Cart" %>
     <% end %>
   <% end %>

@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
   def remove_from_cart(book)
     pending_purchases.find_by_book_id(book.id).destroy
   end
+
+  def in_cart?(book)
+    pending_purchases.any? { |h| h[:book_id] == book.id }
+  end
 end
