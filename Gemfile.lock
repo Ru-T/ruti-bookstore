@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/activeadmin/activeadmin.git
+  remote: git://github.com/gregbell/active_admin.git
   revision: ca94d1ccb1894ccbaedc40f6a6b948d1423b90bb
   specs:
     activeadmin (1.0.0.pre2)
@@ -294,7 +294,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   awesome_print
-  bootstrap-sass
+  bootstrap-sass (~> 3.3.6)
   capybara
   capybara-screenshot
   coffee-rails (~> 4.1.0)
