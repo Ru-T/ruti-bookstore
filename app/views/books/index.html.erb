@@ -24,7 +24,7 @@
           <td> <%= book.category %> </td>
           <td> <%= book.description %> </td>
           <td><%= link_to 'View Book', book %></td>
-          <% if current_user.pending_purchases.any? { |h| h[:book_id] == book.id } %>
+          <% if current_user.in_cart?(book) %>
             <td> Already added to cart </td>
           <% else %>
             <%= form_for(current_user.pending_purchases.build) do |f| %>
