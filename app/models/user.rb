@@ -7,10 +7,11 @@ class User < ActiveRecord::Base
   has_many :pending_purchases
 
   def add_to_cart(book)
-    pending_purchases.create!(book_id: book.id,
-                              price_at_purchase: book.price,
-                              quantity: 1
-                             )
+    pending_purchases.create!(
+      book_id: book.id,
+      price_at_purchase: book.price,
+      quantity: 1
+    )
   end
 
   def remove_from_cart(book)
