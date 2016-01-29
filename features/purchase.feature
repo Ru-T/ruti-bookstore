@@ -1,10 +1,9 @@
 Feature: Purchasing a Book
   Scenario: Happy Path
     Given I am logged into the site
-    And there are 100 books in the database
+    And there are some books in the database
     When I visit the site root path
-    And I click on a book
-    And I click the "Add to Cart" button
+    And I click the Add to cart button for the first book
     Then the book is added to my cart
     When I visit my cart
     Then I see the book in my cart
@@ -33,11 +32,10 @@ Feature: Purchasing a Book
 
   Scenario: With a saved Credit Card
     Given I am logged into the site
-    And there are 100 books in the database
+    And there are some books in the database
     And I have a credit card saved on the site
     When I visit the site root path
-    And I click on a book
-    And I click the "Add to Cart" button
+    And I click the Add to cart button for the first book
     Then the book is added to my cart
     When I visit my cart
     Then I see the book in my cart
