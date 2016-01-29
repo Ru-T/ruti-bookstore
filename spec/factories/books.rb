@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :book do
-    title "MyString"
-    published_date "2016-01-26"
-    author "MyString"
-    price 1
+    title Faker::Book.title
+    published_date Faker::Date.between(30.days.ago, Date.today)
+    author Faker::Book.author
+    price Faker::Commerce.price
   end
 end

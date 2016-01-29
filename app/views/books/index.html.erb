@@ -1,18 +1,41 @@
-<h1> Books </h1>
+<div class="container">
+  <h1>Books</h1>
 
-<% @books.each do |book| %>
-  <p> <%= book.title %> </p>
-  <p> <%= book.published_date %> </p>
-  <p> <%= book.author %> </p>
-  <p> <%= book.price %> </p>
-  <p> <%= book.category %> </p>
-  <p> <%= book.description %> </p>
-  <% if current_user.pending_purchases.include?(book) %>
-    <p> Already added to cart </p>
-  <% else %>
-    <%= form_for(current_user.pending_purchases.build) do |f| %>
-      <%= hidden_field_tag :book_id, book.id %>
-      <%= f.submit "Add to cart", id: "add_to_cart" %>
-    <% end %>
-  <% end %>
-<% end %>
+  <%= render 'search_form' %>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th><%= sort_link(@q, :title) %></th>
+        <th><%= sort_link(@q, :published_date) %></th>
+        <th><%= sort_link(@q, :author) %></th>
+        <th><%= sort_link(@q, :price) %></th>
+        <th><%= sort_link(@q, :category) %></th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td> <%= book.title %> </td>
+          <td> <%= book.published_date %> </td>
+          <td> <%= book.author %> </td>
+          <td> <%= book.price %> </td>
+          <td> <%= book.category %> </td>
+          <td> <%= book.description %> </td>
+          <% if current_user.pending_purchases.include?(book) %>
+            <p> Already added to cart </p>
+          <% else %>
+            <%= form_for(current_user.pending_purchases.build) do |f| %>
+              <%= hidden_field_tag :book_id, book.id %>
+              <%= f.submit "Add to cart", id: "add_to_cart" %>
+            <% end %>
+          <% end %>
+          <td><%= link_to 'View Book', book %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @books %>
+</div>
