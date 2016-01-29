@@ -19,6 +19,6 @@ class User < ActiveRecord::Base
   end
 
   def in_cart?(book)
-    pending_purchases.any? { |h| h[:book_id] == book.id }
+    pending_purchases.any? { |pending_purchase| pending_purchase[:book_id] == book.id }
   end
 end
