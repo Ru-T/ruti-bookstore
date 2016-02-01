@@ -6,7 +6,7 @@
       </div>
     <% end %>
     <label class="amount">
-      <span>Amount: <%= @amount %></span>
+      <span>Amount: <%= "$#{@amount}.00" %></span>
     </label>
   </article>
 
@@ -16,6 +16,7 @@
           data-billing-address=true
           data-shipping-address=true
           data-label="Purchase"
+          data-amount=<%= @amount %>
           data-panel-label="Submit Order"
           data-locale="auto"></script>
 <% end %>
