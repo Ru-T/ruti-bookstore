@@ -4,6 +4,8 @@ class PendingPurchase < ActiveRecord::Base
   belongs_to :user
   belongs_to :book
 
+  scope :pending, -> { where(purchased: false) }
+
   def total_price
     price_at_purchase * quantity
   end
@@ -11,10 +13,5 @@ class PendingPurchase < ActiveRecord::Base
   def was_purchased
     self.purchased = true
     save
-  end
-
-  def self.pending(user)
-    pending = PendingPurchase.where(user_id: user.id)
-    pending.reject { |pending_purchase| pending_purchase.purchased == true }
   end
 end
