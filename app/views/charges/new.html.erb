@@ -2,7 +2,7 @@
   <%#= hidden_field_tag :pending_purchase_id, purchase.id %>
   <article>
     <label class="amount">
-      <span>Amount: <%= @amount %></span>
+      <span>Amount: <%= purchase.price_at_purchase * purchase.quantity %></span>
     </label>
   </article>
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -11,7 +11,7 @@
           data-billing-address=true
           data-shipping-address=true
           data-label="Purchase"
-          data-amount=<%= @amount %>
+          data-amount=<%= purchase.price_at_purchase %>
           data-panel-label="Submit Order"
           data-locale="auto">
   </script>

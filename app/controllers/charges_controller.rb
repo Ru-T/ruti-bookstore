@@ -1,10 +1,10 @@
 class ChargesController < ApplicationController
+
   def new
   end
 
   def create
-    @amount = params[:amount]
-    # @amount = PendingPurchase.find(params[:pending_purchase_id]).price_at_purchase
+    @amount = PendingPurchase.find(params[:pending_purchase_id]).total_price
 
     customer = Stripe::Customer.create(
       email:  params[:stripeEmail],

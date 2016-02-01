@@ -55,6 +55,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    ap (0.1.1)
+      httparty (>= 0.7.7)
     arbre (1.0.3)
       activesupport (>= 3.0.0)
     arel (6.0.3)
@@ -140,6 +142,9 @@ GEM
       activesupport (>= 3.2, < 5)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
@@ -171,6 +176,7 @@ GEM
     minitest (5.8.4)
     multi_json (1.11.2)
     multi_test (0.1.2)
+    multi_xml (0.5.5)
     netrc (0.11.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -308,6 +314,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  ap
   awesome_print
   bootstrap-sass (~> 3.3.6)
   capybara

@@ -3,4 +3,8 @@ class PendingPurchase < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :book
+
+  def total_price
+    price_at_purchase * quantity
+  end
 end
