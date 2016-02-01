@@ -10,7 +10,7 @@ class PendingPurchase < ActiveRecord::Base
 
   def was_purchased
     self.purchased = true
-    self.save
+    save
   end
 
   def self.pending(user)
