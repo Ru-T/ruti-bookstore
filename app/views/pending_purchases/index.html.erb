@@ -1,16 +1,32 @@
 <div class="container">
   <h1> My Shopping Cart </h1>
 
-  <% @pending_purchases.each do |purchase| %>
-    <p> <%= purchase.user.email %> </p>
-    <p> <%= purchase.book.title %> </p>
-    <p> <%= purchase.quantity %>
-        <%= link_to 'Edit Quantity', edit_pending_purchase_path(purchase), id: "edit_quantity" %>
-    </p>
-    <p> <%= purchase.price_at_purchase %> </p>
-    <%= form_for(current_user.pending_purchases.find_by_book_id(purchase.book.id),
-                 method: :delete) do |f| %>
-      <%= f.submit "Remove from Cart" %>
-    <% end %>
-  <% end %>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>User Email</th>
+        <th>Book Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total Price </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pending_purchases.each do |purchase| %>
+        <tr>
+          <td> <%= purchase.user.email %> </td>
+          <td> <%= purchase.book.title %> </td>
+          <td> <%= purchase.quantity %>
+               <%= link_to 'Edit Quantity', edit_pending_purchase_path(purchase), id: "edit_quantity" %> </td>
+          <td> <%= "$#{purchase.price_at_purchase}" %> </td>
+          <td> <%= "$#{purchase.total_price}" %> </td>
+          <td><%= render "charges/charge_form", purchase: purchase %></td>
+          <%= form_for(current_user.pending_purchases.find_by(book_id: purchase.book.id),
+                       method: :delete) do |f| %>
+            <td><%= f.submit "Remove from Cart" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

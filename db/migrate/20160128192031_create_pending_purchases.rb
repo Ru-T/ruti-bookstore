@@ -4,7 +4,7 @@ class CreatePendingPurchases < ActiveRecord::Migration
       t.integer :user_id
       t.integer :book_id
       t.integer :quantity
-      t.integer :price_at_purchase
+      t.integer :price_at_purchase, scale: 2
 
       t.timestamps null: false
     end
