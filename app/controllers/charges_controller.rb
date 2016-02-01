@@ -3,8 +3,8 @@ class ChargesController < ApplicationController
   end
 
   def create
-    # Amount in cents
-    @amount = PendingPurchase.find(params[:pending_purchase_id]).price_at_purchase
+    @amount = params[:amount]
+    # @amount = PendingPurchase.find(params[:pending_purchase_id]).price_at_purchase
 
     customer = Stripe::Customer.create(
       email:  params[:stripeEmail],
@@ -14,13 +14,12 @@ class ChargesController < ApplicationController
     charge = Stripe::Charge.create(
       customer:    customer.id,
       amount:      @amount,
-      description: 'Rails Stripe customer',
+      description: 'Bookstore purchase',
       currency:    'usd',
       receipt_email: customer.email
     )
 
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to new_charge_path
+    flash[:notice] = "Successfully created a charge"
+    redirect_to pending_purchases_path
   end
 end
