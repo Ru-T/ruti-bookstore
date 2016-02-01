@@ -23,4 +23,11 @@ RSpec.describe PendingPurchase, type: :model do
       expect(cart_item.total_price).to eq 36
     end
   end
+
+  describe "#was_purchased" do
+    it "sets the purchased boolean to true" do
+      pending_purchase.was_purchased
+      expect(pending_purchase.purchased).to eq true
+    end
+  end
 end

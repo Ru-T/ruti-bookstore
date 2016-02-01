@@ -7,4 +7,12 @@ class PendingPurchase < ActiveRecord::Base
   def total_price
     price_at_purchase * quantity
   end
+
+  def was_purchased
+    self.purchased = true
+  end
+
+  def self.not_yet_purchased
+    PendingPurchase.all.reject { |pending_purchase| pending_purchase.purchased == true }
+  end
 end

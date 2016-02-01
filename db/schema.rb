@@ -62,9 +62,9 @@ ActiveRecord::Schema.define(version: 20160201162205) do
     t.integer  "book_id"
     t.integer  "quantity"
     t.integer  "price_at_purchase"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.boolean  "purchased?"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "purchased",         default: false
   end
 
   add_index "pending_purchases", ["book_id"], name: "index_pending_purchases_on_book_id"
