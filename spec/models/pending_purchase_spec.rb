@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PendingPurchase, type: :model do
   let(:user) { FactoryGirl.create(:user) }
-  let(:pending_purchase) { FactoryGirl.create(:pending_purchase, user: user) }
+  let(:pending_purchase) { FactoryGirl.create(:pending_purchase, user: user, price_at_purchase: 12, quantity: 3) }
 
   describe "validations" do
     it "is valid without quantity or price_at_purchase" do
@@ -20,8 +20,7 @@ RSpec.describe PendingPurchase, type: :model do
 
   describe "#total_price" do
     it "returns the purchase price times the quantity of the item" do
-      cart_item = FactoryGirl.build(:pending_purchase, price_at_purchase: 12, quantity: 3)
-      expect(cart_item.total_price).to eq 36
+      expect(pending_purchase.total_price).to eq 36
     end
   end
 
