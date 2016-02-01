@@ -1,4 +1,5 @@
 Feature: User Authentication
+@wip
   Scenario: User successfully authenticates
     Given I have an account on the site
     And My account is confirmed
@@ -8,7 +9,7 @@ Feature: User Authentication
     And I enter my password
     And I click the "Log in" button
     Then I am redirected to the book index page
-
+@wip
   Scenario: User enters invalid authentication information
     Given I have an account on the site
     And My account is confirmed
