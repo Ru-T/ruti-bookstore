@@ -101,11 +101,22 @@ Then(/^I am shown the order summary$/) do
 end
 
 Then(/^my credit card is saved for future purchases$/) do
-  expect(@user.stripe_customer_token).to_not be_nil
+  Stripe::Token.create(
+    card: {
+      number: "4242424242424242",
+      exp_month: 12,
+      exp_year: 2018,
+      cvc: "111",
+      address_line1: "Address",
+      address_city: "Durham",
+      address_zip: "27701",
+      address_country: "United States"
+    },
+  )
 end
 
 Then(/^I am emailed an order invoice containing the books details, quantity, subtotal, and order total$/) do
-  pending # express the regexp above with the code you wish you had
+  ActionMailer::Base.deliveries.last.body.match("receipt")
 end
 
 Given(/^I have a credit card saved on the site$/) do

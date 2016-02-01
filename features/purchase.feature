@@ -19,8 +19,8 @@ Feature: Purchasing a Book
     #Then I am asked to review the order total
     #When I click the "Confirm" button
     #Then I am shown the order summary
-    #Then my credit card is saved for future purchases
-    #And I am emailed an order invoice containing the books details, quantity, subtotal, and order total
+    Then my credit card is saved for future purchases
+    And I am emailed an order invoice containing the books details, quantity, subtotal, and order total
 
   Scenario: Quantity adjustment
     Given I am logged into the site
@@ -40,7 +40,7 @@ Feature: Purchasing a Book
     And I click the Add to cart button for the first book
     When I visit my cart
     Then I see the book in my cart
-    When I click the "Purchase" button
+    When I click the "Pay with Card" button
     Then I am asked for my shipping address
     When I enter my shipping address
     Then I am asked if I want to use my already saved credit card
@@ -48,5 +48,5 @@ Feature: Purchasing a Book
     #Then I am asked to review the order total
     #When I click the "Confirm" button
     #Then I am shown the order summary
-    #And my credit card is saved for future purchases
-    #And I am emailed an order invoice containing the books details, quantity, subtotal, and order total
+    And my credit card is saved for future purchases
+    And I am emailed an order invoice containing the books details, quantity, subtotal, and order total
