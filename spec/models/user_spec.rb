@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:book) { FactoryGirl.create(:book) }
+  let(:user) { create(:user) }
+  let(:book) { create(:book) }
 
   describe "#add_to_cart" do
     it "allows a user to add a book to his/her cart" do

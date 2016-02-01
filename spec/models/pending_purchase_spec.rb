@@ -1,20 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe PendingPurchase, type: :model do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:pending_purchase) { FactoryGirl.create(:pending_purchase, user: user, price_at_purchase: 12, quantity: 3) }
+  let(:user) { create(:user) }
+  let(:pending_purchase) { create(:pending_purchase, user: user, price_at_purchase: 12, quantity: 3) }
 
   describe "validations" do
     it "is valid without quantity or price_at_purchase" do
-      expect(FactoryGirl.build(:pending_purchase)).to be_valid
+      expect(build(:pending_purchase)).to be_valid
     end
 
     it "must have a user_id to be valid" do
-      expect(FactoryGirl.build(:pending_purchase, user_id: nil)).to_not be_valid
+      expect(build(:pending_purchase, user_id: nil)).to_not be_valid
     end
 
     it "must have a book_id to be valid" do
-      expect(FactoryGirl.build(:pending_purchase, book_id: nil)).to_not be_valid
+      expect(build(:pending_purchase, book_id: nil)).to_not be_valid
     end
   end
 
