@@ -10,9 +10,11 @@ class PendingPurchase < ActiveRecord::Base
 
   def was_purchased
     self.purchased = true
+    self.save
   end
 
-  def self.not_yet_purchased
-    PendingPurchase.all.reject { |pending_purchase| pending_purchase.purchased == true }
+  def self.pending(user)
+    pending = PendingPurchase.where(user_id: user.id)
+    pending.reject { |pending_purchase| pending_purchase.purchased == true }
   end
 end

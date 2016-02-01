@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe PendingPurchase, type: :model do
-  let(:pending_purchase) { FactoryGirl.create(:pending_purchase) }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:pending_purchase) { FactoryGirl.create(:pending_purchase, user: user) }
 
   describe "validations" do
     it "is valid without quantity or price_at_purchase" do
@@ -21,6 +22,14 @@ RSpec.describe PendingPurchase, type: :model do
     it "returns the purchase price times the quantity of the item" do
       cart_item = FactoryGirl.build(:pending_purchase, price_at_purchase: 12, quantity: 3)
       expect(cart_item.total_price).to eq 36
+    end
+  end
+
+  describe ".pending" do
+    it "rejects all pending purchases that have been purchased" do
+      pending_purchase.was_purchased
+      expect(pending_purchase.purchased).to eq true
+      expect(PendingPurchase.pending(user)).to_not include pending_purchase
     end
   end
 
