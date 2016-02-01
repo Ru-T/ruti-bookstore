@@ -3,7 +3,7 @@ class PendingPurchasesController < ApplicationController
   before_action :set_pending_purchase, only: [:edit, :update]
 
   def index
-    @pending_purchases = PendingPurchase.pending(current_user)
+    @pending_purchases = current_user.pending_purchases.pending
   end
 
   def create

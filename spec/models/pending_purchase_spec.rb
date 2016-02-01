@@ -28,7 +28,7 @@ RSpec.describe PendingPurchase, type: :model do
     it "rejects all pending purchases that have been purchased" do
       pending_purchase.was_purchased
       expect(pending_purchase.purchased).to eq true
-      expect(PendingPurchase.pending(user)).to_not include pending_purchase
+      expect(PendingPurchase.pending).to_not include pending_purchase
     end
   end
 
