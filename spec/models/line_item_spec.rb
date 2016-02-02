@@ -5,7 +5,7 @@ RSpec.describe LineItem, type: :model do
   let(:line_item) { create(:line_item }
 
   describe "validations" do
-    it "is valid without quantity or active flag" do
+    it "is valid without active flag" do
       expect(build(:line_item)).to be_valid
     end
 
@@ -15,6 +15,10 @@ RSpec.describe LineItem, type: :model do
 
     it "must have a book_id to be valid" do
       expect(build(:line_item, book_id: nil)).to_not be_valid
+    end
+
+    it "must have a quantity to be valid" do
+      expect(build(:line_item, quantity: nil)).to_not be_valid
     end
   end
 end

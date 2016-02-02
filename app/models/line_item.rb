@@ -1,5 +1,5 @@
 class LineItem < ActiveRecord::Base
-  validates_presence_of :user_id, :book_id
+  validates_presence_of :user_id, :book_id, :quantity
 
   belongs_to :user
   belongs_to :book

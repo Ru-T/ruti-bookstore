@@ -7,12 +7,10 @@
   <p> <%= @book.category %> </p>
   <p> <%= @book.description %> </p>
 
-  <% if current_user.in_cart?(@book) %>
-    <td> Already added to cart </td>
-  <% else %>
-    <%= form_for(current_user.line_items.build) do |f| %>
-      <%= hidden_field_tag :book_id, @book.id %>
-      <td><%= f.submit "Add to cart", id: "add_to_cart" %></td>
-    <% end %>
+  <%= form_for(current_user.line_items.build) do |f| %>
+    <%= hidden_field_tag :book_id, @book.id %>
+    <%= f.label :quantity %>:
+    <%= f.number_field :quantity, value: 1 %><br />
+    <td><%= f.submit "Add to cart", id: "add_to_cart" %></td>
   <% end %>
 </div>
