@@ -15,7 +15,7 @@ class LineItemsController < ApplicationController
   def destroy
     book = LineItem.find(params[:id]).book
     current_user.remove_from_cart(book)
-    redirect_to books_path, notice: "This book has been removed from your cart"
+    redirect_to cart_path(current_user), notice: "This book has been removed from your cart"
   end
 
   def update
