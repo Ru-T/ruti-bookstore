@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_one :cart
 
   def add_to_cart(book)
-    line_items.create!(book_id: book.id, active: true)
+    line_items.create!(book_id: book.id, active: true, quantity: 1)
   end
 
   def remove_from_cart(book)

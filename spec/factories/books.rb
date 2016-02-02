@@ -3,6 +3,6 @@ FactoryGirl.define do
     title Faker::Book.title
     published_date Faker::Date.between(30.days.ago, Date.today)
     author Faker::Book.author
-    price Faker::Commerce.price
+    price 200
   end
 end
