@@ -4,7 +4,7 @@ class LineItem < ActiveRecord::Base
   belongs_to :user
   belongs_to :book
 
-  scope :active, -> { where(active: true) } 
+  scope :active, -> { where(active: true) }
 
   def total_price
     book.price * quantity

@@ -23,7 +23,7 @@
           <td> <%= "$#{book.price}" %> </td>
           <td> <%= book.category %> </td>
           <td> <%= book.description %> </td>
-          <td><%= link_to 'View Book', book %></td>
+          <td><%= link_to 'View Book', book, id: "view_book" %></td>
         </tr>
       <% end %>
     </tbody>

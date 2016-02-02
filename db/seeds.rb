@@ -13,8 +13,6 @@ user = User.create!(email: "rwajnberg@gmail.com",
             password: "password"
             )
 
-Cart.create!(user: user)
-
 20.times do
   User.create!(email: Faker::Internet.email,
               password: Faker::Internet.password(8),
