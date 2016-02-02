@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
   resources :pending_purchases, except: [:new]
   resources :charges, only: [:create]
+  resources :carts, only: [:show]
 end

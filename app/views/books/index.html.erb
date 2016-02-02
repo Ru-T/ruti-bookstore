@@ -24,14 +24,6 @@
           <td> <%= book.category %> </td>
           <td> <%= book.description %> </td>
           <td><%= link_to 'View Book', book %></td>
-          <% if current_user.in_cart?(book) %>
-            <td> Already added to cart </td>
-          <% else %>
-            <%= form_for(current_user.pending_purchases.build) do |f| %>
-              <%= hidden_field_tag :book_id, book.id %>
-              <td><%= f.submit "Add to cart", id: "add_to_cart" %></td>
-            <% end %>
-          <% end %>
         </tr>
       <% end %>
     </tbody>

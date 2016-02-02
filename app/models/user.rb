@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :pending_purchases
+  has_one :cart
 
   def add_to_cart(book)
     pending_purchases.create!(
