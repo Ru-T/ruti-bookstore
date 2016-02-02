@@ -1,6 +1,6 @@
 class PendingPurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_pending_purchase, only: [:edit, :update]
+  before_action :set_pending_purchase, only: [:edit, :update, :show]
 
   def index
     @pending_purchases = current_user.pending_purchases.pending

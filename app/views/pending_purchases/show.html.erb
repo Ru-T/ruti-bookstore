@@ -1,0 +1,25 @@
+<div class="container">
+  <h1> Review Purchase Order </h1>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>User Email</th>
+        <th>Book Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total Price </th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td> <%= @pending_purchase.user.email %> </td>
+          <td> <%= @pending_purchase.book.title %> </td>
+          <td> <%= @pending_purchase.quantity %> </td>
+          <td> <%= "$#{@pending_purchase.price_at_purchase}" %> </td>
+          <td> <%= "$#{@pending_purchase.total_price}" %> </td>
+          <td><%= render "charges/charge_form", purchase: @pending_purchase %></td>
+        </tr>
+    </tbody>
+  </table>
+</div>

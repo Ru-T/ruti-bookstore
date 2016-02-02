@@ -7,6 +7,8 @@ Feature: Purchasing a Book
     And I click the Add to cart button for the first book
     When I visit my cart
     Then I see the book in my cart
+    Then I click the "Review Order" button
+    Then I am asked to review the order total
     When I click the "Pay with Card" button
     Then I am asked for my email address
     Then I am asked for my shipping address
@@ -17,9 +19,6 @@ Feature: Purchasing a Book
     When I enter my credit card
     #And I choose to have my credit card remembered
     And I click the Submit Order button
-    #Then I am asked to review the order total
-    #When I click the "Confirm" button
-    #Then I am shown the order summary
     Then my credit card is saved for future purchases
     And I am emailed an order invoice containing the books details, quantity, subtotal, and order total
 @wip
@@ -41,13 +40,12 @@ Feature: Purchasing a Book
     And I click the Add to cart button for the first book
     When I visit my cart
     Then I see the book in my cart
+    Then I click the "Review Order" button
+    Then I am asked to review the order total
     When I click the "Pay with Card" button
     Then I am asked for my shipping address
     When I enter my shipping address
     Then I am asked if I want to use my already saved credit card
     When I confirm using my saved credit card
-    #Then I am asked to review the order total
-    #When I click the "Confirm" button
-    #Then I am shown the order summary
     And my credit card is saved for future purchases
     And I am emailed an order invoice containing the books details, quantity, subtotal, and order total

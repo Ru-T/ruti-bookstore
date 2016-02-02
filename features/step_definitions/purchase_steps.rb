@@ -100,11 +100,8 @@ When(/^I click the Submit Order button$/) do
 end
 
 Then(/^I am asked to review the order total$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I am shown the order summary$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(page).to have_content("Review Purchase Order")
+  expect(page).to have_content("A book")
 end
 
 Then(/^my credit card is saved for future purchases$/) do
