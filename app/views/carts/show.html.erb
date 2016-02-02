@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <% current_user.line_items.each do |line_item| %>
+      <% current_user.line_items.active.each do |line_item| %>
         <tr>
           <td> <%= line_item.user.email %> </td>
           <td> <%= line_item.book.title %> </td>
