@@ -4,5 +4,4 @@ FactoryGirl.define do
     book_id 1
     quantity 1
   end
-
 end
