@@ -80,15 +80,22 @@ end
 
 When(/^I enter my credit card$/) do
   within_frame "stripe_checkout_app" do
-    "4242424242424242".split("").each { |c| find_field("card_number").native.send_keys(c) }
-    "1218".split("").each { |c| find_field("cc-exp").native.send_keys(c) }
+    "4242424242424242".split("").each { |c| find_field("card_number").send_keys(c) }
+    "1218".split("").each { |c| find_field("cc-exp").send_keys(c) }
     fill_in "CVC", with: "111"
   end
 end
 
+When(/^I choose to have my credit card remembered$/) do
+  find(".checkbox-remember-me").click
+  "9084324320".split("").each { |c| find_field("control").send_keys(c) }
+end
+
 When(/^I click the Submit Order button$/) do
   within_frame "stripe_checkout_app" do
+    Stripe.setPublishableKey("pk_test_OGDwO3uYN9OLBPdoaPRL9KZS")
     click_on "Submit Order"
+    expect(page).to have_content("Successfully created a charge")
   end
 end
 
@@ -101,22 +108,11 @@ Then(/^I am shown the order summary$/) do
 end
 
 Then(/^my credit card is saved for future purchases$/) do
-  Stripe::Token.create(
-    card: {
-      number: "4242424242424242",
-      exp_month: 12,
-      exp_year: 2018,
-      cvc: "111",
-      address_line1: "Address",
-      address_city: "Durham",
-      address_zip: "27701",
-      address_country: "United States"
-    },
-  )
+  expect(@user.Stripe::Token).to_not be_nil
 end
 
 Then(/^I am emailed an order invoice containing the books details, quantity, subtotal, and order total$/) do
-  ActionMailer::Base.deliveries.last.body.match("receipt")
+  ActionMailer::Base.deliveries.last.body.to_include("receipt")
 end
 
 Given(/^I have a credit card saved on the site$/) do
@@ -132,11 +128,12 @@ Given(/^I have a credit card saved on the site$/) do
       address_country: "United States"
     },
   )
+  expect(@user.Stripe::Token).to_not be_nil
 end
 
 Then(/^I am asked if I want to use my already saved credit card$/) do
   within_frame "stripe_checkout_app" do
-    expect(frame).to_have content("Log out")
+    find("logout")
   end
 end
 

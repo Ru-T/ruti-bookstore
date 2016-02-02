@@ -15,13 +15,14 @@ Feature: Purchasing a Book
     When I enter my billing address
     Then I am asked for my credit card
     When I enter my credit card
+    #And I choose to have my credit card remembered
     And I click the Submit Order button
     #Then I am asked to review the order total
     #When I click the "Confirm" button
     #Then I am shown the order summary
     Then my credit card is saved for future purchases
     And I am emailed an order invoice containing the books details, quantity, subtotal, and order total
-
+@wip
   Scenario: Quantity adjustment
     Given I am logged into the site
     And there are "100" books in the database

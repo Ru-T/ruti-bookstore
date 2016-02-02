@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe PendingPurchase, type: :model do
   let(:user) { create(:user) }
-  let(:pending_purchase) { create(:pending_purchase, user: user, price_at_purchase: 12, quantity: 3) }
+  let(:pending_purchase) { create(:pending_purchase,
+      user: user,
+      price_at_purchase: 12,
+      quantity: 3)
+    }
 
   describe "validations" do
     it "is valid without quantity or price_at_purchase" do
