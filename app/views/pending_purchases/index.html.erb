@@ -21,7 +21,6 @@
           <td> <%= "$#{purchase.price_at_purchase}" %> </td>
           <td> <%= "$#{purchase.total_price}" %> </td>
           <td> <%= link_to "Review Order", purchase %></td>
-          <!-- <td><%#= render "charges/charge_form", purchase: purchase %></td> -->
           <%= form_for(current_user.pending_purchases.find_by(book_id: purchase.book.id),
                        method: :delete) do |f| %>
             <td><%= f.submit "Remove from Cart" %></td>
