@@ -1,5 +1,5 @@
-Given(/^there are 100 books in the database$/) do
-  FactoryGirl.create_list(:book, 100)
+Given(/^there are (\d+) books in the database$/) do |number|
+  FactoryGirl.create_list(:book, number.to_i)
 end
 
 Then(/^I see a list of books in the database$/) do

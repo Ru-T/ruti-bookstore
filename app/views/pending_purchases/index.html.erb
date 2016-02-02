@@ -20,7 +20,7 @@
                <%= link_to 'Edit Quantity', edit_pending_purchase_path(purchase), id: "edit_quantity" %> </td>
           <td> <%= "$#{purchase.price_at_purchase}" %> </td>
           <td> <%= "$#{purchase.total_price}" %> </td>
-          <td><%= render "charges/charge_form", purchase: purchase %></td>
+          <td> <%= link_to "Review Order", purchase %></td>
           <%= form_for(current_user.pending_purchases.find_by(book_id: purchase.book.id),
                        method: :delete) do |f| %>
             <td><%= f.submit "Remove from Cart" %></td>

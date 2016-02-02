@@ -14,4 +14,10 @@ class PendingPurchase < ActiveRecord::Base
     self.purchased = true
     save
   end
+
+  def self.popular_books
+    PendingPurchase.where(purchased: true)
+                   .group(:book_id)
+                   .order(quantity: :desc)
+  end
 end

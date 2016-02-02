@@ -10,12 +10,16 @@ end
 
 
 User.create!(email: "rwajnberg@gmail.com",
+             password: "password"
+            )
+
+User.create!(email: "ruti.wajnberg@smashingboxes.com",
             password: "password"
             )
 
 20.times do
   User.create!(email: Faker::Internet.email,
-              password: Faker::Internet.password(8),
+               password: Faker::Internet.password(8),
               )
 end
 
