@@ -1,5 +1,4 @@
 ActiveAdmin.register Stripe::Charge do
-
   index do
     column :customer
     column :amount
