@@ -93,7 +93,6 @@ end
 
 When(/^I click the Submit Order button$/) do
   within_frame "stripe_checkout_app" do
-    Stripe.setPublishableKey("pk_test_OGDwO3uYN9OLBPdoaPRL9KZS")
     click_on "Submit Order"
     expect(page).to have_content("Successfully created a charge")
   end
@@ -113,7 +112,7 @@ Then(/^I am emailed an order invoice containing the books details, quantity, sub
 end
 
 Given(/^I have a credit card saved on the site$/) do
-  Stripe::Token.create(
+  token = Stripe::Token.create(
     card: {
       number: "4242424242424242",
       exp_month: 12,
@@ -125,6 +124,7 @@ Given(/^I have a credit card saved on the site$/) do
       address_country: "United States"
     },
   )
+  Stripe::Customer.create(email: @user.email, source: token)
   expect(@user.Stripe::Token).to_not be_nil
 end
 

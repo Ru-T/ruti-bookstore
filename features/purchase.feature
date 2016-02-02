@@ -19,7 +19,7 @@ Feature: Purchasing a Book
     When I enter my credit card
     #And I choose to have my credit card remembered
     And I click the Submit Order button
-    Then my credit card is saved for future purchases
+    #Then my credit card is saved for future purchases
     And I am emailed an order invoice containing the books details, quantity, subtotal, and order total
 @wip
   Scenario: Quantity adjustment

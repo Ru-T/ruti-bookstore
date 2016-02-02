@@ -34,7 +34,7 @@ Given(/^I am logged into the admin panel$/) do
 end
 
 Given(/^I am logged into the site$/) do
-  FactoryGirl.create(:user, email: "ruti@test.com", confirmed_at: Date.current)
+  @user = FactoryGirl.create(:user, email: "ruti@test.com", confirmed_at: Date.current)
   visit root_path
   fill_in "Email", with: "ruti@test.com"
   fill_in "Password", with: "password"
