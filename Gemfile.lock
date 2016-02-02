@@ -331,7 +331,7 @@ DEPENDENCIES
   pry-byebug
   rails (= 4.2.5)
   ransack
-  rspec-rails
+  rspec-rails (~> 3.0)
   rubocop
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

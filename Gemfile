@@ -42,7 +42,7 @@ gem 'stripe'
 group :development, :test do
   gem 'pry-byebug'
   gem 'awesome_print'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'factory_girl_rails', '~> 4.0'

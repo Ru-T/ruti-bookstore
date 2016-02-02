@@ -31,11 +31,4 @@ RSpec.describe PendingPurchase, type: :model do
       expect(PendingPurchase.pending).to_not include pending_purchase
     end
   end
-
-  describe "#was_purchased" do
-    it "sets the purchased boolean to true" do
-      pending_purchase.was_purchased
-      expect(pending_purchase.purchased).to eq true
-    end
-  end
 end

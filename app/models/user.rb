@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :pending_purchases
+  has_many :line_items
   has_one :cart
 
   def add_to_cart(book)
