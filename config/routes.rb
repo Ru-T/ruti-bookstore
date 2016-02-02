@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :pending_purchases, except: [:new]
   resources :charges, only: [:create]
   resources :carts, only: [:show]
+  resources :line_items
 end
