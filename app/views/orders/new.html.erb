@@ -1,26 +1,26 @@
-<h1>New Order</h1>
-<%= form_for(Order.new) do |f| %>
-  <%= hidden_field_tag :user_id, current_user.id %>
-  <%= hidden_field_tag :order_status, "Pending" %>
-  <%#= hidden_field_tag :total, cart.total_cart_price %>
-  <div class="form-group">
-    <%= f.label :total %><br>
-    <%= f.number_field :total %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :card_number, "Credit Card Number" %>
-    <%= text_field_tag :card_number, nil, name: nil %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :card_code, "CVV" %>
-    <%= text_field_tag :card_code, nil, name: nil %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :card_month, "Credit Card Expiration" %>
-    <%= select_month nil, { add_month_numbers: true }, { name: nil, id: "card-month" } %>
-    <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 15 } %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Create Order" %>
-  </div>
-<% end %>
+<div class="container">
+  <h1>New Order</h1>
+  <%= form_for(Order.new) do |f| %>
+    <%#= hidden_field_tag :total, cart.total_cart_price %>
+    <div class="form-group">
+      <%= f.label :total %><br>
+      <%= f.number_field :total %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :card_number, "Credit Card Number" %>
+      <%= text_field_tag :card_number, nil, name: nil %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :card_code, "CVV" %>
+      <%= text_field_tag :card_code, nil, name: nil %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :card_month, "Credit Card Expiration" %>
+      <%= select_month nil, { add_month_numbers: true }, { name: nil, id: "card-month" } %>
+      <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 15 } %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Create Order" %>
+    </div>
+  <% end %>
+</div>
