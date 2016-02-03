@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
+    @order = Order.new(user: current_user, total: current_user.cart.total_cart_price)
     if @order.save
       redirect_to order_path(@order), notice: "Your order has been completed"
     else
