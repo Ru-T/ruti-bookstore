@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
 
   def current_order
-    Order.find_by(user_id: current_user.id)
+    Order.find_by(user_id: current_user.id, status: "Pending")
   end
 end
