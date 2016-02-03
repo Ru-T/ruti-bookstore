@@ -15,7 +15,8 @@
         <tr>
           <td> <%= line_item.book.title %> </td>
           <td> <%= line_item.book.price %> </td>
-          <td> <%= line_item.quantity %> </td>
+          <td> <%= line_item.quantity %>
+               <%= link_to 'Edit Quantity', edit_line_item_path(line_item), id: "edit_quantity" %></td>
           <!-- <td> <%#= line_item.total_price %> </td> -->
           <%= form_for(current_user.cart.line_items.find_by(book_id: line_item.book.id),
             method: :delete) do |f| %>

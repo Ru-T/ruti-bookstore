@@ -20,7 +20,7 @@ class LineItemsController < ApplicationController
 
   def update
     if @line_item.update(line_item_params)
-      redirect_to line_items_path, notice: "The quantity of your book has been updated"
+      redirect_to cart_path(current_user), notice: "The quantity of your book has been updated"
     else
       render :edit
     end
