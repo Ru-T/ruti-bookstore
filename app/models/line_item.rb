@@ -3,6 +3,7 @@ class LineItem < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :book
+  belongs_to :order
 
   scope :active, -> { where(active: true) }
 

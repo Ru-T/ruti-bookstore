@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :line_items
+  has_many :orders
   has_one :cart
 
   after_save :create_cart
