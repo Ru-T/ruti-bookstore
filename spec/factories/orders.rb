@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :pending_purchase do
+  factory :order do
     user_id 1
-    book_id 1
+    total 1
   end
 end
