@@ -1,0 +1,13 @@
+<%= form_tag charges_path, method: :post do %>
+  <%= hidden_field_tag :pending_purchase_id, purchase.id %>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Your Books"
+          data-billing-address=true
+          data-shipping-address=true
+          data-amount=<%= @amount %>
+          data-label="Purchase"
+          data-panel-label="Submit Order"
+          data-locale="auto">
+  </script>
+<% end %>
