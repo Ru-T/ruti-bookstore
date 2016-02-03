@@ -23,12 +23,3 @@ end
 AdminUser.create!(email: 'admin@example.com',
                   password: 'password',
                   password_confirmation: 'password')
-
-20.times do
-  PendingPurchase.create!(
-    user_id: rand(1...21),
-    book_id: rand(1...100),
-    price_at_purchase: rand(1...100),
-    quantity: 1
-   )
-end
