@@ -9,10 +9,10 @@
 end
 
 
-# User.create!(email: "rwajnberg@gmail.com",
-#             password: "password",
-#             confirmed_at: Date.today
-#             )
+User.create!(email: "rwajnberg@gmail.com",
+            password: "password",
+            confirmed_at: Date.today
+            )
 
 # 20.times do
 #   User.create!(email: Faker::Internet.email,
