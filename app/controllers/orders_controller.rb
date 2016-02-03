@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to @order, notice: "Your order has been completed"
     else
-      render :new
+      render :new, notice: "Your order could not be completed"
     end
   end
   # def create
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(
       :user_id,
-      :order_status,
+      :status,
       :total
     )
   end
