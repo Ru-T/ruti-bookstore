@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:order) { create(:order) }
+
+  describe "#set_status" do
+    it "sets status on a created order" do
+      expect(order.status).to eq "Pending"
+    end
+  end
 end

@@ -5,6 +5,6 @@ class Order < ActiveRecord::Base
   before_save :set_status
 
   def set_status
-    self.status = "Purchased"
+    self.status = "Pending"
   end
 end
