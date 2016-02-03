@@ -4,22 +4,22 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :pending_purchases
+  has_many :line_items
   has_one :cart
 
   def add_to_cart(book)
-    pending_purchases.create!(
+    cart.line_items.create!(
       book_id: book.id,
-      price_at_purchase: book.price,
+      active: true,
       quantity: 1
     )
   end
 
   def remove_from_cart(book)
-    pending_purchases.find_by_book_id(book.id).destroy
+    cart.line_items.find_by_book_id(book.id).destroy
   end
 
   def in_cart?(book)
-    pending_purchases.any? { |pending_purchase| pending_purchase[:book_id] == book.id }
+    cart.line_items.any? { |line_item| line_item[:book_id] == book.id }
   end
 end

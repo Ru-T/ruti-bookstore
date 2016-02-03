@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
   describe "#add_to_cart" do
     it "allows a user to add a book to his/her cart" do
       user.add_to_cart(book)
-      expect(user.pending_purchases.last.book_id).to eq book.id
+      expect(user.cart.line_items.last.book_id).to eq book.id
     end
   end
 
@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
       user.add_to_cart(book)
       user.remove_from_cart(book)
       user.reload
-      expect(user.pending_purchases).to be_empty
+      expect(user.cart.line_items).to be_empty
     end
   end
 
