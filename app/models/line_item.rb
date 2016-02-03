@@ -5,6 +5,6 @@ class LineItem < ActiveRecord::Base
   belongs_to :book
 
   def total_price
-    book.price * quantity		 
+    book.price * quantity
   end
 end
