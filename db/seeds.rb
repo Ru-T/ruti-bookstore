@@ -10,7 +10,8 @@ end
 
 
 User.create!(email: "rwajnberg@gmail.com",
-            password: "password"
+            password: "password",
+            confirmed_at: Date.today
             )
 
 20.times do
