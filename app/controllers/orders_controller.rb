@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
   def set_order
     @order = Order.find(params[:id])
   end
+
   # strong params
   def order_params
     params.require(:order).permit(

@@ -1,17 +1,17 @@
 100.times do
   Book.create!(title: Faker::Book.title,
-              published_date: Faker::Date.between(30.days.ago, Date.today),
-              author: Faker::Book.author,
-              price: Faker::Commerce.price,
-              category: Faker::Book.genre,
-              description: Faker::Lorem.sentence
+               published_date: Faker::Date.between(30.days.ago, Date.today),
+               author: Faker::Book.author,
+               price: Faker::Commerce.price,
+               category: Faker::Book.genre,
+               description: Faker::Lorem.sentence
               )
 end
 
 
 User.create!(email: "rwajnberg@gmail.com",
-            password: "password",
-            confirmed_at: Date.today
+             password: "password",
+             confirmed_at: Date.today
             )
 
 # 20.times do
@@ -22,4 +22,5 @@ User.create!(email: "rwajnberg@gmail.com",
 
 AdminUser.create!(email: 'admin@example.com',
                   password: 'password',
-                  password_confirmation: 'password')
+                  password_confirmation: 'password'
+                 )
