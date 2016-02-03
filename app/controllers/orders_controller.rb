@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    redirect_to @order, notice: "Your order has been completed"
+    redirect_to books_path, notice: "Your order has been completed"
   end
   # def create
   #   amount_in_cents = cart.total_cart_price
