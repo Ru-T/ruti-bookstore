@@ -5,5 +5,4 @@ class Order < ActiveRecord::Base
   def purchase_line_items
     LineItem.where(cart: user.cart).update_all(cart_id: nil, order_id: self.id)
   end
-
 end
