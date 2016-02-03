@@ -4,13 +4,13 @@ class LineItemsController < ApplicationController
 
   def create
     book = Book.find(params[:book_id])
-    current_user.add_to_cart(book)
+    current_user.cart.add_to_cart(book)
     redirect_to cart_path(current_user), notice: "This book has been added to your cart"
   end
 
   def destroy
     book = LineItem.find(params[:id]).book
-    current_user.remove_from_cart(book)
+    current_user.cart.remove_from_cart(book)
     redirect_to cart_path(current_user), notice: "This book has been removed from your cart"
   end
 
