@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :books, only: [:index, :show]
   devise_for :users, controllers: { registrations: "registrations" }
-  resources :pending_purchases, except: [:new]
-  resources :charges, only: [:create]
+  resources :carts, only: [:show]
+  resources :line_items, only: [:create, :destroy, :update, :edit]
 end
