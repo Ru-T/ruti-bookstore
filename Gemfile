@@ -27,7 +27,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'kaminari'
 gem 'ransack'
-gem 'draper', '~> 1.3'
 
 gem 'rubocop'
 gem 'stripe'
@@ -43,7 +42,7 @@ gem 'stripe'
 group :development, :test do
   gem 'pry-byebug'
   gem 'awesome_print'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'factory_girl_rails', '~> 4.0'
