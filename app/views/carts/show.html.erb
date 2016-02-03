@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @cart.line_items.active.each do |line_item| %>
+      <% current_order.line_items.active.each do |line_item| %>
         <tr>
           <td> <%= line_item.book.title %> </td>
           <td> <%= line_item.book.price %> </td>
@@ -27,5 +27,5 @@
     </tbody>
   </table>
 
-  <h3> Total Price: <%= @cart.total_cart_price %></h3>
+  <h3> Total Price: <%= current_order.total_order_price %></h3>
 </div>

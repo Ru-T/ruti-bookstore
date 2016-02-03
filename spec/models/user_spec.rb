@@ -4,13 +4,6 @@ RSpec.describe User, type: :model do
   let(:user) { create(:user) }
   let(:book) { create(:book) }
 
-  describe "#add_to_cart" do
-    it "allows a user to add a book to his/her cart" do
-      user.add_to_cart(book)
-      expect(user.line_items.last.book_id).to eq book.id
-    end
-  end
-
   describe "#remove_from_cart" do
     it "allows a user to remove a book from his/her cart" do
       user.add_to_cart(book)

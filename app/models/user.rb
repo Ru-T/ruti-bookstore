@@ -5,16 +5,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :line_items
-  has_one :cart
+  has_many :orders
+  has_one  :cart
 
   after_save :create_cart
+  after_save :create_order
 
   def create_cart
     Cart.create!(user: self)
   end
 
-  def add_to_cart(book)
-    line_items.create!(book_id: book.id, active: true, quantity: 1)
+  def create_order
+    Order.create!(user: self)
   end
 
   def remove_from_cart(book)

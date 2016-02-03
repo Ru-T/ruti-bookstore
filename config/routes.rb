@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :books, only: [:index, :show]
   devise_for :users, controllers: { registrations: "registrations" }
-  resources :charges, only: [:create]
   resources :carts, only: [:show]
-  resources :line_items, except: [:new]
+  resources :line_items, except: [:new, :index]
+  resources :orders, only: [:create, :new]
 end

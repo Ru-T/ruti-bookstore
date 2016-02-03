@@ -2,14 +2,19 @@ class LineItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_line_item, only: [:edit, :update]
 
-  def index
-    @line_items = LineItem.all
-  end
-
   def create
     book = Book.find(params[:book_id])
-    current_user.add_to_cart(book)
-    redirect_to cart_path(current_user), notice: "This book has been added to your cart"
+    @line_item = LineItem.new(
+      order: current_order,
+      user: current_user,
+      book_id: book.id,
+      active: true,
+      quantity: 1)
+    if @line_item.save
+      redirect_to cart_path(current_user), notice: "This book has been added to your cart"
+    else
+      redirect_to books_path, notice: "This book could not be added your cart."
+    end
   end
 
   def destroy
