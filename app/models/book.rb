@@ -3,8 +3,4 @@ class Book < ActiveRecord::Base
   has_many :line_items
 
   default_scope { order(published_date: :desc) }
-
-  def price_in_dollars
-    "$#{'%.2f' % (price/100)}"
-  end
 end
