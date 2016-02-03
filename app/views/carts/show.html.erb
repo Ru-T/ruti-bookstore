@@ -19,6 +19,10 @@
           <td> <%= line_item.book.price %> </td>
           <td> <%= line_item.quantity %> </td>
           <!-- <td> <%#= line_item.total_price %> </td> -->
+          <%= form_for(current_user.cart.line_items.find_by(book_id: line_item.book.id),
+            method: :delete) do |f| %>
+            <td><%= f.submit "Remove from Cart" %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
