@@ -4,13 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :line_items
   has_one :cart
 
   after_save :create_cart
 
   def create_cart
-    Cart.create!(user: self)
+    Cart.create(user: self)
   end
 
   def add_to_cart(book)
