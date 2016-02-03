@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(
       :user_id,
-      :total
+      :total,
       :card_token
     )
   end
