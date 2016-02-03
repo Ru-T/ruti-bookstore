@@ -26,7 +26,8 @@ class OrdersController < ApplicationController
     params.require(:order).permit(
       :user_id,
       :status,
-      :total
+      :total,
+      :subtotal
     )
   end
 end
