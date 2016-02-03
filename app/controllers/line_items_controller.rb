@@ -2,10 +2,6 @@ class LineItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_line_item, only: [:edit, :update]
 
-  def index
-    @line_items = LineItem.all
-  end
-
   def create
     book = Book.find(params[:book_id])
     current_user.add_to_cart(book)

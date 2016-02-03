@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show]
   devise_for :users, controllers: { registrations: "registrations" }
   resources :carts, only: [:show]
-  resources :line_items
+  resources :line_items, only: [:create, :destroy, :update, :edit]
 end
