@@ -1,8 +1,8 @@
-class ChargesController < ApplicationController
+class OrdersController < ApplicationController
+  before_action :authenticate_user!
+
   def create
-    pending_purchase = PendingPurchase.find(params[:pending_purchase_id])
-    pending_purchase.was_purchased
-    amount_in_cents = pending_purchase.total_price * 100
+    amount_in_cents = cart.total_cart_price
 
     customer = Stripe::Customer.create(
       email:  params[:stripeEmail],
