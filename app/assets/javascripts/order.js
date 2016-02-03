@@ -1,3 +1,7 @@
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+  Stripe.setPublishableKey("#{Rails.application.secrets.stripe_publishable_key}");
+
 jQuery(function ($) {
   var show_error, stripeResponseHandler;
   $("#new_order").submit(function (event) {
@@ -32,3 +36,4 @@ stripeResponseHandler = function (status, response) {
    return false;
  };
 });
+</script>

@@ -10,6 +10,20 @@ class OrdersController < ApplicationController
     @order = Order.new(user: current_user, total: current_user.cart.total_cart_price)
     if @order.save
       @order.purchase_line_items
+      amount = @order.total
+
+      # customer = Stripe::Customer.create(
+      #   email:  params[:stripeEmail],
+      #   source: params[:stripeToken]
+      # )
+      #
+      # charge = Stripe::Charge.create(
+      #   customer:    customer.id,
+      #   amount:      amount,
+      #   description: 'Bookstore purchase',
+      #   currency:    'usd',
+      # )
+
       redirect_to order_path(@order), notice: "Your order has been completed"
     else
       redirect to cart_path(current_user), notice: "Your order could not be processed."
