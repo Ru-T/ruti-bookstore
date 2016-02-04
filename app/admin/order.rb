@@ -3,7 +3,11 @@ ActiveAdmin.register Order do
     column :user
     column :total
     column "Line Items" do |order|
-      order.line_items.each do |line_item|
+      table_for order.line_items do
+        column :book
+        column :quantity
+        column(:price) { |line_item| line_item.book.price }
+        column :total_price
       end
     end
   end
