@@ -9,8 +9,8 @@ Feature: Purchasing a Book
     When I visit my cart
     Then I see the book in my cart
     When I click "Purchase"
-    #Then I am asked for my shipping address
-    #When I enter my shipping address
+    Then I am asked for my shipping address
+    When I enter my shipping address
     #Then I am asked for my billing address
     #When I enter my billing address
     Then I am asked for my credit card

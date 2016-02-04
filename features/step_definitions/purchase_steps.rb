@@ -53,9 +53,10 @@ Then(/^I am asked for my shipping address$/) do
 end
 
 When(/^I enter my shipping address$/) do
-  fill_in "Address", with: "Address"
-  fill_in "City", with: "Durham"
-  fill_in "ZIP", with: "27701"
+  fill_in "Shipping address1", with: "Address"
+  fill_in "Shipping city", with: "Durham"
+  fill_in "Shipping state", with: "NC"
+  fill_in "Shipping zip", with: "27701"
 end
 
 Then(/^I am asked for my billing address$/) do
