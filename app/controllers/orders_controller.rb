@@ -7,10 +7,11 @@ class OrdersController < ApplicationController
   end
 
   def create
+    # params = order_params.merge({ user: current_user })
     @order = Order.new(user: current_user, total: current_user.cart.total_cart_price)
-    if @order.save
+    if @order.save#_with_payment
       @order.purchase_line_items
-      amount = @order.total
+      # amount = @order.total
 
       # customer = Stripe::Customer.create(
       #   email:  params[:stripeEmail],
