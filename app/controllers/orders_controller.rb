@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show]
 
   def new
-    @order = Order.new
+    @order = Order.new(user: current_user)
+    @order.user.build_credit_card
   end
 
   def create
@@ -29,6 +30,7 @@ class OrdersController < ApplicationController
         description: 'Bookstore purchase'
       )
 
+      # @order.credit_card.last_four_digits = charge.source.last4
       redirect_to order_path(@order), notice: "Your order has been completed"
     else
       redirect to cart_path(current_user), notice: "Your order could not be processed."
@@ -51,7 +53,15 @@ class OrdersController < ApplicationController
       :shipping_address2,
       :shipping_city,
       :shipping_state,
-      :shipping_zip
+      :shipping_zip,
+      credit_card_attributes: [
+        :id,
+        :billing_address1,
+        :billing_address2,
+        :billing_city,
+        :billing_state,
+        :billing_zip
+      ]
     )
   end
 end

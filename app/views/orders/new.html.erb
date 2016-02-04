@@ -22,6 +22,28 @@
       <%= f.label :shipping_zip %>
       <%= f.number_field :shipping_zip %>
     </div>
+      <%= f.fields_for :credit_cards do |ff| %>
+        <div class="form-group">
+          <%= ff.label :billing_address1 %>
+          <%= ff.text_field :billing_address1 %>
+        </div>
+        <div class="form-group">
+          <%= ff.label :billing_address2 %>
+          <%= ff.text_field :billing_address2 %>
+        </div>
+        <div class="form-group">
+          <%= ff.label :billing_city %>
+          <%= ff.text_field :billing_city %>
+        </div>
+        <div class="form-group">
+          <%= ff.label :billing_state %>
+          <%= ff.text_field :billing_state %>
+        </div>
+        <div class="form-group">
+          <%= ff.label :billing_zip %>
+          <%= ff.number_field :billing_zip %>
+        </div>
+      <% end %>
     <div class="form-group">
       <%= label_tag :card_number, "Credit Card Number" %>
       <%= text_field_tag :card_number, nil, name: nil, "data-stripe": "number" %>
