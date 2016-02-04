@@ -43,7 +43,12 @@ class OrdersController < ApplicationController
     params.require(:order).permit(
       :user_id,
       :total,
-      :card_token
+      :card_token,
+      :shipping_address1,
+      :shipping_address2,
+      :shipping_city,
+      :shipping_state,
+      :shipping_zip
     )
   end
 end
