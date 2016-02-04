@@ -1,6 +1,7 @@
 <div class="container">
   <h1>New Order</h1>
   <%= form_for(@order) do |f| %>
+    <span class="payment-errors"></span>
     <div class="form-group">
       <%= label_tag :card_number, "Credit Card Number" %>
       <%= text_field_tag :card_number, nil, name: nil, "data-stripe": "number" %>

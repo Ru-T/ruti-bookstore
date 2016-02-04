@@ -1,7 +1,9 @@
 $(document).ready(function() {
+  Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
+
   $("#new_order").submit(function(event) {
     var $form = $(this);
-    $form.find("input[type=submit]").prop("disabled", true);
+    $form.find("button").prop("disabled", true);
     Stripe.card.createToken($form, stripeResponseHandler);
     return false;
   });
@@ -12,15 +14,10 @@ stripeResponseHandler = function(status, response) {
 
    if (response.error) {
      $form.find('.payment-errors').text(response.error.message);
-     $form.find("input[type=submit]").prop("disabled", false);
+     $form.find("button").prop("disabled", false);
    } else {
      var token = response.id;
      $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-    //  $("[data-stripe=number]").remove();
-    //  $("[data-stripe=cvv]").remove();
-    //  $("[data-stripe=exp-year]").remove();
-    //  $("[data-stripe=exp-month]").remove();
      $form.get(0).submit();
    }
-  //  return false;
  };
