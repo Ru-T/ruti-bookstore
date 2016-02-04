@@ -1,7 +1,7 @@
 <%= form_for(@line_item) do |f| %>
   <div class="field">
     <%= f.label :quantity %><br>
-    <%= f.number_field :quantity %>
+    <%= f.number_field :quantity, id: "edit_quantity" %>
   </div>
   <div class="actions">
     <%= f.submit %>

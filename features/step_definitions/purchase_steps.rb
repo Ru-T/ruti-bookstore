@@ -38,9 +38,9 @@ Then(/^I see the book in my cart with quantity (\d+)$/) do |quantity|
 end
 
 When(/^I adjust the quantity of the book to (\d+)$/) do |quantity|
-  find("#edit_quantity", match: :first).click
+  click_on "Edit Quantity"
   fill_in "Quantity", with: quantity
-  click_on "Update Pending purchase"
+  click_on "Update Line Item"
 end
 
 Then(/^I see the book in my cart$/) do
@@ -74,7 +74,7 @@ end
 
 When(/^I enter my credit card$/) do
   fill_in "Credit Card", with: "4242424242424242"
-  fill_in "CVC", with: "111"
+  fill_in "CVV", with: "111"
 end
 
 When(/^I choose to have my credit card remembered$/) do

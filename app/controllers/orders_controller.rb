@@ -15,7 +15,8 @@ class OrdersController < ApplicationController
         email:  @order.user.email,
         source: params[:stripeToken]
       )
-      
+      @order.card_token = customer.id
+
       amount = @order.total
 
       charge = Stripe::Charge.create(
