@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
         source: params[:stripeToken]
       )
       @order.card_token = customer.id
+      @order.save
 
       amount = @order.total
 
