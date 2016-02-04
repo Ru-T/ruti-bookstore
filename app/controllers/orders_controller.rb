@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       @order.purchase_line_items
+      OrderMailer.receipt_email(@order.user).deliver_now
 
       customer = Stripe::Customer.create(
         email:  @order.user.email,
