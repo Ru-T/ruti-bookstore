@@ -7,16 +7,18 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # params = order_params.merge({ user: current_user })
     @order = Order.new(user: current_user, total: current_user.cart.total_cart_price)
-    if @order.save#_with_payment
+    # params = order_params.merge({ user: current_user })
+    if @order.save
       @order.purchase_line_items
-      # amount = @order.total
 
-      # customer = Stripe::Customer.create(
-      #   email:  params[:stripeEmail],
-      #   source: params[:stripeToken]
-      # )
+      customer = Stripe::Customer.create(
+        email:  @order.user.email,
+        card: params[:token]
+      )
+      @order.card_token = customer.id
+
+      # amount = @order.total
       #
       # charge = Stripe::Charge.create(
       #   customer:    customer.id,
