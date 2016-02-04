@@ -14,18 +14,19 @@ class OrdersController < ApplicationController
 
       customer = Stripe::Customer.create(
         email:  @order.user.email,
-        card: params[:token]
+        source: params[:stripeToken]
       )
+
       @order.card_token = customer.id
 
-      # amount = @order.total
-      #
-      # charge = Stripe::Charge.create(
-      #   customer:    customer.id,
-      #   amount:      amount,
-      #   description: 'Bookstore purchase',
-      #   currency:    'usd',
-      # )
+      amount = @order.total
+
+      charge = Stripe::Charge.create(
+        customer:    customer.id,
+        amount:      amount,
+        currency:    'usd',
+        description: 'Bookstore purchase'
+      )
 
       redirect_to order_path(@order), notice: "Your order has been completed"
     else
