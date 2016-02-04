@@ -5,16 +5,15 @@ Feature: Purchasing a Book
     When I visit the public book index
     And I click on a book
     And I click "Add to Cart"
-    Then the book is added to my cart
-    When I visit my cart
+    And I visit my cart
     Then I see the book in my cart
     When I click "Purchase"
     Then I am asked for my shipping address
-    When I enter my shipping address
+    When I enter a valid shipping address
     #Then I am asked for my billing address
-    #When I enter my billing address
+    #When I enter a valid billing address
     Then I am asked for my credit card
-    When I enter my credit card
+    When I enter a valid credit card
     And I click "Submit Order"
     #Then I am asked to review the order total
     #When I click "Confirm"
@@ -43,12 +42,11 @@ Feature: Purchasing a Book
     When I visit the public book index
     And I click on a book
     And I click "Add to Cart"
-    Then the book is added to my cart
-    When I visit my cart
+    And I visit my cart
     Then I see the book in my cart
     When I click "Purchase"
     Then I am asked for my shipping address
-    When I enter my shipping address
+    When I enter a valid shipping address
     Then I am asked if I want to use my already saved credit card
     When I confirm using my saved credit card
     Then I am asked to review the order total
