@@ -1,7 +1,7 @@
 <div class="container">
   <h1>New Order</h1>
   <%= form_for(@order) do |f| %>
-    <span class="payment-errors"></span>  
+    <span class="payment-errors"></span>
     <div class="form-group">
       <%= f.label :shipping_address1 %>
       <%= f.text_field :shipping_address1 %>
@@ -22,9 +22,6 @@
       <%= f.label :shipping_zip %>
       <%= f.number_field :shipping_zip %>
     </div>
-
-
-
     <div class="form-group">
       <%= label_tag :card_number, "Credit Card Number" %>
       <%= text_field_tag :card_number, nil, name: nil, "data-stripe": "number" %>

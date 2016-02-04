@@ -1,4 +1,5 @@
 Feature: Purchasing a Book
+@javascript
   Scenario: Happy Path
     Given I am logged into the site
     And there are some books in the database

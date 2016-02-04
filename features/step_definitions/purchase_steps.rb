@@ -16,16 +16,12 @@ When(/^I click "([^"]*)"$/) do |link|
   click_on link
 end
 
-Then(/^the book is added to my cart$/) do
-  # expect(@user.cart.line_items).to include book_id: @book.id
-end
-
 When(/^I enter (\d+) for the quantity$/) do |quantity|
   fill_in "Quantity", with: quantity
 end
 
 Then(/^the book is added to my cart with quantity (\d+)$/) do |quantity|
-  expect(PendingPurchase.last.quantity).to eq quantity.to_i
+  expect(LineItem.last.quantity).to eq quantity.to_i
 end
 
 When(/^I visit my cart$/) do
@@ -52,7 +48,7 @@ Then(/^I am asked for my shipping address$/) do
   expect(page).to have_content "Shipping"
 end
 
-When(/^I enter my shipping address$/) do
+When(/^I enter a valid shipping address$/) do
   fill_in "Shipping address1", with: "Address"
   fill_in "Shipping city", with: "Durham"
   fill_in "Shipping state", with: "NC"
@@ -63,7 +59,7 @@ Then(/^I am asked for my billing address$/) do
   expect(page).to have_content "Billing"
 end
 
-When(/^I enter my billing address$/) do
+When(/^I enter a valid billing address$/) do
   fill_in "Address", with: "Address"
   fill_in "City", with: "Durham"
   fill_in "ZIP", with: "27701"
@@ -73,9 +69,11 @@ Then(/^I am asked for my credit card$/) do
   expect(page).to have_content "Credit Card"
 end
 
-When(/^I enter my credit card$/) do
-  fill_in "Credit Card", with: "4242424242424242"
+When(/^I enter a valid credit card$/) do
+  fill_in "Credit Card", with: "6011111111111117"
   fill_in "CVV", with: "111"
+  select "7", from: "card-month"
+  select "2018", from: "card-year"
 end
 
 When(/^I choose to have my credit card remembered$/) do
@@ -100,7 +98,9 @@ Then(/^my credit card is saved for future purchases$/) do
 end
 
 Then(/^I am emailed an order invoice containing the books details, quantity, subtotal, and order total$/) do
-  ActionMailer::Base.deliveries.last.body.to_include("receipt")
+  expect(ActionMailer::Base.deliveries.last).to have_content("Book Title")
+  expect(ActionMailer::Base.deliveries.last).to have_content("Quantity")
+  expect(ActionMailer::Base.deliveries.last).to have_content("Total")
 end
 
 Given(/^I have a credit card saved on the site$/) do
