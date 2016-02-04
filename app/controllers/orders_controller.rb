@@ -4,16 +4,13 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new(user: current_user)
-    # @order.user.build_credit_card
     @credit_card = @order.user.build_credit_card
   end
 
   def create
     @order = Order.new(order_params.merge(user: current_user, total: current_user.cart.total_cart_price))
-
     if @order.save
       @order.purchase_line_items
-      OrderMailer.receipt_email(@order.user).deliver_now
 
       customer = Stripe::Customer.create(
         email:  @order.user.email,
@@ -31,6 +28,7 @@ class OrdersController < ApplicationController
         description: 'Bookstore purchase'
       )
 
+      OrderMailer.receipt_email(@order.user).deliver_now
       # @order.credit_card.last_four_digits = charge.source.last4
       redirect_to order_path(@order), notice: "Your order has been completed"
     else
