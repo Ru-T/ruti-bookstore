@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160204200759) do
     t.string   "billing_address1"
     t.string   "billing_address2"
     t.string   "billing_city"
+    t.string   "billing_state"
     t.integer  "billing_zip"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

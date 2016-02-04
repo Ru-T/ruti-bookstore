@@ -6,7 +6,7 @@ class CreateCreditCards < ActiveRecord::Migration
       t.string :billing_address1
       t.string :billing_address2
       t.string :billing_city
-      t.string :billing_city
+      t.string :billing_state
       t.integer :billing_zip
 
       t.timestamps null: false
