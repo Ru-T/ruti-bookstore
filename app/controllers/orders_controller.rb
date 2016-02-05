@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     @order = Order.new(user: current_user)
     if @order.user.credit_card.nil?
       @order.user.credit_card = @order.user.build_credit_card
-    end  
+    end
   end
 
   def create
