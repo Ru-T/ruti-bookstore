@@ -73,8 +73,10 @@ Then(/^I am asked for my credit card$/) do
 end
 
 When(/^I enter my credit card$/) do
-  fill_in "Credit Card", with: "4242424242424242"
+  fill_in "Credit Card", with: "6011111111111117"
   fill_in "CVV", with: "111"
+  select "7", from: "card-month"
+  select "2018", from: "card-year"
 end
 
 When(/^I choose to have my credit card remembered$/) do
@@ -99,7 +101,10 @@ Then(/^my credit card is saved for future purchases$/) do
 end
 
 Then(/^I am emailed an order invoice containing the books details, quantity, subtotal, and order total$/) do
-  ActionMailer::Base.deliveries.last.body.to_include("receipt")
+  sleep(10)
+  expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Book Title"
+  expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Quantity"
+  expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Total"
 end
 
 Given(/^I have a credit card saved on the site$/) do
