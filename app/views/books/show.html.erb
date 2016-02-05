@@ -7,7 +7,11 @@
   <p> <%= @book.category %> </p>
   <p> <%= @book.description %> </p>
   <%= form_for(current_user.cart.line_items.build) do |f| %>
+    <div class="field">
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity, id: "edit_quantity", value: 1 %>
+    </div>
     <%= hidden_field_tag :book_id, @book.id %>
-    <td><%= f.submit "Add to Cart", id: "add_to_cart" %></td>
+    <%= f.submit "Add to Cart", id: "add_to_cart" %>
   <% end %>
 <div>
