@@ -11,8 +11,8 @@ Feature: Purchasing a Book
     When I click "Purchase"
     Then I am asked for my shipping address
     When I enter a valid shipping address
-    #Then I am asked for my billing address
-    #When I enter a valid billing address
+    Then I am asked for my billing address
+    When I enter a valid billing address
     Then I am asked for my credit card
     When I enter a valid credit card
     And I click "Submit Order"

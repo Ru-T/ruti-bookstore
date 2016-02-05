@@ -60,9 +60,10 @@ Then(/^I am asked for my billing address$/) do
 end
 
 When(/^I enter a valid billing address$/) do
-  fill_in "Address", with: "Address"
-  fill_in "City", with: "Durham"
-  fill_in "ZIP", with: "27701"
+  fill_in "Billing address1", with: "Address"
+  fill_in "Billing city", with: "Durham"
+  fill_in "Billing state", with: "NC"
+  fill_in "Billing zip", with: "27701"
 end
 
 Then(/^I am asked for my credit card$/) do
