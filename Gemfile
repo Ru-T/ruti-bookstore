@@ -51,6 +51,7 @@ group :development, :test do
   gem 'faker'
   gem 'capybara-screenshot'
   gem 'ap'
+  gem 'stripe-ruby-mock'
 end
 
 group :development do
