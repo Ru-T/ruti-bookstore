@@ -15,16 +15,7 @@ class OrdersController < ApplicationController
         stripe_token: params[:stripeToken]
       )
     )
-    if @order.save
-      # customer = Stripe::Customer.create(
-      #   email:  @order.user.email,
-      #   source: params[:stripeToken]
-      # )
-      # @order.credit_card.update(
-      #   card_token: customer.id,
-      #   last_four_digits: customer.sources.data.first.last4
-      # )
-      @order.save_with_payment
+    if @order.save_with_payment
       @order.purchase_line_items
       OrderMailer.receipt_email(@order.user).deliver_now
       redirect_to order_path(@order), notice: "Your order has been completed"
