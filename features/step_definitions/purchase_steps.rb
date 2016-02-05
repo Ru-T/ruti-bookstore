@@ -74,7 +74,7 @@ end
 
 When(/^I enter my credit card$/) do
   fill_in "Credit Card", with: "6011111111111117"
-  fill_in "CVV", with: "111"		    
+  fill_in "CVV", with: "111"
   select "7", from: "card-month"
   select "2018", from: "card-year"
 end
@@ -104,7 +104,8 @@ Then(/^I am emailed an order invoice containing the books details, quantity, sub
   sleep(10)
   expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Book Title"
   expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Quantity"
-  expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Total"end
+  expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Total"
+end
 
 Given(/^I have a credit card saved on the site$/) do
   expect(@user.card_token).to_not be_nil
