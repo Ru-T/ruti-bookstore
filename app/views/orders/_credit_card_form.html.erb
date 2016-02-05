@@ -1,0 +1,13 @@
+<div class="form-group">
+  <%= label_tag :card_number, "Credit Card Number" %>
+  <%= text_field_tag :card_number, nil, name: nil, "data-stripe": "number" %>
+</div>
+<div class="form-group">
+  <%= label_tag :card_code, "CVV" %>
+  <%= text_field_tag :card_code, nil, name: nil, "data-stripe": "cvv" %>
+</div>
+<div class="form-group">
+  <%= label_tag :card_month, "Credit Card Expiration" %>
+  <%= select_month nil, { add_month_numbers: true }, { name: nil, id: "card-month", "data-stripe": "exp-month" } %>
+  <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 10 }, { name: nil, id: "card-year", "data-stripe": "exp-year",} %>
+</div>
