@@ -24,6 +24,7 @@ class Order < ActiveRecord::Base
       card_token: customer.id,
       last_four_digits: customer.sources.data.first.last4
     )
+    credit_card.save
     save
   end
 end
