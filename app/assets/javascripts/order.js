@@ -4,11 +4,15 @@ $(document).ready(function() {
   $("#new_order").submit(function(event) {
     var $form = $(this);
     $form.find("button").prop("disabled", true);
-    Stripe.card.createToken($form, stripeResponseHandler);
-    return false;
-  });
-});
-
+    if $("card_number").length;
+      Stripe.card.createToken($form, stripeResponseHandler);
+      return false;
+    else {
+      true;
+    }
+   });
+   });
+   
 stripeResponseHandler = function(status, response) {
    var $form = $("#new_order");
 
@@ -21,13 +25,3 @@ stripeResponseHandler = function(status, response) {
      $form.get(0).submit();
    }
  };
-
-
-//  if $("card_number").length;
-//    Stripe.card.createToken($form, stripeResponseHandler);
-//    return false;
-//  else {
-//    true;
-//  }
-// });
-// });
