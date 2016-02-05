@@ -24,8 +24,8 @@ RSpec.describe Order, type: :model do
   describe "#save_with_payment" do
     it "creates an order with Stripe" do
       expect do
-        order = Order.create(user: user, stripe_token: stripe_helper.generate_card_token)
-      end.to change{Order.count}.by(1)
+        Order.create(user: user, stripe_token: stripe_helper.generate_card_token)
+      end.to change { Order.count }.by(1)
     end
   end
 end
