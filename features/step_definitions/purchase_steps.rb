@@ -99,9 +99,10 @@ Then(/^my credit card is saved for future purchases$/) do
 end
 
 Then(/^I am emailed an order invoice containing the books details, quantity, subtotal, and order total$/) do
-  expect(ActionMailer::Base.deliveries.last).to have_content("Book Title")
-  expect(ActionMailer::Base.deliveries.last).to have_content("Quantity")
-  expect(ActionMailer::Base.deliveries.last).to have_content("Total")
+  sleep(10)
+  expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Book Title"
+  expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Quantity"
+  expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Total"
 end
 
 Given(/^I have a credit card saved on the site$/) do
