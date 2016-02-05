@@ -8,7 +8,7 @@
   <p> <%= @book.description %> </p>
   <%= form_for(current_user.cart.line_items.build) do |f| %>
     <div class="field">
-      <%= f.label :quantity %><br>
+      <%= f.label :quantity %>
       <%= f.number_field :quantity, id: "edit_quantity", value: 1 %>
     </div>
     <%= hidden_field_tag :book_id, @book.id %>
