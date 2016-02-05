@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
       else
         redirect to cart_path(current_user), notice: "Your order could not be processed."
       end
-    end  
+    end
   end
 
   private
