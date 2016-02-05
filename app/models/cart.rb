@@ -6,10 +6,6 @@ class Cart < ActiveRecord::Base
     line_items.to_a.sum(&:total_price)
   end
 
-  def add_to_cart(book)
-    line_items.create!(book_id: book.id, quantity: 1)
-  end
-
   def remove_from_cart(book)
     line_items.find_by_book_id(book.id).destroy
   end

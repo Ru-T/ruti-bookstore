@@ -17,7 +17,7 @@ When(/^I click "([^"]*)"$/) do |link|
 end
 
 When(/^I enter (\d+) for the quantity$/) do |quantity|
-  fill_in "Quantity", with: quantity
+  find("#edit_quantity").set quantity
 end
 
 Then(/^the book is added to my cart with quantity (\d+)$/) do |quantity|
@@ -35,8 +35,8 @@ end
 
 When(/^I adjust the quantity of the book to (\d+)$/) do |quantity|
   click_on "Edit Quantity"
-  fill_in "Quantity", with: quantity
-  click_on "Update Line Item"
+  find("#edit_quantity").set quantity
+  click_on "Update Line item"
 end
 
 Then(/^I see the book in my cart$/) do
