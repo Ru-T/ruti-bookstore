@@ -70,15 +70,11 @@ Then(/^I am asked for my credit card$/) do
   expect(page).to have_content "Credit Card"
 end
 
-When(/^I enter my credit card$/) do
+When(/^I enter a valid credit card$/) do
   fill_in "Credit Card", with: "6011111111111117"
   fill_in "CVV", with: "111"
   select "7", from: "card-month"
   select "2018", from: "card-year"
-end
-
-When(/^I choose to have my credit card remembered$/) do
-  find(".checkbox-remember-me").click
 end
 
 When(/^I click the Submit Order button$/) do

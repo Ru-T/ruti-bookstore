@@ -2,7 +2,7 @@ class CreditCardsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @credit_card = CreditCard.new
+    @credit_card = CreditCard.new(user: current_user)
   end
 
   def create
