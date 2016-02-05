@@ -14,22 +14,20 @@ class OrdersController < ApplicationController
                         )
                       )
     if @order.save
-
       customer = Stripe::Customer.create(
         email:  @order.user.email,
         source: params[:stripeToken]
       )
 
       amount = @order.total
-
       charge = Stripe::Charge.create(
         customer:    customer.id,
         amount:      amount,
         currency:    'usd',
         description: 'Bookstore purchase'
       )
-      
       @order.purchase_line_items
+      @order.credit_card.last_four_digits = customer.sources.data.first.last4
       @order.card_token = customer.id
       @order.save
       OrderMailer.receipt_email(@order.user).deliver_now
