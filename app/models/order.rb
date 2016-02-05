@@ -10,9 +10,9 @@ class Order < ActiveRecord::Base
   end
 
   def save_with_payment
-    charge = Stripe::Charge.create(
-      customer: self.credit_card.card_token,
-      amount:   self.total,
+    Stripe::Charge.create(
+      customer: credit_card.card_token,
+      amount:   total,
       currency: "usd",
       description: "Book purchase"
     )

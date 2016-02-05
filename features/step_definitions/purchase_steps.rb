@@ -91,7 +91,7 @@ Then(/^I am shown the order summary$/) do
 end
 
 Then(/^my credit card is saved for future purchases$/) do
-  expect(@user.card_token).to_not be_nil
+  expect(@user.credit_card.card_token).to_not be_nil
 end
 
 Then(/^I am emailed an order invoice containing the books details, quantity, subtotal, and order total$/) do
