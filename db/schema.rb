@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 20160204200759) do
     t.integer  "total"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.string   "card_token"
     t.string   "shipping_address1"
     t.string   "shipping_address2"
     t.string   "shipping_city"
