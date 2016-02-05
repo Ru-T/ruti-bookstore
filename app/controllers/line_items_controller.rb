@@ -4,7 +4,7 @@ class LineItemsController < ApplicationController
 
   def create
     book = Book.find(params[:book_id])
-    LineItem.create!(line_item_params.merge(book: book, cart: current_user.cart))
+    current_user.cart.add_to_cart(book)
     redirect_to cart_path(current_user), notice: "This book has been added to your cart"
   end
 
