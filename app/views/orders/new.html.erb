@@ -22,7 +22,7 @@
       <%= f.label :shipping_zip %>
       <%= f.number_field :shipping_zip %>
     </div>
-      <%= f.fields_for(@credit_card) do |ff| %>
+      <%= f.fields_for(:credit_card) do |ff| %>
         <div class="form-group">
           <%= ff.label :billing_address1 %>
           <%= ff.text_field :billing_address1 %>
