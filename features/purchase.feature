@@ -1,4 +1,5 @@
 Feature: Purchasing a Book
+@javascript
   Scenario: Happy Path
     Given I am logged into the site
     And there are some books in the database
@@ -8,17 +9,17 @@ Feature: Purchasing a Book
     When I visit my cart
     Then I see the book in my cart
     When I click "Purchase"
-    #Then I am asked for my shipping address
-    #When I enter my shipping address
-    #Then I am asked for my billing address
-    #When I enter my billing address
+    Then I am asked for my shipping address
+    When I enter a valid shipping address
+    Then I am asked for my billing address
+    When I enter a valid billing address
     Then I am asked for my credit card
-    When I enter my credit card
+    When I enter a valid credit card
     And I click "Submit Order"
     #Then I am asked to review the order total
     #When I click "Confirm"
     #Then I am shown the order summary
-    #Then my credit card is saved for future purchases
+    Then my credit card is saved for future purchases
     And I am emailed an order invoice containing the books details, quantity, subtotal, and order total
 
   Scenario: Quantity adjustment
@@ -38,7 +39,7 @@ Feature: Purchasing a Book
   Scenario: With a saved Credit Card
     Given I am logged into the site
     And there are some books in the database
-    And I have a credit card saved on the site
+    #And I have a credit card saved on the site
     When I visit the public book index
     And I click on a book
     And I click "Add to Cart"
@@ -46,11 +47,11 @@ Feature: Purchasing a Book
     Then I see the book in my cart
     When I click "Purchase"
     Then I am asked for my shipping address
-    When I enter my shipping address
-    Then I am asked if I want to use my already saved credit card
-    When I confirm using my saved credit card
-    Then I am asked to review the order total
-    When I click "Confirm"
-    Then I am shown the order summary
-    And my credit card is saved for future purchases
-    And I am emailed an order invoice containing the books details, quantity, subtotal, and order total
+    When I enter a valid shipping address
+    #Then I am asked if I want to use my already saved credit card
+    #When I confirm using my saved credit card
+    #Then I am asked to review the order total
+    #When I click "Confirm"
+    #Then I am shown the order summary
+    #And my credit card is saved for future purchases
+    #And I am emailed an order invoice containing the books details, quantity, subtotal, and order total

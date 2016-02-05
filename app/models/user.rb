@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_one :cart
   has_many :orders
+  has_one :credit_card
 
   after_save :create_cart
 
