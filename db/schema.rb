@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160204200759) do
   create_table "credit_cards", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "last_four_digits"
+    t.string   "card_token"
     t.string   "billing_address1"
     t.string   "billing_address2"
     t.string   "billing_city"

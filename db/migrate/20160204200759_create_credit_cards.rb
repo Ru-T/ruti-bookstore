@@ -3,6 +3,7 @@ class CreateCreditCards < ActiveRecord::Migration
     create_table :credit_cards do |t|
       t.integer :user_id
       t.integer :last_four_digits
+      t.string :card_token
       t.string :billing_address1
       t.string :billing_address2
       t.string :billing_city
