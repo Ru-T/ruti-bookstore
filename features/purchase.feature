@@ -35,6 +35,7 @@ Feature: Purchasing a Book
     When I adjust the quantity of the book to 3
     Then I see the book in my cart with quantity 3
 
+@wip
   Scenario: With a saved Credit Card
     Given I am logged into the site
     And there are some books in the database
