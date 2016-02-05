@@ -8,25 +8,22 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params.merge(
-                        user: current_user,
-                        total: current_user.cart.total_cart_price
-                        )
-                      )
+    @order = Order.new(
+      order_params.merge(
+        user: current_user,
+        total: current_user.cart.total_cart_price
+      )
+    )
     if @order.save
       customer = Stripe::Customer.create(
         email:  @order.user.email,
         source: params[:stripeToken]
       )
-
-      @order.card_token = customer.id
-
+      @order.credit_card.card_token = customer.id
       @order.save_with_payment
       @order.purchase_line_items
-
-      # @order.credit_card.last_four_digits = customer.sources.data.first.last4
-      # @order.credit_card.card_token = customer.id
-      # @order.save
+      @order.credit_card.last_four_digits = customer.sources.data.first.last4
+      @order.save
       OrderMailer.receipt_email(@order.user).deliver_now
       redirect_to order_path(@order), notice: "Your order has been completed"
     else
