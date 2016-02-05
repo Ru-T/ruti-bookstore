@@ -19,7 +19,10 @@ class OrdersController < ApplicationController
         email:  @order.user.email,
         source: params[:stripeToken]
       )
-      @order.credit_card.update(card_token: customer.id, last_four_digits: customer.sources.data.first.last4)
+      @order.credit_card.update(
+        card_token: customer.id,
+        last_four_digits: customer.sources.data.first.last4
+      )
       @order.save_with_payment
       @order.purchase_line_items
       OrderMailer.receipt_email(@order.user).deliver_now
