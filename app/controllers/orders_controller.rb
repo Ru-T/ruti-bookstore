@@ -59,7 +59,8 @@ class OrdersController < ApplicationController
         :billing_address2,
         :billing_city,
         :billing_state,
-        :billing_zip
+        :billing_zip,
+        :last_four_digits
       ]
     )
   end

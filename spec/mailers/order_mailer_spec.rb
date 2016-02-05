@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.describe OrderMailer, type: :mailer do
-
   let(:user) { create(:user) }
   let(:book) { create(:book) }
   let(:cart) { create(:cart, user: user) }

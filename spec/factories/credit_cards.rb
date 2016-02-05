@@ -5,7 +5,7 @@ FactoryGirl.define do
     billing_address1 "MyString"
     billing_address2 "MyString"
     billing_city "MyString"
-    billing_city "MyString"
+    billing_state "MyString"
     billing_zip 1
   end
 end
