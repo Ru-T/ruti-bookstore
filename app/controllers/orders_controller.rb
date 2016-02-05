@@ -19,17 +19,14 @@ class OrdersController < ApplicationController
         source: params[:stripeToken]
       )
 
-      amount = @order.total
-      charge = Stripe::Charge.create(
-        customer:    customer.id,
-        amount:      amount,
-        currency:    'usd',
-        description: 'Bookstore purchase'
-      )
+      @order.card_token = customer.id
+
+      @order.save_with_payment
       @order.purchase_line_items
-      @order.credit_card.last_four_digits = customer.sources.data.first.last4
-      @order.credit_card.card_token = customer.id
-      @order.save
+
+      # @order.credit_card.last_four_digits = customer.sources.data.first.last4
+      # @order.credit_card.card_token = customer.id
+      # @order.save
       OrderMailer.receipt_email(@order.user).deliver_now
       redirect_to order_path(@order), notice: "Your order has been completed"
     else
