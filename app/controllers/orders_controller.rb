@@ -14,14 +14,11 @@ class OrdersController < ApplicationController
                         )
                       )
     if @order.save
-      @order.purchase_line_items
 
       customer = Stripe::Customer.create(
         email:  @order.user.email,
         source: params[:stripeToken]
       )
-      @order.card_token = customer.id
-      @order.save
 
       amount = @order.total
 
@@ -31,7 +28,10 @@ class OrdersController < ApplicationController
         currency:    'usd',
         description: 'Bookstore purchase'
       )
-
+      
+      @order.purchase_line_items
+      @order.card_token = customer.id
+      @order.save
       OrderMailer.receipt_email(@order.user).deliver_now
       redirect_to order_path(@order), notice: "Your order has been completed"
     else
