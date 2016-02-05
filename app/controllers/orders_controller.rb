@@ -19,11 +19,9 @@ class OrdersController < ApplicationController
         email:  @order.user.email,
         source: params[:stripeToken]
       )
-      @order.credit_card.card_token = customer.id
+      @order.credit_card.update(card_token: customer.id, last_four_digits: customer.sources.data.first.last4)
       @order.save_with_payment
       @order.purchase_line_items
-      @order.credit_card.last_four_digits = customer.sources.data.first.last4
-      @order.save
       OrderMailer.receipt_email(@order.user).deliver_now
       redirect_to order_path(@order), notice: "Your order has been completed"
     else
