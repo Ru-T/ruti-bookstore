@@ -13,4 +13,17 @@ class User < ActiveRecord::Base
   def create_cart
     Cart.create(user: self)
   end
+
+  def save_card
+    customer = Stripe::Customer.create(
+      email:  user.email,
+      source: stripe_token
+    )
+    credit_card.update(
+      card_token: customer.id,
+      last_four_digits: customer.sources.data.first.last4
+    )
+    credit_card.save
+    save
+  end
 end

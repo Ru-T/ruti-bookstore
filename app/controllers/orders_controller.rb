@@ -11,10 +11,14 @@ class OrdersController < ApplicationController
     @order = Order.new(
       order_params.merge(
         user: current_user,
-        total: current_user.cart.total_cart_price,
-        stripe_token: params[:stripeToken]
+        total: current_user.cart.total_cart_price
       )
     )
+    # @order.save
+    if @order.user.credit_card.card_token.nil?
+      @order.stripe_token = params[:stripeToken]
+      @order.user.save_card
+    end
     if @order.save_with_payment
       @order.purchase_line_items
       OrderMailer.receipt_email(@order.user).deliver_now
