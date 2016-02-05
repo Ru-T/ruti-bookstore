@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
 
   def save_card
     customer = Stripe::Customer.create(
-      email:  user.email,
-      source: stripe_token
+      email:  email,
+      source: stripe_customer_token
     )
     credit_card.update(
       card_token: customer.id,

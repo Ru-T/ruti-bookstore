@@ -14,10 +14,9 @@ class OrdersController < ApplicationController
         total: current_user.cart.total_cart_price
       )
     )
-    # @order.save
-    if @order.user.credit_card.card_token.nil?
-      @order.stripe_token = params[:stripeToken]
-      @order.user.save_card
+    if current_user.credit_card.card_token.nil?
+      current_user.stripe_customer_token = params[:stripeToken]
+      current_user.save_card
     end
     if @order.save_with_payment
       @order.purchase_line_items
