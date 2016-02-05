@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
         currency:    'usd',
         description: 'Bookstore purchase'
       )
-
+      OrderMailer.receipt_email(@order.user).deliver_now
       redirect_to order_path(@order), notice: "Your order has been completed"
     else
       redirect to cart_path(current_user), notice: "Your order could not be processed."
