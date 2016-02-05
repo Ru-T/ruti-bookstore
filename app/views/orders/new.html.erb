@@ -22,6 +22,9 @@
       <%= f.label :shipping_zip %>
       <%= f.number_field :shipping_zip %>
     </div>
+    <% if current_user.credit_card.card_token != nil %>
+        <p> Do you want to use your saved credit card? </p>
+    <% else %>
       <%= f.fields_for(:credit_card) do |ff| %>
         <div class="form-group">
           <%= ff.label :billing_address1 %>
@@ -44,19 +47,20 @@
           <%= ff.number_field :billing_zip %>
         </div>
       <% end %>
-    <div class="form-group">
-      <%= label_tag :card_number, "Credit Card Number" %>
-      <%= text_field_tag :card_number, nil, name: nil, "data-stripe": "number" %>
-    </div>
-    <div class="form-group">
-      <%= label_tag :card_code, "CVV" %>
-      <%= text_field_tag :card_code, nil, name: nil, "data-stripe": "cvv" %>
-    </div>
-    <div class="form-group">
-      <%= label_tag :card_month, "Credit Card Expiration" %>
-      <%= select_month nil, { add_month_numbers: true }, { name: nil, id: "card-month", "data-stripe": "exp-month" } %>
-      <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 10 }, { name: nil, id: "card-year", "data-stripe": "exp-year",} %>
-    </div>
+      <div class="form-group">
+        <%= label_tag :card_number, "Credit Card Number" %>
+        <%= text_field_tag :card_number, nil, name: nil, "data-stripe": "number" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :card_code, "CVV" %>
+        <%= text_field_tag :card_code, nil, name: nil, "data-stripe": "cvv" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :card_month, "Credit Card Expiration" %>
+        <%= select_month nil, { add_month_numbers: true }, { name: nil, id: "card-month", "data-stripe": "exp-month" } %>
+        <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 10 }, { name: nil, id: "card-year", "data-stripe": "exp-year",} %>
+      </div>
+    <% end %>
     <div class="actions">
       <%= f.submit "Submit Order" %>
     </div>
