@@ -58,7 +58,8 @@
       <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 10 }, { name: nil, id: "card-year", "data-stripe": "exp-year",} %>
     </div>
     <div class="actions">
-      <%= f.submit "Submit Order" %>
+      <%= hidden_field_tag(:preview, 'preview') %>
+      <%= f.button "Submit Order" %>
     </div>
   <% end %>
 </div>
