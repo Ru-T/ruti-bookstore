@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20160205184229) do
     t.string   "shipping_city"
     t.string   "shipping_state"
     t.integer  "shipping_zip"
-    t.string   "stripeToken"
+    t.string   "stripe_token"
   end
 
   create_table "users", force: :cascade do |t|
