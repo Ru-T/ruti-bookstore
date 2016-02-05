@@ -9,10 +9,10 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params.merge(
-      user: current_user,
-      total: current_user.cart.total_cart_price
-      )
-    )
+                        user: current_user,
+                        total: current_user.cart.total_cart_price
+                        )
+                      )
     if @order.save
       @order.purchase_line_items
 
