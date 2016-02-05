@@ -48,10 +48,10 @@ Feature: Purchasing a Book
     When I click "Purchase"
     Then I am asked for my shipping address
     When I enter a valid shipping address
-    #Then I am asked if I want to use my already saved credit card
-    #When I confirm using my saved credit card
+    Then I am asked if I want to use my already saved credit card
+    When I confirm using my saved credit card
     #Then I am asked to review the order total
     #When I click "Confirm"
-    #Then I am shown the order summary
-    #And my credit card is saved for future purchases
-    #And I am emailed an order invoice containing the books details, quantity, subtotal, and order total
+    Then I am shown the order summary
+    And my credit card is saved for future purchases
+    And I am emailed an order invoice containing the books details, quantity, subtotal, and order total

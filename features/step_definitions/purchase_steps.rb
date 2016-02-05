@@ -87,7 +87,7 @@ Then(/^I am asked to review the order total$/) do
 end
 
 Then(/^I am shown the order summary$/) do
-  expect(page).to have_content("Order Summary")
+  expect(page).to have_content("Order Confirmation")
 end
 
 Then(/^my credit card is saved for future purchases$/) do
@@ -107,7 +107,7 @@ Given(/^I have a credit card saved on the site$/) do
 end
 
 Then(/^I am asked if I want to use my already saved credit card$/) do
-  expect(page).to have_content("User your saved credit card?")
+  expect(page).to have_content("You have a credit card on file.")
 end
 
 When(/^I confirm using my saved credit card$/) do
