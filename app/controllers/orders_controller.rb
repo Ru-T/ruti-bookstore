@@ -11,7 +11,8 @@ class OrdersController < ApplicationController
     @order = Order.new(
       order_params.merge(
         user: current_user,
-        total: current_user.cart.total_cart_price
+        total: current_user.cart.total_cart_price,
+        stripeToken: params[:stripeToken]
       )
     )
     if @order.save
@@ -43,7 +44,7 @@ class OrdersController < ApplicationController
     params.require(:order).permit(
       :user_id,
       :total,
-      :card_token,
+      :stripeToken,
       :shipping_address1,
       :shipping_address2,
       :shipping_city,
