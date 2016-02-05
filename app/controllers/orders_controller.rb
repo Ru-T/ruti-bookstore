@@ -28,7 +28,6 @@ class OrdersController < ApplicationController
         description: 'Bookstore purchase'
       )
 
-      OrderMailer.receipt_email(@order.user).deliver_now
       # @order.credit_card.last_four_digits = customer.data.last4
       redirect_to order_path(@order), notice: "Your order has been completed"
     else
