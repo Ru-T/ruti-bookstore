@@ -7,5 +7,4 @@ Rails.application.routes.draw do
   resources :carts, only: [:show]
   resources :line_items, only: [:create, :destroy, :update, :edit]
   resources :orders, only: [:create, :new, :show]
-  resources :credit_cards
 end
