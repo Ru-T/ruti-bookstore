@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
                         total: current_user.cart.total_cart_price
                         )
                       )
-    @credit_card = @order.user.build_credit_card(params[:credit_card])
+    # @credit_card = CreditCard.new(params[:credit_card])
 
     if @order.save
       @order.purchase_line_items
