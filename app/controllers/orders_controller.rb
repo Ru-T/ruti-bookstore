@@ -15,10 +15,10 @@ class OrdersController < ApplicationController
         stripe_token: params[:stripeToken]
       )
     )
-    # if @order.user.credit_card.card_token.nil?
+    if @order.user.credit_card.card_token.nil?
       current_user.stripe_customer_token = @order.stripe_token
       current_user.save_card
-    # end
+    end
     if @order.save_with_payment
       @order.purchase_line_items
       OrderMailer.receipt_email(@order.user).deliver_now

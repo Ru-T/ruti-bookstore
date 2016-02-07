@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     )
     credit_card.update(
       card_token: customer.id,
-      # last_four_digits: customer.sources.data.first.last4
+      last_four_digits: customer.sources.data.first.last4
     )
   end
 end
