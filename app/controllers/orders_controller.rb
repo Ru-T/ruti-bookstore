@@ -11,16 +11,16 @@ class OrdersController < ApplicationController
     @order = Order.new(
       order_params.merge(
         user: current_user,
-        total: current_user.cart.total_cart_price,
-        # ERRORING because stripe_token isn't being sent if credit card already exists
-        stripe_token: params[:stripeToken]
+        total: current_user.cart.total_cart_price#,
+        # stripe_token: params[:stripeToken]
       )
     )
-    if user.credit_card.card_token.nil?
-      # @order.user.stripe_customer_token = @order.stripe_token
+    if @order.user.credit_card.card_token.nil?
+      @order.user.stripe_customer_token = params[:stripeToken]#@order.stripe_token
+      binding.pry
       customer = Stripe::Customer.create(
         email:  @order.user.email,
-        source: @order.stripe_token
+        source: @order.user.stripe_customer_token
       )
       @order.credit_card.update(
         card_token: customer.id,
