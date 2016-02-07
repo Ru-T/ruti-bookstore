@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
       order_params.merge(
         user: current_user,
         total: current_user.cart.total_cart_price,
+        # ERRORING because stripe_token isn't being sent if credit card already exists
         stripe_token: params[:stripeToken]
       )
     )
