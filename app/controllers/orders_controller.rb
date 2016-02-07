@@ -15,9 +15,16 @@ class OrdersController < ApplicationController
         stripe_token: params[:stripeToken]
       )
     )
-    if current_user.credit_card.card_token.nil?
-      current_user.stripe_customer_token = @order.stripe_token
-      # current_user.save_card
+    if user.credit_card.card_token.nil?
+      # @order.user.stripe_customer_token = @order.stripe_token
+      customer = Stripe::Customer.create(
+        email:  @order.user.email,
+        source: @order.stripe_token
+      )
+      @order.credit_card.update(
+        card_token: customer.id,
+        last_four_digits: customer.sources.data.first.last4
+      )
     end
     if @order.save_with_payment
       @order.purchase_line_items
