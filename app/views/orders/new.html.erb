@@ -3,12 +3,12 @@
   <%= form_for(@order) do |f| %>
     <span class="payment-errors"></span>
     <%= render "shipping_form", f: f %>
-    <% if current_user.credit_card.card_token.nil? %>
+    <%# if current_user.credit_card.card_token.nil? %>
       <%= render "billing_form", f: f %>
       <%= render "credit_card_form", f: f %>
-    <% else %>
-      <p> Your credit card is stored on file. Last 4 digits: <%= current_user.credit_card.last_four_digits %> </p>
-    <% end %>
+    <%# else %>
+      <!-- <p> Your credit card is stored on file. Last 4 digits: <%#= current_user.credit_card.last_four_digits %> </p> -->
+    <%# end %>
     <div class="actions">
       <%= f.submit "Submit Order" %>
     </div>

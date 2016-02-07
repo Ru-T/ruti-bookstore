@@ -11,22 +11,14 @@ class OrdersController < ApplicationController
     @order = Order.new(
       order_params.merge(
         user: current_user,
-        total: current_user.cart.total_cart_price#,
-        # stripe_token: params[:stripeToken]
+        total: current_user.cart.total_cart_price,
+        stripe_token: params[:stripeToken]
       )
     )
-    if @order.user.credit_card.card_token.nil?
-      @order.user.stripe_customer_token = params[:stripeToken]#@order.stripe_token
-      binding.pry
-      customer = Stripe::Customer.create(
-        email:  @order.user.email,
-        source: @order.user.stripe_customer_token
-      )
-      @order.credit_card.update(
-        card_token: customer.id,
-        last_four_digits: customer.sources.data.first.last4
-      )
-    end
+    # if @order.user.credit_card.card_token.nil?
+      current_user.stripe_customer_token = @order.stripe_token
+      current_user.save_card
+    # end
     if @order.save_with_payment
       @order.purchase_line_items
       OrderMailer.receipt_email(@order.user).deliver_now
