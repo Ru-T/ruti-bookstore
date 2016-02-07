@@ -15,7 +15,7 @@ class Order < ActiveRecord::Base
       amount:   total,
       currency: "usd",
       description: "Book purchase"
-    )  
+    )
     save
   end
 end
