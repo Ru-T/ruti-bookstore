@@ -5,6 +5,8 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :credit_card
 
+  monetize :total
+
   def purchase_line_items
     user.cart.line_items.update_all(cart_id: nil, order_id: id)
   end
