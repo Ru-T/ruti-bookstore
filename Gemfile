@@ -27,7 +27,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'kaminari'
 gem 'ransack'
-gem 'draper', '~> 1.3'
 
 gem 'rubocop'
 gem 'stripe'
