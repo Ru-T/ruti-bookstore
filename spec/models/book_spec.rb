@@ -23,7 +23,7 @@ RSpec.describe Book, type: :model do
     end
 
     it "must have price to be valid" do
-      expect(build(:book, price: nil)).to_not be_valid
+      expect(build(:book, price_cents: nil)).to_not be_valid
     end
   end
 
