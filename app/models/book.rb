@@ -3,4 +3,6 @@ class Book < ActiveRecord::Base
   default_scope { order(published_date: :desc) }
 
   has_many :line_items
+
+  monetize :price
 end
