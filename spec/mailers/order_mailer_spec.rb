@@ -9,7 +9,6 @@ RSpec.describe OrderMailer, type: :mailer do
 
   describe "send order receipt to correct user" do
     it "sends order receipt to correct user" do
-      # order = Order.create(user: user)
       order.purchase_line_items
 
       receipt = OrderMailer.receipt_email(user).deliver_now
