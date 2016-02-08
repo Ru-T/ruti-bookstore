@@ -11,15 +11,13 @@
   <h3> Total: <%= current_user.cart.total_cart_price %> </h3>
 
   <%= simple_form_for(@order) do |f| %>
-    <%= hidden_field_tag :user_id, current_user.id  %>
-    <%= hidden_field_tag :total, current_user.cart.total_cart_price %>
-    <%= hidden_field_tag :shipping_address1 %>
-    <%= hidden_field_tag :shipping_address2 %>
-    <%= hidden_field_tag :shipping_city %>
-    <%= hidden_field_tag :shipping_state %>
-    <%= hidden_field_tag :shipping_zip %>
-    <div class="actions">
-      <%= f.submit "Confirm" %>
-    </div>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :total %>
+    <%= f.hidden_field :shipping_address1 %>
+    <%= f.hidden_field :shipping_address2 %>
+    <%= f.hidden_field :shipping_city %>
+    <%= f.hidden_field :shipping_state %>
+    <%= f.hidden_field :shipping_zip %>
+    <%= f.submit "Confirm" %>
   <% end %>
 </div>
