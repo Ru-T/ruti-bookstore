@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new(user: current_user)
-    @order.user.credit_card = @order.user.build_credit_card unless @order.user.credit_card
+    @order.user.credit_card ||= @order.user.build_credit_card
   end
 
   def create
@@ -15,9 +15,7 @@ class OrdersController < ApplicationController
         stripe_token: params[:stripeToken]
       )
     )
-    if current_user.credit_card.card_token.nil?
-      @order.save_card
-    end
+    @order.save_card if current_user.credit_card.card_token.nil?
     if @order.save_with_payment
       @order.purchase_line_items
       OrderMailer.receipt_email(@order.user).deliver_now

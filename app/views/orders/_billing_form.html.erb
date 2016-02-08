@@ -1,7 +1,7 @@
-<%= f.fields_for(:credit_card) do |ff| %>
-    <%= ff.input :billing_address1 %>
-    <%= ff.input :billing_address2 %>
-    <%= ff.input :billing_city %>
-    <%= ff.input :billing_state %>
-    <%= ff.input :billing_zip %>
+<%= form.fields_for(:credit_card) do |form_field| %>
+    <%= form_field.input :billing_address1 %>
+    <%= form_field.input :billing_address2 %>
+    <%= form_field.input :billing_city %>
+    <%= form_field.input :billing_state %>
+    <%= form_field.input :billing_zip %>
 <% end %>
