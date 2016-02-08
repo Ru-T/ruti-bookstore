@@ -8,9 +8,8 @@ Given(/^I have an account on the site$/) do
 end
 
 Given(/^My account is confirmed$/) do
-  ctoken = ActionMailer::Base.deliveries.last.body.match(/confirmation_token=\w*/)
-  visit "/users/confirmation?#{ctoken}"
   user = User.find_for_authentication(email: 'newestuser@test.com')
+  user.confirmed_at = Date.today
   expect(user).to be_confirmed
 end
 
