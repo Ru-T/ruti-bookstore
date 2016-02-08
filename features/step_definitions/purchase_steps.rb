@@ -87,29 +87,40 @@ Then(/^I am asked to review the order total$/) do
 end
 
 Then(/^I am shown the order summary$/) do
-  expect(page).to have_content("Order Summary")
+  expect(page).to have_content("Order Confirmation")
 end
 
 Then(/^my credit card is saved for future purchases$/) do
-  sleep(5)
-  expect(@user.credit_card.card_token).to_not be_nil
+  @order = Order.find_by(user: @user)
+  expect(@order.credit_card.card_token).to_not be_nil
 end
 
 Then(/^I am emailed an order invoice containing the books details, quantity, subtotal, and order total$/) do
-  sleep(5)
   expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Book Title"
   expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Quantity"
   expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Total"
 end
 
 Given(/^I have a credit card saved on the site$/) do
-  expect(@user.card_token).to_not be_nil
+  StripeMock.start
+  stripe_helper = StripeMock.create_test_helper
+  order = Order.create(user: @user, stripe_token: stripe_helper.generate_card_token)
+  CreditCard.create(user: @user)
+  order.save_card
+  expect(order.credit_card.card_token).to_not be_nil
+  StripeMock.stop
 end
 
 Then(/^I am asked if I want to use my already saved credit card$/) do
-  expect(page).to have_content("User your saved credit card?")
+  expect(page).to have_content("Your credit card is stored on file.")
 end
 
 When(/^I confirm using my saved credit card$/) do
+  StripeMock.start
+  stripe_helper = StripeMock.create_test_helper
+  order = Order.create(user: @user, stripe_token: stripe_helper.generate_card_token)
+  CreditCard.create(user: @user)
+  order.save_card
   click_on "Submit Order"
+  StripeMock.stop
 end

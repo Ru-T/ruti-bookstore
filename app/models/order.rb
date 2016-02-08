@@ -10,20 +10,24 @@ class Order < ActiveRecord::Base
   end
 
   def save_with_payment
-    customer = Stripe::Customer.create(
-      email:  user.email,
-      source: stripe_token
-    )
     Stripe::Charge.create(
-      customer: customer.id,
+      customer: credit_card.card_token,
       amount:   total,
       currency: "usd",
       description: "Book purchase"
+    )
+    save
+  end
+
+  def save_card
+    customer = Stripe::Customer.create(
+      email:  user.email,
+      source: stripe_token
     )
     credit_card.update(
       card_token: customer.id,
       last_four_digits: customer.sources.data.first.last4
     )
-    save
+    credit_card.save
   end
 end
