@@ -1,6 +1,6 @@
 <div class="container">
   <h1>New Order</h1>
-  <%= form_for(@order) do |f| %>
+  <%= simple_form_for(@order) do |f| %>
     <span class="payment-errors"></span>
     <%= render "shipping_form", f: f %>
     <% if current_user.credit_card.card_token.nil? %>
