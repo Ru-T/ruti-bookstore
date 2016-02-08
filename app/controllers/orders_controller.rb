@@ -18,13 +18,17 @@ class OrdersController < ApplicationController
     if current_user.credit_card.card_token.nil?
       @order.save_card
     end
-    if @order.save_with_payment
-      @order.purchase_line_items
-      OrderMailer.receipt_email(@order.user).deliver_now
-      redirect_to order_path(@order), notice: "Your order has been completed"
+    if params[:preview]
+      render partial: "preview"
     else
-      redirect to cart_path(current_user), notice: "Your order could not be processed."
-    end
+      if @order.save_with_payment
+        @order.purchase_line_items
+        OrderMailer.receipt_email(@order.user).deliver_now
+        redirect_to order_path(@order), notice: "Your order has been completed"
+      else
+        redirect to cart_path(current_user), notice: "Your order could not be processed."
+      end
+    end  
   end
 
   private
