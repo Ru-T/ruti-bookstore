@@ -4,10 +4,10 @@ $(document).ready(function() {
   $("#new_order").submit(function(event) {
     var $form = $(this);
     $form.find("button").prop("disabled", true);
-    if $("#card_number").value;
+    if $("#card_number").length {
       Stripe.card.createToken($form, stripeResponseHandler);
       return false;
-    else {
+  } else {
       true;
     }
   });
