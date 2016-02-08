@@ -91,7 +91,8 @@ Then(/^I am shown the order summary$/) do
 end
 
 Then(/^my credit card is saved for future purchases$/) do
-  expect(@user.credit_card.card_token).to_not be_nil
+  @order = Order.find_by(user: @user)
+  expect(@order.credit_card.card_token).to_not be_nil
 end
 
 Then(/^I am emailed an order invoice containing the books details, quantity, subtotal, and order total$/) do
@@ -104,7 +105,6 @@ Given(/^I have a credit card saved on the site$/) do
   StripeMock.start
   stripe_helper = StripeMock.create_test_helper
   order = Order.create(user: @user, stripe_token: stripe_helper.generate_card_token)
-  binding.pry
   credit_card = CreditCard.create(user: @user)
   order.save_card
   expect(order.credit_card.card_token).to_not be_nil
@@ -116,5 +116,11 @@ Then(/^I am asked if I want to use my already saved credit card$/) do
 end
 
 When(/^I confirm using my saved credit card$/) do
+  StripeMock.start
+  stripe_helper = StripeMock.create_test_helper
+  order = Order.create(user: @user, stripe_token: stripe_helper.generate_card_token)
+  credit_card = CreditCard.create(user: @user)
+  order.save_card
   click_on "Submit Order"
+  StripeMock.stop
 end
