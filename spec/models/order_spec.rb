@@ -21,6 +21,16 @@ RSpec.describe Order, type: :model do
     end
   end
 
+  describe "#save_card" do
+    it "saves a credit card on a user's first order" do
+      order = Order.create(user: user, stripe_token: stripe_helper.generate_card_token)
+      credit_card = CreditCard.create(user: user)
+      order.save_card
+      expect(order.credit_card.card_token).to_not eq nil
+      expect(order.credit_card.last_four_digits).to_not eq nil
+    end
+  end
+
   describe "#save_with_payment" do
     it "creates an order with Stripe" do
       expect do
