@@ -14,10 +14,10 @@
       <% @cart.line_items.each do |line_item| %>
         <tr>
           <td> <%= line_item.book.title %> </td>
-          <td> <%= line_item.book.price %> </td>
+          <td> <%= humanized_money_with_symbol line_item.book.price %> </td>
           <td> <%= line_item.quantity %>
                <%= link_to 'Edit Quantity', edit_line_item_path(line_item), id: "edit_quantity" %></td>
-          <td> <%= line_item.total_price %> </td>
+          <td> <%= humanized_money_with_symbol line_item.total_price %> </td>
           <%= form_for(current_user.cart.line_items.find_by(book_id: line_item.book.id),
             method: :delete) do |f| %>
             <td><%= f.submit "Remove from Cart" %></td>
@@ -26,6 +26,6 @@
       <% end %>
     </tbody>
   </table>
-  <h3>Total Price: <%= @cart.total_cart_price %></h3>
+  <h3>Total Price: <%= humanized_money_with_symbol @cart.total_cart_price %></h3>
   <%= link_to "Purchase", new_order_path %>
 </div>

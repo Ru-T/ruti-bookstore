@@ -4,5 +4,5 @@ class Book < ActiveRecord::Base
 
   has_many :line_items
 
-  monetize :price
+  monetize :price_cents
 end
