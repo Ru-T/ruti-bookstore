@@ -16,8 +16,7 @@ class OrdersController < ApplicationController
       )
     )
     if @order.user.credit_card.card_token.nil?
-      current_user.stripe_customer_token = @order.stripe_token
-      current_user.save_card
+      @order.save_card
     end
     if @order.save_with_payment
       @order.purchase_line_items

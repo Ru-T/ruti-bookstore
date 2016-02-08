@@ -18,4 +18,16 @@ class Order < ActiveRecord::Base
     )
     save
   end
+
+  def save_card
+    customer = Stripe::Customer.create(
+      email:  user.email,
+      source: stripe_token
+    )
+    user.credit_card.update(
+      card_token: customer.id,
+      last_four_digits: customer.sources.data.first.last4
+    )
+    save
+  end
 end
