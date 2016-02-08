@@ -32,8 +32,8 @@ RSpec.describe Order, type: :model do
       order = Order.create(user: user, stripe_token: stripe_helper.generate_card_token)
       credit_card = CreditCard.create(user: user)
       order.save_card
-      expect(order.credit_card.card_token).to_not eq nil
-      expect(order.credit_card.last_four_digits).to_not eq nil
+      expect(order.credit_card.card_token).to_not be_nil
+      expect(order.credit_card.last_four_digits).to_not be_nil
     end
   end
 
