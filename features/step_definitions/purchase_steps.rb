@@ -101,7 +101,14 @@ Then(/^I am emailed an order invoice containing the books details, quantity, sub
 end
 
 Given(/^I have a credit card saved on the site$/) do
-  expect(@user.credit_card.card_token).to_not be_nil
+  StripeMock.start
+  stripe_helper = StripeMock.create_test_helper
+  order = Order.create(user: @user, stripe_token: stripe_helper.generate_card_token)
+  binding.pry
+  credit_card = CreditCard.create(user: @user)
+  order.save_card
+  expect(order.credit_card.card_token).to_not be_nil
+  StripeMock.stop
 end
 
 Then(/^I am asked if I want to use my already saved credit card$/) do
