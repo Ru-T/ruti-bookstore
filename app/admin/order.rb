@@ -8,6 +8,8 @@ ActiveAdmin.register Order do
         column :quantity
         column(:price) { |line_item| line_item.book.price }
         column :total_price
+        column :shipping_city
+        column :shipping_zip
       end
     end
   end

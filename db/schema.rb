@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203212001) do
+ActiveRecord::Schema.define(version: 20160205184229) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -63,6 +63,19 @@ ActiveRecord::Schema.define(version: 20160203212001) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "last_four_digits"
+    t.string   "card_token"
+    t.string   "billing_address1"
+    t.string   "billing_address2"
+    t.string   "billing_city"
+    t.string   "billing_state"
+    t.integer  "billing_zip"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "line_items", force: :cascade do |t|
     t.integer  "cart_id"
     t.integer  "book_id"
@@ -75,9 +88,14 @@ ActiveRecord::Schema.define(version: 20160203212001) do
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "total"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "card_token"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "shipping_address1"
+    t.string   "shipping_address2"
+    t.string   "shipping_city"
+    t.string   "shipping_state"
+    t.integer  "shipping_zip"
+    t.string   "stripe_token"
   end
 
   create_table "users", force: :cascade do |t|

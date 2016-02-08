@@ -48,35 +48,33 @@ Then(/^I am asked for my shipping address$/) do
   expect(page).to have_content "Shipping"
 end
 
-When(/^I enter my shipping address$/) do
-  fill_in "Address", with: "Address"
-  fill_in "City", with: "Durham"
-  fill_in "ZIP", with: "27701"
+When(/^I enter a valid shipping address$/) do
+  fill_in "Shipping address1", with: "Address"
+  fill_in "Shipping city", with: "Durham"
+  fill_in "Shipping state", with: "NC"
+  fill_in "Shipping zip", with: "27701"
 end
 
 Then(/^I am asked for my billing address$/) do
   expect(page).to have_content "Billing"
 end
 
-When(/^I enter my billing address$/) do
-  fill_in "Address", with: "Address"
-  fill_in "City", with: "Durham"
-  fill_in "ZIP", with: "27701"
+When(/^I enter a valid billing address$/) do
+  fill_in "Billing address1", with: "Address"
+  fill_in "Billing city", with: "Durham"
+  fill_in "Billing state", with: "NC"
+  fill_in "Billing zip", with: "27701"
 end
 
 Then(/^I am asked for my credit card$/) do
   expect(page).to have_content "Credit Card"
 end
 
-When(/^I enter my credit card$/) do
+When(/^I enter a valid credit card$/) do
   fill_in "Credit Card", with: "6011111111111117"
   fill_in "CVV", with: "111"
   select "7", from: "card-month"
   select "2018", from: "card-year"
-end
-
-When(/^I choose to have my credit card remembered$/) do
-  find(".checkbox-remember-me").click
 end
 
 When(/^I click the Submit Order button$/) do
@@ -93,11 +91,12 @@ Then(/^I am shown the order summary$/) do
 end
 
 Then(/^my credit card is saved for future purchases$/) do
-  expect(@user.card_token).to_not be_nil
+  sleep(5)
+  expect(@user.credit_card.card_token).to_not be_nil
 end
 
 Then(/^I am emailed an order invoice containing the books details, quantity, subtotal, and order total$/) do
-  sleep(10)
+  sleep(5)
   expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Book Title"
   expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Quantity"
   expect(ActionMailer::Base.deliveries.last.body.encoded).to include "Total"
