@@ -15,12 +15,11 @@ class OrdersController < ApplicationController
         stripe_token: params[:stripeToken]
       )
     )
-    if current_user.credit_card.card_token.nil?
-      @order.save_card
-    end
-    if params[:preview]
-      render partial: "preview"
-    else
+    @order.save_card if current_user.credit_card.card_token.nil?
+    # if params[:preview]
+    #   render partial: "preview"
+    #   binding.pry
+    # else
       if @order.save_with_payment
         @order.purchase_line_items
         OrderMailer.receipt_email(@order.user).deliver_now
@@ -28,7 +27,7 @@ class OrdersController < ApplicationController
       else
         redirect to cart_path(current_user), notice: "Your order could not be processed."
       end
-    end  
+    # end
   end
 
   private
