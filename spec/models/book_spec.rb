@@ -33,4 +33,10 @@ RSpec.describe Book, type: :model do
       expect(Book.first).to eq book2
     end
   end
+
+  describe '#monetize' do
+    it 'monetizes the price field of a book' do
+      expect(book).to monetize(:price)
+    end
+  end
 end
