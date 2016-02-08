@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
     @order = Order.new(
       order_params.merge(
         user: current_user,
-        total: current_user.cart.total_cart_price,
+        total: current_user.cart.total_cart_price.cents,
         stripe_token: params[:stripeToken]
       )
     )
