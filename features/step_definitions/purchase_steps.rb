@@ -105,7 +105,7 @@ Given(/^I have a credit card saved on the site$/) do
   StripeMock.start
   stripe_helper = StripeMock.create_test_helper
   order = Order.create(user: @user, stripe_token: stripe_helper.generate_card_token)
-  credit_card = CreditCard.create(user: @user)
+  CreditCard.create(user: @user)
   order.save_card
   expect(order.credit_card.card_token).to_not be_nil
   StripeMock.stop
@@ -119,7 +119,7 @@ When(/^I confirm using my saved credit card$/) do
   StripeMock.start
   stripe_helper = StripeMock.create_test_helper
   order = Order.create(user: @user, stripe_token: stripe_helper.generate_card_token)
-  credit_card = CreditCard.create(user: @user)
+  CreditCard.create(user: @user)
   order.save_card
   click_on "Submit Order"
   StripeMock.stop
