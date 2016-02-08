@@ -82,7 +82,7 @@ When(/^I click the Submit Order button$/) do
 end
 
 Then(/^I am asked to review the order total$/) do
-  expect(page).to have_content("Review Purchase Order")
+  expect(page).to have_content("Order Summary Review")
   expect(page).to have_content("A book")
 end
 
@@ -104,10 +104,10 @@ end
 Given(/^I have a credit card saved on the site$/) do
   StripeMock.start
   stripe_helper = StripeMock.create_test_helper
-  order = Order.create(user: @user, stripe_token: stripe_helper.generate_card_token)
+  @order = Order.create(user: @user, stripe_token: stripe_helper.generate_card_token)
   credit_card = CreditCard.create(user: @user)
-  order.save_card
-  expect(order.credit_card.card_token).to_not be_nil
+  @order.save_card
+  expect(@order.credit_card.card_token).to_not be_nil
   StripeMock.stop
 end
 
@@ -116,11 +116,5 @@ Then(/^I am asked if I want to use my already saved credit card$/) do
 end
 
 When(/^I confirm using my saved credit card$/) do
-  StripeMock.start
-  stripe_helper = StripeMock.create_test_helper
-  order = Order.create(user: @user, stripe_token: stripe_helper.generate_card_token)
-  credit_card = CreditCard.create(user: @user)
-  order.save_card
   click_on "Submit Order"
-  StripeMock.stop
 end
