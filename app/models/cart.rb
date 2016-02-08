@@ -2,6 +2,8 @@ class Cart < ActiveRecord::Base
   belongs_to :user
   has_many :line_items
 
+  monetize :total_cart_price
+
   def total_cart_price
     line_items.to_a.sum(&:total_price)
   end

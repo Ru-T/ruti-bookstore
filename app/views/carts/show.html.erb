@@ -26,6 +26,6 @@
       <% end %>
     </tbody>
   </table>
-  <h3>Total Price: $<%= @cart.total_cart_price %></h3>
+  <h3>Total Price: <%= @cart.total_cart_price.format %></h3>
   <%= link_to "Purchase", new_order_path %>
 </div>

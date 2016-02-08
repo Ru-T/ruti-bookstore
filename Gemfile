@@ -28,7 +28,6 @@ gem 'simple_form'
 
 gem 'kaminari'
 gem 'ransack'
-gem 'draper', '~> 1.3'
 
 gem 'rubocop'
 gem 'stripe'
