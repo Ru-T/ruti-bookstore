@@ -91,7 +91,6 @@ Then(/^I am shown the order summary$/) do
 end
 
 Then(/^my credit card is saved for future purchases$/) do
-  sleep(5)
   expect(@user.credit_card.card_token).to_not be_nil
 end
 
