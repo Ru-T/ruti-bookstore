@@ -7,7 +7,9 @@ class Book < ActiveRecord::Base
   monetize :price_cents
 
   def self.most_popular
-    books_sold = LineItem.where(cart_id: nil).group(:book_id).count.sort.sort { |a, b| b[1] <=> a[1] }
-    most_popular = books_sold.map {|row| row[0]}
+    books_sold = LineItem.where(cart_id: nil).order(quantity: :desc).group(:book_id)
+    most_popular = []
+    books_sold.each { |line_item| most_popular << line_item.book_id }
+    most_popular
   end
 end
