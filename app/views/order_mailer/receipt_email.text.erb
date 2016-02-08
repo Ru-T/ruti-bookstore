@@ -1,6 +1,6 @@
 Thanks for completing your order <%= @user.email %>
 
-Total Cost: <%= @order.total.format %>
+Total Cost: <%= @order.total %>
 
 <% @order.line_items.each do |line_item| %>
   Book Title: <%= line_item.book.title %>

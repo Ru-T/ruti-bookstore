@@ -1,6 +1,6 @@
 <h3>Thanks for completing your order <%= @user.email %></h3>
 
-<p>Total Cost: <%= @order.total.format %></p>
+<p>Total Cost: <%= @order.total %></p>
 
 <% @order.line_items.each do |line_item| %>
   <p>Book Title: <%= line_item.book.title %></p>
