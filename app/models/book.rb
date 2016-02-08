@@ -3,4 +3,11 @@ class Book < ActiveRecord::Base
   default_scope { order(published_date: :desc) }
 
   has_many :line_items
+
+  def self.most_popular
+    books_sold = LineItem.where(cart_id: nil).order(quantity: :desc).group(:book_id)
+    most_popular = []
+    books_sold.each { |line_item| most_popular << line_item.book_id }
+    most_popular
+  end
 end

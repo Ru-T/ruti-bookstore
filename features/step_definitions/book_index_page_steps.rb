@@ -28,3 +28,14 @@ end
 Then(/^I am shown a list of books with that title$/) do
   expect(page).to have_content(Book.find(1).title)
 end
+
+Given(/^some books have been ordered$/) do
+end
+
+When(/^I sort by "([^"]*)"$/) do |sort|
+  click_on sort
+end
+
+Then(/^the books are re\-sorted based on the amount of times they are purchased$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
