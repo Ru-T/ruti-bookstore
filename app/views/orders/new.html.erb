@@ -1,17 +1,17 @@
 <div class="container">
   <h1>New Order</h1>
-  <%= simple_form_for(@order) do |f| %>
+  <%= simple_form_for(@order) do |form| %>
     <span class="payment-errors"></span>
-    <%= render "shipping_form", f: f %>
+    <%= render "shipping_form", form: form %>
     <% if current_user.credit_card.card_token.nil? %>
-      <%= render "billing_form", f: f %>
-      <%= render "credit_card_form", f: f %>
+      <%= render "billing_form", form: form %>
+      <%= render "credit_card_form" %>
     <% else %>
       <p> Your credit card is stored on file. Last 4 digits: <%= current_user.credit_card.last_four_digits %> </p>
     <% end %>
     <div class="actions">
       <%= hidden_field_tag(:preview, 'preview') %>
-      <%= f.submit "Submit Order" %>
+      <%= form.submit "Submit Order" %>
     </div>
   <% end %>
 </div>

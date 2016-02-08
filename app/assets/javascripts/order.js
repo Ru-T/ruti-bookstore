@@ -8,7 +8,7 @@ $(document).ready(function() {
       Stripe.card.createToken($form, stripeResponseHandler);
       return false;
   } else {
-      true;
+      return true;
     }
   });
 });
