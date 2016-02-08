@@ -15,7 +15,8 @@ class OrdersController < ApplicationController
         stripe_token: params[:stripeToken]
       )
     )
-    if @order.user.credit_card.card_token.nil?
+    binding.pry
+    if current_user.credit_card.card_token.nil?
       @order.save_card
     end
     if @order.save_with_payment
