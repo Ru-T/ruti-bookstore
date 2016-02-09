@@ -50,7 +50,7 @@ When(/^I enter the title "(.*?)"$/) do |title|
 end
 
 When(/^I enter the price "(.*?)"$/) do |price|
-  fill_in "Price", with: price
+  fill_in "Price cents", with: price
 end
 
 And(/^I select the date "([^"]*)" for "(.*?)"$/) do |in_date_str, field|
