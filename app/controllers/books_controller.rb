@@ -3,8 +3,10 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show]
 
   def index
-    @q = Book.ransack(params[:q])
-    @books = @q.result(distinct: true).page(params[:page])
+    sort = params[:sort] || "published_date"
+    @q = Book.order(sort).ransack(params[:q])
+    @books = @q.result.page(params[:page])
+    sort = @books.most_popular if sort == "most_popular"
   end
 
   private
