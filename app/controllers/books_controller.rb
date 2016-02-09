@@ -4,7 +4,6 @@ class BooksController < ApplicationController
 
   def index
     sort = params[:sort] || "published_date DESC"
-    sort = "order_count DESC" if sort == "most_popular"
     @q = Book.order(sort).ransack(params[:q])
     @books = @q.result.page(params[:page])
   end

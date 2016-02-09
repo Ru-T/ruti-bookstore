@@ -1,7 +1,3 @@
-Given(/^there are "(.*?)" books in the database$/) do |number|
-  FactoryGirl.create_list(:book, number.to_i)
-end
-
 Given(/^there are some books in the database$/) do
   @book = FactoryGirl.create(:book, title: "A book")
   FactoryGirl.create(:book, title: "Another book")
