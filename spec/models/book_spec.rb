@@ -23,7 +23,7 @@ RSpec.describe Book, type: :model do
     end
 
     it "must have price to be valid" do
-      expect(build(:book, price: nil)).to_not be_valid
+      expect(build(:book, price_cents: nil)).to_not be_valid
     end
   end
 
@@ -31,6 +31,12 @@ RSpec.describe Book, type: :model do
     it 'orders by most recently published' do
       book2 = create(:book)
       expect(Book.first).to eq book2
+    end
+  end
+
+  describe '#monetize' do
+    it 'monetizes the price field of a book' do
+      expect(book).to monetize(:price)
     end
   end
 end

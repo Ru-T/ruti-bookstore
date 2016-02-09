@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe Cart, type: :model do
   let(:user) { create(:user) }
   let(:cart) { create(:cart, user: user) }
-  let(:book) { create(:book, price: 200) }
-  let(:book2) { create(:book, price: 500) }
+  let(:book) { create(:book, price_cents: 200) }
+  let(:book2) { create(:book, price_cents: 500) }
 
   describe "#total_price" do
     it "returns the total of all line items" do
       cart.line_items.create!(book: book, quantity: 1)
       cart.line_items.create!(book: book2, quantity: 3)
-      expect(cart.total_cart_price).to eq 1700
+      expect(cart.total_cart_price).to eq Money.new(1700)
     end
   end
 
