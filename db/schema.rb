@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20160209182014) do
     t.text     "description"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "purchase_count"
+    t.integer  "order_count"
   end
 
   create_table "carts", force: :cascade do |t|
