@@ -5,6 +5,11 @@ class BooksController < ApplicationController
   def index
     @q = Book.ransack(params[:q])
     @books = @q.result(distinct: true).page(params[:page])
+    # .order(params[:sort])
+    # <% if params[:sort] == "created_at" %>
+    #   <%=link_to 'Newest', crops_path(:sort => "created_at") %>
+    # <% end %>
+
   end
 
   private

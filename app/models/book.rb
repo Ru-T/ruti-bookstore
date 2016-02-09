@@ -4,10 +4,11 @@ class Book < ActiveRecord::Base
 
   has_many :line_items
 
+  def number_sold
+    line_items.where(cart_id: nil).count
+  end
+
   def self.most_popular
-    books_sold = LineItem.where(cart_id: nil).order(quantity: :desc).group(:book_id)
-    most_popular = []
-    books_sold.each { |line_item| most_popular << line_item.book_id }
-    most_popular
+    Book.all.sort_by(&:number_sold)
   end
 end
