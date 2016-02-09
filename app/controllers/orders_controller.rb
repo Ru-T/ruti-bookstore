@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new(user: current_user)
-    @order.user.credit_card = @order.user.build_credit_card unless @order.user.credit_card
+    @order.user.credit_card ||= @order.user.build_credit_card
   end
 
   def create
@@ -15,24 +15,40 @@ class OrdersController < ApplicationController
         stripe_token: params[:stripeToken]
       )
     )
-    @order.save_card if current_user.credit_card.card_token.nil?
-    if params[:preview]
-      render partial: "preview"
-    else
-      if @order.save_with_payment
-        @order.purchase_line_items
-        OrderMailer.receipt_email(@order.user).deliver_now
-        redirect_to order_path(@order), notice: "Your order has been completed"
-      else
-        redirect to cart_path(current_user), notice: "Your order could not be processed."
-      end
-    end
+    process_order(@order)
   end
 
   private
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def process_order(order)
+    save_card(order)
+    render_order(order)
+  end
+
+  def save_card(order)
+    order.save_card if current_user.credit_card.card_token.nil?
+  end
+
+  def render_order(order)
+    if params[:preview]
+      render partial: "preview"
+    else
+      save_order(order)
+    end
+  end
+
+  def save_order(order)
+    if order.save_with_payment
+      order.purchase_line_items
+      OrderMailer.receipt_email(order.user).deliver_now
+      redirect_to order_path(order), notice: "Your order has been completed"
+    else
+      redirect to cart_path(current_user), notice: "Your order could not be processed."
+    end
   end
 
   # strong params
