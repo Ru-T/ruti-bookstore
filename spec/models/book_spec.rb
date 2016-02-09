@@ -1,12 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-  let(:user) { create(:user) }
-  let(:cart) { create(:cart, user: user) }
   let(:book) { create(:book) }
   let(:book1) { create(:book) }
-  let(:line_item) { create(:line_item, cart: cart, book: book1, order: nil) }
-  let(:order) { create(:order, user: user) }
 
   describe "validations" do
     it "is valid without category or description" do
