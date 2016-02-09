@@ -36,27 +36,4 @@ RSpec.describe Book, type: :model do
       expect(Book.first).to eq book2
     end
   end
-
-  describe '#number_sold' do
-    it 'returns the number of times a book sold' do
-      expect(cart.line_items).to include line_item
-      order.purchase_line_items
-      expect(order.reload.line_items).to include line_item
-      expect(cart.reload.line_items).to be_empty
-      expect(book.number_sold).to eq 0
-      expect(book1.number_sold).to eq 1
-    end
-  end
-
-  describe '.most_popular' do
-    it 'orders by most popular' do
-      expect(cart.line_items).to include line_item
-      order.purchase_line_items
-      expect(order.reload.line_items).to include line_item
-      expect(cart.reload.line_items).to be_empty
-      expect(book.number_sold).to eq 0
-      expect(book1.number_sold).to eq 1
-      expect(Book.all.most_popular).to eq [book1, book]
-    end
-  end
 end
