@@ -37,5 +37,6 @@ When(/^I sort by "([^"]*)"$/) do |sort|
 end
 
 Then(/^the books are re\-sorted based on the amount of times they are purchased$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  Book.order("purchase_count")
+  expect(page).to have_content()
 end
