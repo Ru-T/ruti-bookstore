@@ -4,6 +4,7 @@ RSpec.describe Book, type: :model do
 
   let(:book) { create(:book) }
   let(:book1) { create(:book) }
+  let(:line_item2) { create(:line_item, cart_id: nil, book: book1) }
 
   describe "validations" do
     it "is valid without category or description" do
@@ -36,7 +37,9 @@ RSpec.describe Book, type: :model do
 
   describe '.most_popular' do
     it 'orders by most popular' do
-      expect(Book.most_popular).to eq [book1.id, book.id]
+      expect(book).to eq book
+      expect(book1).to eq book1
+      expect(Book.all.most_popular).to eq [book1, book]
     end
   end
 end

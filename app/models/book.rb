@@ -8,7 +8,7 @@ class Book < ActiveRecord::Base
     line_items.where(cart_id: nil).count
   end
 
- def self.most_popular
-   Book.all.sort_by(&:number_sold).reverse
- end
+   def self.most_popular
+     Book.all.sort_by(&:number_sold).reverse
+   end
 end
