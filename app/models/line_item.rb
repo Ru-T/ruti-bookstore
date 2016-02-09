@@ -8,4 +8,8 @@ class LineItem < ActiveRecord::Base
   def total_price
     book.price * quantity
   end
+
+  def purchase_price
+    book.discount_price ||= book.price
+  end
 end
