@@ -30,6 +30,7 @@ Then(/^I am shown a list of books with that title$/) do
 end
 
 Given(/^some books have been ordered$/) do
+  @books = Book.order("published_date")
 end
 
 When(/^I sort by "([^"]*)"$/) do |sort|
@@ -37,6 +38,7 @@ When(/^I sort by "([^"]*)"$/) do |sort|
 end
 
 Then(/^the books are re\-sorted based on the amount of times they are purchased$/) do
-  Book.order("purchase_count")
-  expect(page).to have_content()
+  Book.order("order_count")
+  expect(Book.first).to eq Book.order(:order_count).first
+  expect(Book.last).to eq Book.order(:order_count).last
 end
