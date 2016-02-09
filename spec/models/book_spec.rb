@@ -33,4 +33,10 @@ RSpec.describe Book, type: :model do
       expect(Book.first).to eq book2
     end
   end
+
+  describe '.most_popular' do
+    it 'orders by most popular' do
+      expect(Book.most_popular).to eq [book1.id, book.id]
+    end
+  end
 end
