@@ -7,8 +7,7 @@ Then(/^I see a list of books in the database$/) do
 end
 
 Then(/^the books are ordered by published date$/) do
-  # query the database for the titles 
-  # expect(page).to have_content (REGEX)
+  expect(page).to have_content(/#{Book.first.title}.*#{Book.all[5].title}/m)
 end
 
 Then(/^the list of 100 books are paginated in pages of 25 books per page$/) do
@@ -39,5 +38,5 @@ When(/^I sort by "([^"]*)"$/) do |sort|
 end
 
 Then(/^the books are re\-sorted based on the amount of times they are purchased$/) do
-  expect(page).to have_content(Book.first.title)
+  expect(page).to have_content(/#{Book.first.title}.*#{Book.all[5].title}/m)
 end
