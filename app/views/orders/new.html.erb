@@ -10,6 +10,7 @@
       <p> Your credit card is stored on file. Last 4 digits: <%= current_user.credit_card.last_four_digits %> </p>
     <% end %>
     <div class="actions">
+      <%= hidden_field_tag(:preview, 'preview') %>
       <%= form.submit "Submit Order" %>
     </div>
   <% end %>

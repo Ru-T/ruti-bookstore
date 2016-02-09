@@ -1,0 +1,23 @@
+<div class="container">
+  <h1> Order Summary Review </h1>
+  <% current_user.cart.line_items.each do |line_item| %>
+    <p> Title: <%= line_item.book.title %> </p>
+    <p> Author: <%= line_item.book.author %> </p>
+    <p> Published On: <%= line_item.book.published_date %> </p>
+    <p> Price: <%= line_item.book.price %> </p>
+    <p> Quantity: <%= line_item.quantity %> </p>
+    <p> Total Price: <%= line_item.total_price %> </p>
+  <% end %>
+  <h3> Total: <%= current_user.cart.total_cart_price %> </h3>
+
+  <%= simple_form_for(@order) do |f| %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :total %>
+    <%= f.hidden_field :shipping_address1 %>
+    <%= f.hidden_field :shipping_address2 %>
+    <%= f.hidden_field :shipping_city %>
+    <%= f.hidden_field :shipping_state %>
+    <%= f.hidden_field :shipping_zip %>
+    <%= f.submit "Confirm" %>
+  <% end %>
+</div>
