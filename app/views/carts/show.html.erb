@@ -6,6 +6,7 @@
       <tr>
         <th>Title</th>
         <th>Price</th>
+        <th>Discount Price</th>
         <th>Quantity</th>
         <th>Total Price</th>
       </tr>
@@ -15,6 +16,7 @@
         <tr>
           <td> <%= line_item.book.title %> </td>
           <td> <%= line_item.book.price.format %> </td>
+          <td> <%= line_item.book.discount_price.format %> </td>
           <td> <%= line_item.quantity %>
                <%= link_to 'Edit Quantity', edit_line_item_path(line_item), id: "edit_quantity" %></td>
           <td> <%= line_item.total_price.format %> </td>

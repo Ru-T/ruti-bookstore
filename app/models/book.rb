@@ -9,6 +9,8 @@ class Book < ActiveRecord::Base
   monetize :discount_price_cents
 
   def discount_price_cents
-    price_cents - discount_cents
+    if discount_cents > 0
+      price_cents - discount_cents
+    end
   end
 end

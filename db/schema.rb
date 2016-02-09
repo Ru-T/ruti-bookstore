@@ -52,10 +52,10 @@ ActiveRecord::Schema.define(version: 20160209195651) do
     t.string   "author"
     t.string   "category"
     t.text     "description"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "price_cents"
-    t.integer  "discount_cents"
+    t.integer  "discount_cents", default: 0
   end
 
   create_table "carts", force: :cascade do |t|

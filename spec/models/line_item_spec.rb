@@ -27,11 +27,4 @@ RSpec.describe LineItem, type: :model do
       expect(line_item.total_price).to eq Money.new(600)
     end
   end
-
-  # describe "#purchase_price" do
-  #   it "returns the discount price or the original price if no discount" do
-  #     expect(line_item.purchase_price).to eq 200
-  #     expect(line_item.purchase_price).to eq 1800
-  #   end
-  # end
 end

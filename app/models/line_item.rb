@@ -6,10 +6,10 @@ class LineItem < ActiveRecord::Base
   belongs_to :order
 
   def total_price
-    book.price * quantity
-  end
-
-  def purchase_price
-    book.discount_price ||= book.price
+    if book.discount != 0
+      book.discount_price * quantity
+    else
+      book.price * quantity
+    end
   end
 end
