@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20160209195651) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "price_cents"
-    t.integer  "order_count"
     t.integer  "discount_cents"
   end
 
