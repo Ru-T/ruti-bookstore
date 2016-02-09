@@ -22,7 +22,7 @@ RSpec.describe LineItem, type: :model do
 
   describe "#total_price" do
     it "returns item price multiplied by line item quantity" do
-      expect(line_item.total_price).to eq 600
+      expect(line_item.total_price).to eq Money.new(600)
     end
   end
 end

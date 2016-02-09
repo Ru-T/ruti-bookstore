@@ -2,6 +2,7 @@
   <h1>Books</h1>
 
   <%= render 'search_form' %>
+  <p>Sort by: <%=link_to 'Most Popular', books_path(sort: "most_popular") %></p>
 
   <table class="table table-bordered table-striped">
     <thead>
@@ -20,7 +21,7 @@
           <td> <%= book.title %> </td>
           <td> <%= book.published_date %> </td>
           <td> <%= book.author %> </td>
-          <td> <%= book.price %> </td>
+          <td> <%= humanized_money_with_symbol book.price %> </td>
           <td> <%= book.category %> </td>
           <td> <%= book.description %> </td>
           <td><%= link_to 'View Book', book, id: "view_book" %></td>

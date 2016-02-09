@@ -4,6 +4,9 @@ RSpec.describe Book, type: :model do
 
   let(:book) { create(:book) }
   let(:book1) { create(:book) }
+  let(:book2) { create(:book, price: 3000) }
+  let(:lineitem) { create(:line_item, book: book2, cart_id: nil, quantity: 3) }
+  let(:lineitem2) { create(:line_item, book: book1, cart_id: nil, quantity: 1) }
 
   describe "validations" do
     it "is valid without category or description" do
@@ -31,6 +34,12 @@ RSpec.describe Book, type: :model do
     it 'orders by most recently published' do
       book2 = create(:book)
       expect(Book.first).to eq book2
+    end
+  end
+
+  describe '.most_popular' do
+    it 'orders by most popular' do
+      expect(Book.most_popular).to eq [book1.id, book.id]
     end
   end
 end
