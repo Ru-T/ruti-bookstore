@@ -82,7 +82,7 @@ When(/^I click the Submit Order button$/) do
 end
 
 Then(/^I am asked to review the order total$/) do
-  expect(page).to have_content("Review Purchase Order")
+  expect(page).to have_content("Order Summary Review")
   expect(page).to have_content("A book")
 end
 
@@ -122,5 +122,4 @@ When(/^I confirm using my saved credit card$/) do
   CreditCard.create(user: @user)
   order.save_card
   click_on "Submit Order"
-  StripeMock.stop
 end
