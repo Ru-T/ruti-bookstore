@@ -9,6 +9,6 @@ class Book < ActiveRecord::Base
   end
 
   def self.most_popular
-    Book.all.sort_by(&:number_sold)
+    Book.all.sort_by(&:number_sold).reverse
   end
 end
