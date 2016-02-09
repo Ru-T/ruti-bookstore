@@ -5,6 +5,7 @@
     <p> Author: <%= line_item.book.author %> </p>
     <p> Published On: <%= line_item.book.published_date %> </p>
     <p> Price: <%= line_item.book.price.format %> </p>
+    <p> Discount Price: <%= line_item.book.discount_price.format %> </p>
     <p> Quantity: <%= line_item.quantity %> </p>
     <p> Total Price: <%= line_item.total_price.format %> </p>
   <% end %>
