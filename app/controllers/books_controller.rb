@@ -3,13 +3,10 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show]
 
   def index
-    @q = Book.ransack(params[:q])
-    @books = @q.result(distinct: true).page(params[:page])
-    # .order(params[:sort])
-    # <% if params[:sort] == "created_at" %>
-    #   <%=link_to 'Newest', crops_path(:sort => "created_at") %>
-    # <% end %>
-
+    sort = params[:sort] || "published_date"
+    @q = Book.order(sort).ransack(params[:q])
+    @books = @q.result.page(params[:page])
+    sort = @books.most_popular if sort == "most_popular"
   end
 
   private
