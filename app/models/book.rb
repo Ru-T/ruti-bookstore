@@ -6,6 +6,7 @@ class Book < ActiveRecord::Base
 
   monetize :price_cents
   monetize :discount_cents
+  monetize :discount_price
 
   def discount_price
     price_cents - discount_cents
