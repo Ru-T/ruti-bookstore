@@ -10,7 +10,7 @@
         <th><%= sort_link(@q, :published_date) %></th>
         <th><%= sort_link(@q, :author) %></th>
         <th><%= sort_link(@q, :price) %></th>
-        <th><%= sort_link(@q, :discount) %></th>
+        <th><%= sort_link(@q, :discount, "Discount Price") %></th>
         <th><%= sort_link(@q, :category) %></th>
         <th>Description</th>
       </tr>
@@ -23,7 +23,7 @@
           <td> <%= book.author %> </td>
           <td> <%= book.price.format %> </td>
           <% if book.discount %>
-            <td> <%= book.discount_price %> </td>
+            <td> <%= book.discount_price.format %> </td>
           <% else %>
             <td>No discount</td>
           <% end %>

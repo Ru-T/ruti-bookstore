@@ -42,7 +42,7 @@ RSpec.describe Book, type: :model do
 
   describe '#discount_price' do
     it 'returns the book price minus the discount' do
-      expect(book.discount_price).to eq 180
+      expect(book.discount_price_cents).to eq 180
     end
   end
 end
