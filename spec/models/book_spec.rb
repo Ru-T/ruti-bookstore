@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-
+  let(:user) { create(:user) }
+  let(:cart) { create(:cart, user: user) }
   let(:book) { create(:book) }
   let(:book1) { create(:book) }
-  let(:line_item2) { create(:line_item, cart_id: nil, book: book1) }
+  let(:line_item) { create(:line_item, cart: cart, book: book1, order: nil) }
+  let(:order) { create(:order, user: user) }
 
   describe "validations" do
     it "is valid without category or description" do
@@ -35,10 +37,25 @@ RSpec.describe Book, type: :model do
     end
   end
 
+  describe '#number_sold' do
+    it 'returns the number of times a book sold' do
+      expect(cart.line_items).to include line_item
+      order.purchase_line_items
+      expect(order.reload.line_items).to include line_item
+      expect(cart.reload.line_items).to be_empty
+      expect(book.number_sold).to eq 0
+      expect(book1.number_sold).to eq 1
+    end
+  end
+
   describe '.most_popular' do
     it 'orders by most popular' do
-      expect(book).to eq book
-      expect(book1).to eq book1
+      expect(cart.line_items).to include line_item
+      order.purchase_line_items
+      expect(order.reload.line_items).to include line_item
+      expect(cart.reload.line_items).to be_empty
+      expect(book.number_sold).to eq 0
+      expect(book1.number_sold).to eq 1
       expect(Book.all.most_popular).to eq [book1, book]
     end
   end
