@@ -32,6 +32,7 @@ ActiveAdmin.register Book do
       input :author
       input(:price) { |book| number_to_currency book.price }
       input(:discount) { |book| number_to_currency book.discount }
+      input :discount_type, as: :select, collection: ["dollar", "percent"]
       input :category
       input :description
       actions
