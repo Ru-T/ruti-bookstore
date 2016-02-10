@@ -5,7 +5,7 @@ ActiveAdmin.register Book do
     column :author
     column :published_date
     column :price_cents
-	column :discount_cents
+    column :discount_cents
     column :category
     column :description
     actions
