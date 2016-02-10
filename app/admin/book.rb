@@ -32,11 +32,15 @@ ActiveAdmin.register Book do
       input :author
       input(:price) { |book| number_to_currency book.price }
       input(:discount) { |book| number_to_currency book.discount }
-      input :discount_type, as: :select, collection: ["dollar", "percent"]
+      input :discount_type, as: :select, collection: ["dollar", "percent"], include_blank: false
       input :category
       input :description
       actions
     end
+  end
+
+  before_create do |book|
+    book.discount = price * discount if :discount_type == "percent"
   end
 
   permit_params :title,
