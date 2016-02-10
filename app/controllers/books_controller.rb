@@ -14,14 +14,15 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
   # strong params
-  def user_params
+  def book_params
     params.require(:book).permit(
       :title,
       :published_date,
       :author,
       :price,
       :category,
-      :description
+      :description,
+      :discount
     )
   end
 end
