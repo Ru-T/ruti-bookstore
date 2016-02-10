@@ -4,7 +4,7 @@
   <p> <%= @book.published_date %> </p>
   <p> <%= @book.author %> </p>
   <p> <%= @book.price.format %> </p>
-  <p class="discount_price"> <%= @book.discount_price.format if @book.discounted? %> </p>
+  <p class="discount-price"> <%= @book.discount_price.format if @book.discounted? %> </p>
   <p> <%= @book.category %> </p>
   <p> <%= @book.description %> </p>
   <%= form_for(current_user.cart.line_items.build) do |f| %>

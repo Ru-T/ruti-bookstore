@@ -4,7 +4,6 @@ class Book < ActiveRecord::Base
   has_many :line_items
 
   monetize :price_cents
-  # monetize :discount_cents
   monetize :discount_price_cents
 
   def discount_price_cents

@@ -15,7 +15,7 @@
         <tr>
           <td> <%= line_item.book.title %> </td>
           <td> <%= line_item.book.price.format %><br />
-               <div class="discount_price"><%= line_item.book.discount_price.format if line_item.book.discounted? %> </div></td>
+               <div class="discount-price"><%= line_item.book.discount_price.format if line_item.book.discounted? %> </div></td>
           <td> <%= line_item.quantity %>
                <%= link_to 'Edit Quantity', edit_line_item_path(line_item), id: "edit_quantity" %></td>
           <td> <%= line_item.total_price.format %> </td>
