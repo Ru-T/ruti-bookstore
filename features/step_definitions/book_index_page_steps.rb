@@ -31,6 +31,7 @@ end
 Given(/^some books have been ordered$/) do
   Book.find(1).update(order_count: 2)
   Book.find(2).update(order_count: 3)
+  Order.create(user: @user, total: 300)
 end
 
 When(/^I sort by "([^"]*)"$/) do |sort|

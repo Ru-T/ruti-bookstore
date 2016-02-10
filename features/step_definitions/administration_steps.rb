@@ -130,3 +130,12 @@ end
 When(/^I change the book price to "(.*?)"$/) do |new_price|
   fill_in 'Price', with: new_price
 end
+
+When(/^I visit the admin orders url$/) do
+  visit admin_orders_path
+end
+
+Then(/^I see the orders$/) do
+  expect(page).to have_content("Total")
+  expect(page).not_to have_content("There are no Orders yet.")
+end
