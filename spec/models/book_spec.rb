@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-
   let(:book) { create(:book) }
   let(:book1) { create(:book) }
 
@@ -27,7 +26,7 @@ RSpec.describe Book, type: :model do
     end
   end
 
-  describe '.default scope' do
+  describe 'default sort without sort params' do
     it 'orders by most recently published' do
       book2 = create(:book)
       expect(Book.first).to eq book2

@@ -4,11 +4,11 @@ ActiveAdmin.register Book do
     column :title
     column :author
     column :published_date
-    column :price
+    column :price_cents
     column :category
     column :description
     actions
   end
 
-  permit_params :title, :author, :published_date, :price, :category, :description
+  permit_params :title, :author, :published_date, :price_cents, :category, :description
 end

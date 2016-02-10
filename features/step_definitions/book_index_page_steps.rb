@@ -1,5 +1,5 @@
-Given(/^there are 100 books in the database$/) do
-  FactoryGirl.create_list(:book, 100)
+Given(/^there are (\d+) books in the database$/) do |number|
+  FactoryGirl.create_list(:book, number.to_i)
 end
 
 Then(/^I see a list of books in the database$/) do
@@ -7,8 +7,7 @@ Then(/^I see a list of books in the database$/) do
 end
 
 Then(/^the books are ordered by published date$/) do
-  expect(Book.first).to eq Book.order(:published_date).first
-  expect(Book.last).to eq Book.order(:published_date).last
+  expect(page).to have_content(/#{Book.first.title}.*#{Book.fifth.title}/m)
 end
 
 Then(/^the list of 100 books are paginated in pages of 25 books per page$/) do
@@ -27,4 +26,17 @@ end
 
 Then(/^I am shown a list of books with that title$/) do
   expect(page).to have_content(Book.find(1).title)
+end
+
+Given(/^some books have been ordered$/) do
+  Book.find(1).update(order_count: 2)
+  Book.find(2).update(order_count: 3)
+end
+
+When(/^I sort by "([^"]*)"$/) do |sort|
+  click_on sort
+end
+
+Then(/^the books are re\-sorted based on the amount of times they are purchased$/) do
+  expect(page).to have_content(/#{Book.first.title}.*#{Book.fifth.title}/m)
 end
