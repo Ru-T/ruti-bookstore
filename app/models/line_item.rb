@@ -6,7 +6,7 @@ class LineItem < ActiveRecord::Base
   belongs_to :order
 
   def total_price
-    if book.discount_cents > 0
+    if book.discounted?
       book.discount_price * quantity
     else
       book.price * quantity

@@ -12,5 +12,11 @@ ActiveAdmin.register Book do
     actions
   end
 
-  permit_params :title, :author, :published_date, :price_cents, :category, :description, :discount_cents
+  permit_params :title,
+                :author,
+                :published_date,
+                :price_cents,
+                :category,
+                :description,
+                :discount_cents
 end
