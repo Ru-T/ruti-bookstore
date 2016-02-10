@@ -28,12 +28,12 @@ ActiveAdmin.register Book do
   form do |f|
     f.inputs "Book Details" do
       input :title
-      input :published_date, label: "Published On"
+      input :published_date
       input :author
-      input :category
-      input :description
       input(:price) { |book| number_to_currency book.price }
       input(:discount) { |book| number_to_currency book.discount }
+      input :category
+      input :description
       actions
     end
   end
