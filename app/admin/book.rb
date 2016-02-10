@@ -11,6 +11,20 @@ ActiveAdmin.register Book do
     actions
   end
 
+  show do
+    attributes_table do
+      row :id
+      row :title
+      row :published_date
+      row :author
+      row :category
+      row :description
+      row(:price) { |book| number_to_currency book.price }
+      row(:discount) { |book| number_to_currency book.discount }
+      row :order_count
+    end
+  end
+
   permit_params :title,
                 :author,
                 :published_date,

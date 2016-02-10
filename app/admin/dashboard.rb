@@ -11,6 +11,7 @@ ActiveAdmin.register_page "Dashboard" do
               li link_to(book.title, admin_book_path(book))
             end
           end
+          strong link_to "View All Books", admin_books_path
         end
       end
 
@@ -21,6 +22,7 @@ ActiveAdmin.register_page "Dashboard" do
               li link_to(order.user.email, admin_order_path(order))
             end
           end
+          strong link_to "View All Orders", admin_orders_path
         end
       end
     end

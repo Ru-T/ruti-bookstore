@@ -15,5 +15,11 @@ ActiveAdmin.register Order do
     end
   end
 
-  permit_params :user, :total, :shipping_address1, :shipping_address2, :shipping_city, :shipping_state, :shipping_zip
+  permit_params :user,
+                :total,
+                :shipping_address1,
+                :shipping_address2,
+                :shipping_city,
+                :shipping_state,
+                :shipping_zip
 end
