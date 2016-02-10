@@ -12,6 +12,6 @@ class Book < ActiveRecord::Base
   end
 
   def discounted?
-    return true if discount_cents
+    discount_cents.present?
   end
 end
