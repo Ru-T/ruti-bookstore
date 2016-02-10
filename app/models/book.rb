@@ -13,6 +13,5 @@ class Book < ActiveRecord::Base
 
   def discounted?
     return true if discount_cents
-    false
   end
 end

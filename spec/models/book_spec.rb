@@ -47,7 +47,7 @@ RSpec.describe Book, type: :model do
 
   describe '#discounted?' do
     it 'returns true if the book has a discount_cents value' do
-      expect(book.discounted?).to eq false
+      expect(book.discounted?).to_not eq true
       expect(book1.discounted?).to eq true
     end
   end
