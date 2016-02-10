@@ -1,7 +1,7 @@
 ActiveAdmin.register Order do
   index do
     column :user
-    column (:total) { |order| number_to_currency order.total / 100 }
+    column(:total) { |order| number_to_currency order.total / 100 }
     column :shipping_city
     column :shipping_zip
     column "Line Items" do |order|
@@ -10,7 +10,7 @@ ActiveAdmin.register Order do
         column :quantity
         column(:price) { |line_item| number_to_currency line_item.book.price }
         column(:discount_price) { |line_item| number_to_currency line_item.book.discount_price }
-        column (:total_price) { |order| number_to_currency order.total_price }
+        column(:total_price) { |order| number_to_currency order.total_price }
       end
     end
   end
