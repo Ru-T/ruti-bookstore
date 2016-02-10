@@ -4,7 +4,9 @@
   <p> Published On: <%= @book.published_date %> </p>
   <p> Author: <%= @book.author %> </p>
   <p> Price: <%= @book.price.format %> </p>
-  <p> Discount Price: <%= @book.discount_price.format if @book.discount_cents > 0 %> </p>
+  <% if @book.discount_cents > 0 %>
+    <p> Discount Price: <%= @book.discount_price.format %> </p>
+  <% end %>
   <p> Category: <%= @book.category %> </p>
   <p> Description: <%= @book.description %> </p>
   <%= form_for(current_user.cart.line_items.build) do |f| %>
