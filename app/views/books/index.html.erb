@@ -23,7 +23,7 @@
           <td> <%= book.published_date %> </td>
           <td> <%= book.author %> </td>
           <td> <%= book.price.format %> </td>
-          <% if book.discount_cents > 0 %>
+          <% if book.discounted? %>
             <td> <%= book.discount_price.format %> </td>
           <% else %>
             <td></td>

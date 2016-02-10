@@ -8,6 +8,7 @@ ActiveAdmin.register Book do
     column :discount_cents
     column :category
     column :description
+    column :order_count
     actions
   end
 

@@ -10,4 +10,8 @@ class Book < ActiveRecord::Base
   def discount_price_cents
     price_cents - discount_cents unless price_cents.nil?
   end
+
+  def discounted?
+    discount_cents > 0
+  end
 end

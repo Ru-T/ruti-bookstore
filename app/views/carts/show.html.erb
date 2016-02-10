@@ -16,7 +16,7 @@
         <tr>
           <td> <%= line_item.book.title %> </td>
           <td> <%= line_item.book.price.format %> </td>
-          <% if line_item.book.discount_cents > 0 %>
+          <% if line_item.book.discounted? %>
             <td> <%= line_item.book.discount_price.format %> </td>
           <% else %>
             <td> </td>
