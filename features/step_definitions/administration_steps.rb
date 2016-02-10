@@ -120,7 +120,7 @@ Then(/^I don't see "(.*?)"$/) do |title|
 end
 
 Given(/^the book is valued at "(.*?)"$/) do |price|
-  FactoryGirl.create(:book, price: price)
+  @book.update(price: price)
 end
 
 When(/^I change the book name to "(.*?)"$/) do |new_title|
@@ -138,4 +138,16 @@ end
 Then(/^I see the orders$/) do
   expect(page).to have_content("Total")
   expect(page).not_to have_content("There are no Orders yet.")
+end
+
+When(/^I change the book discount to "([^"]*)"$/) do |discount|
+  fill_in 'Discount', with: discount
+end
+
+Then(/^I see the book has the discount "([^"]*)"$/) do |discount|
+  expect(page).to have_content(discount)
+end
+
+Then(/^I see the book has the discount price "([^"]*)"$/) do |discount_price|
+  expect(page).to have_content(discount_price)
 end
