@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe LineItem, type: :model do
   let(:user) { create(:user) }
-  let(:book) { create(:book) }
+  let(:book) { create(:book, price_cents: 200) }
+  let(:book2) { create(:book, price_cents: 2000, discount_cents: 200) }
   let(:cart) { create(:cart) }
   let(:line_item) { create(:line_item, cart: cart, book: book, quantity: 3) }
+  let(:line_item2) { create(:line_item, cart: cart, book: book2, quantity: 2) }
 
   describe "validations" do
     it "must have a cart_id to be valid" do
@@ -23,6 +25,7 @@ RSpec.describe LineItem, type: :model do
   describe "#total_price" do
     it "returns item price multiplied by line item quantity" do
       expect(line_item.total_price).to eq Money.new(600)
+      expect(line_item2.total_price).to eq Money.new(3600)
     end
   end
 end

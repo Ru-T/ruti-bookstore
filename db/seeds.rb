@@ -3,6 +3,7 @@
                published_date: Faker::Date.between(30.days.ago, Date.today),
                author: Faker::Book.author,
                price_cents: rand(1000...10000),
+               discount_cents: rand(0...900),
                category: Faker::Book.genre,
                description: Faker::Lorem.sentence
               )
