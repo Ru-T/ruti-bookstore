@@ -7,7 +7,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Books" do
           ul do
-            Book.last(10).map do |book|
+            Book.order("created_at desc").limit(10).map do |book|
               li link_to(book.title, admin_book_path(book))
             end
           end
@@ -18,7 +18,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Orders" do
           ul do
-            Order.last(10).map do |order|
+            Order.order("created_at desc").limit(10).map do |order|
               li link_to(order.user.email, admin_order_path(order))
             end
           end
