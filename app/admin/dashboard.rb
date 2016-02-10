@@ -18,7 +18,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Orders" do
           ul do
             Order.last(10).map do |order|
-              li link_to(order.user, admin_order_path(order))
+              li link_to(order.user.email, admin_order_path(order))
             end
           end
         end
