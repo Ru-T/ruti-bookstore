@@ -25,8 +25,8 @@ ActiveAdmin.register Book do
     end
   end
 
-  form do |form|
-    inputs "Book Details" do
+  form do |f|
+    f.inputs "Book Details" do
       input :title
       input :published_date, label: "Published On"
       input :author
@@ -38,12 +38,11 @@ ActiveAdmin.register Book do
     end
   end
 
-
   permit_params :title,
                 :author,
                 :published_date,
-                :price_cents,
+                :price,
                 :category,
                 :description,
-                :discount_cents
+                :discount
 end
