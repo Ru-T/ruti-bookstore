@@ -71,12 +71,20 @@ Feature: Bookstore Administration Panel
     Given I am logged into the admin panel
     And I am logged into the site
     And there is a book named "Book To Be Discounted"
-    And the book is valued at "$135.99"
+    And the book is valued at "$20.00"
     When I visit the admin books url
     And I click the edit link for the book "Book To Be Discounted"
-    And I change the book discount to "35.99"
+    And I change the book discount to "3.50"
     And I click the "Update Book" button
     And I visit the admin books url
-    Then I see the book has the discount "$35.99"
+    Then I see the book has the discount "$3.50"
     When I visit the public book index
-    Then I see the book has the discount price "$100.00"
+    Then I see the book has the discount price "$16.50"
+    Then I visit the admin books url
+    And I click the edit link for the book "Book To Be Discounted"
+    And I change the book discount to 20 percent
+    And I click the "Update Book" button
+    And I visit the admin books url
+    Then I see the book has the discount "$4.00"
+    When I visit the public book index
+    Then I see the book has the discount price "$16.00"

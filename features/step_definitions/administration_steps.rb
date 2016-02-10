@@ -151,3 +151,8 @@ end
 Then(/^I see the book has the discount price "([^"]*)"$/) do |discount_price|
   expect(page).to have_content(discount_price)
 end
+
+Then(/^I change the book discount to (\d+) percent$/) do |percentage|
+  fill_in 'Discount', with: percentage
+  select "percent", from: "book_discount_type"
+end
