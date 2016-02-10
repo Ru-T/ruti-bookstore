@@ -39,13 +39,11 @@ ActiveAdmin.register Book do
     end
   end
 
-  # before_save do |book|
-  #   if book.discount_type == options[:percent]
-  #     book.discount = (book.price * book.discount.to_i / 100)
-  #   # elsif book.discount_type == "dollar"
-  #   #   book.discount
-  #   end
-  # end
+  before_save do |book|
+    if book.discount_type == "percent"
+      book.discount = (book.price * book.discount.to_i / 100)
+    end
+  end
 
   permit_params :title,
                 :author,
@@ -53,5 +51,6 @@ ActiveAdmin.register Book do
                 :price,
                 :category,
                 :description,
-                :discount
+                :discount,
+                :discount_type
 end

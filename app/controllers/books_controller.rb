@@ -13,6 +13,7 @@ class BooksController < ApplicationController
   def set_book
     @book = Book.find(params[:id])
   end
+
   # strong params
   def book_params
     params.require(:book).permit(
