@@ -1,14 +1,12 @@
 <div class="container">
   <h1>Book</h1>
-  <p> Title: <%= @book.title %> </p>
-  <p> Published On: <%= @book.published_date %> </p>
-  <p> Author: <%= @book.author %> </p>
-  <p> Price: <%= @book.price.format %> </p>
-  <% if @book.discounted? %>
-    <p> Discount Price: <%= @book.discount_price.format %> </p>
-  <% end %>
-  <p> Category: <%= @book.category %> </p>
-  <p> Description: <%= @book.description %> </p>
+  <p> <%= @book.title %> </p>
+  <p> <%= @book.published_date %> </p>
+  <p> <%= @book.author %> </p>
+  <p> <%= @book.price.format %> </p>
+  <p class="discount_price"> <%= @book.discount_price.format if @book.discounted? %> </p>
+  <p> <%= @book.category %> </p>
+  <p> <%= @book.description %> </p>
   <%= form_for(current_user.cart.line_items.build) do |f| %>
     <div class="field">
       <%= f.label :quantity %>

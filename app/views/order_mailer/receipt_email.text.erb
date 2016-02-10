@@ -9,7 +9,7 @@ Total Cost: <%= @order.total %>
   Price: <%= line_item.book.price.format %>
   <% if line_item.book.discounted? %>
     Discount Price: <%= line_item.book.discount_price.format %>
-  <% end %>  
+  <% end %>
   Quantity: <%= line_item.quantity %>
   Book Price: <%= line_item.total_price.format %>
 <% end %>
