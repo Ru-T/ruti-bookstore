@@ -3,8 +3,7 @@
   <p> <%= @book.title %> </p>
   <p> <%= @book.published_date %> </p>
   <p> <%= @book.author %> </p>
-  <p> <%= @book.price.format %> </p>
-  <p class="discount-price"> <%= @book.discount_price.format if @book.discounted? %> </p>
+  <%= render "price", book: @book %>
   <p> <%= @book.category %> </p>
   <p> <%= @book.description %> </p>
   <%= form_for(current_user.cart.line_items.build) do |f| %>

@@ -21,8 +21,7 @@
           <td> <%= book.title %> </td>
           <td> <%= book.published_date %> </td>
           <td> <%= book.author %> </td>
-          <td> <%= book.price.format %>
-            <div class="discount-price"><%= book.discount_price.format if book.discounted? %></div> </td>
+          <%= render "price", book: book %>
           <td> <%= book.category %> </td>
           <td> <%= book.description %> </td>
           <td><%= link_to 'View Book', book, id: "view_book" %></td>
