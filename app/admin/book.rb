@@ -25,6 +25,20 @@ ActiveAdmin.register Book do
     end
   end
 
+  form do |form|
+    inputs "Book Details" do
+      input :title
+      input :published_date, label: "Published On"
+      input :author
+      input :category
+      input :description
+      input(:price) { |book| number_to_currency book.price }
+      input(:discount) { |book| number_to_currency book.discount }
+      actions
+    end
+  end
+
+
   permit_params :title,
                 :author,
                 :published_date,
