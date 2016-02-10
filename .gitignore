@@ -18,3 +18,5 @@
 
 # Ignore config secrets file
 /config/secrets.yml
+
+/bookstore_database.png

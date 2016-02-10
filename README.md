@@ -43,4 +43,4 @@ Admin users can take the following actions in the admin interface of this bookst
 
 ## Database Structure
 
-![alt tag](https://github.com/smashingboxes/ruti-bookstore/blob/master/bookstore_database.png)
+![alt tag](https://github.com/smashingboxes/ruti-bookstore/blob/admin_abilities/bookstore_database.png)
