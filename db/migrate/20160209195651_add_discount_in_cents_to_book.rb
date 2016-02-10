@@ -1,5 +1,5 @@
 class AddDiscountInCentsToBook < ActiveRecord::Migration
   def change
-    add_column :books, :discount_cents, :integer, default: 0
+    add_column :books, :discount_cents, :integer
   end
 end

@@ -4,6 +4,7 @@ class Book < ActiveRecord::Base
   has_many :line_items
 
   monetize :price_cents
+  monetize :discount_cents, :allow_nil => true
   monetize :discount_price_cents
 
   def discount_price_cents
@@ -11,6 +12,6 @@ class Book < ActiveRecord::Base
   end
 
   def discounted?
-    discount_cents > 0
+    discount_cents
   end
 end
