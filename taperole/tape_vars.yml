@@ -9,4 +9,7 @@ be_app_repo: git@github.com:smashingboxes/ruti-bookstore.git
 # fe_app_branch: master
 # fe_build_command: gulp build
 
-slack_webhook_url:
+# slack_webhook_url:
+
+dev_key_files:
+  - taperole/dev_keys/ruti.pub
