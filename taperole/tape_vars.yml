@@ -14,4 +14,4 @@ be_app_repo: git@github.com:smashingboxes/ruti-bookstore.git
 dev_key_files:
   - taperole/dev_keys/ruti.pub
 
-node_version: "4.2"
+node_version: 4.2
