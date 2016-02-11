@@ -21,4 +21,7 @@
 
 #Ignore database config file
 /config/database.yml
+
+#Ignore tape files
 .tape
+.taperole
