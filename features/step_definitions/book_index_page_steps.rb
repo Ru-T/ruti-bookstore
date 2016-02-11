@@ -3,7 +3,7 @@ Given(/^there are (\d+) books in the database$/) do |number|
 end
 
 Then(/^I see a list of books in the database$/) do
-  expect(Book.all.ids).to include (1...100)
+  expect(Book.all.count).to eq 100
 end
 
 Then(/^the books are ordered by published date$/) do
@@ -21,16 +21,16 @@ Then(/^the list of 100 books are paginated in pages of 25 books per page$/) do
 end
 
 When(/^I enter a book's title into the book search field$/) do
-  fill_in 'Title contains', with: Book.find(1).title
+  fill_in 'Title contains', with: Book.first.title
 end
 
 Then(/^I am shown a list of books with that title$/) do
-  expect(page).to have_content(Book.find(1).title)
+  expect(page).to have_content(Book.first.title)
 end
 
 Given(/^some books have been ordered$/) do
-  Book.find(1).update(order_count: 2)
-  Book.find(2).update(order_count: 3)
+  Book.first.update(order_count: 2)
+  Book.fifth.update(order_count: 3)
   Order.create(user: @user, total: 300)
 end
 

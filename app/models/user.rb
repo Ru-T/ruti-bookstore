@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_one :credit_card
 
-  after_save :create_cart
+  after_create :create_cart
 
   def create_cart
     Cart.create(user: self)
