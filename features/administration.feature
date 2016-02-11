@@ -48,8 +48,9 @@ Feature: Bookstore Administration Panel
   Scenario: Editing a book
     Given I am logged into the admin panel
     And I am logged into the site
-    And there is a book named "Book To Be Edited"
-    And the book is valued at "$135.99"
+    And the database has the following book:
+      | title             | price |
+      | Book To Be Edited | $135.99 |
     When I visit the admin books url
     And I click the edit link for the book "Book To Be Edited"
     And I change the book name to "Book That Has Been Edited"
@@ -59,3 +60,33 @@ Feature: Bookstore Administration Panel
     Then I see the book "Book That Has Been Edited"
     When I visit the public book index
     Then I see the book "Book That Has Been Edited"
+
+  Scenario: Viewing orders
+    Given I am logged into the admin panel
+    And there are 100 books in the database
+    And some books have been ordered
+    When I visit the admin orders url
+    Then I see the orders
+
+  Scenario: Adding a book discount
+    Given I am logged into the admin panel
+    And I am logged into the site
+    And the database has the following book:
+      | title                 | price |
+      | Book To Be Discounted | $20.00 |
+    When I visit the admin books url
+    And I click the edit link for the book "Book To Be Discounted"
+    And I change the book discount to "3.50"
+    And I click the "Update Book" button
+    And I visit the admin books url
+    Then I see the book has the discount "$3.50"
+    When I visit the public book index
+    Then I see the book has the discount price "$16.50"
+    Then I visit the admin books url
+    And I click the edit link for the book "Book To Be Discounted"
+    And I change the book discount to 20 percent
+    And I click the "Update Book" button
+    And I visit the admin books url
+    Then I see the book has the discount "$4.00"
+    When I visit the public book index
+    Then I see the book has the discount price "$16.00"
