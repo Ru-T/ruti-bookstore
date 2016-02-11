@@ -21,16 +21,16 @@ Then(/^the list of 100 books are paginated in pages of 25 books per page$/) do
 end
 
 When(/^I enter a book's title into the book search field$/) do
-  fill_in 'Title contains', with: Book.find(1).title
+  fill_in 'Title contains', with: Book.first.title
 end
 
 Then(/^I am shown a list of books with that title$/) do
-  expect(page).to have_content(Book.find(1).title)
+  expect(page).to have_content(Book.first.title)
 end
 
 Given(/^some books have been ordered$/) do
-  Book.find(1).update(order_count: 2)
-  Book.find(2).update(order_count: 3)
+  Book.first.update(order_count: 2)
+  Book.fifth.update(order_count: 3)
 end
 
 When(/^I sort by "([^"]*)"$/) do |sort|
