@@ -119,10 +119,6 @@ Then(/^I don't see "(.*?)"$/) do |title|
   expect(page).not_to have_content(title)
 end
 
-Given(/^the book is valued at "(.*?)"$/) do |price|
-  @book.update(price: price)
-end
-
 When(/^I change the book name to "(.*?)"$/) do |new_title|
   fill_in 'Title', with: new_title
 end
@@ -155,4 +151,10 @@ end
 Then(/^I change the book discount to (\d+) percent$/) do |percentage|
   fill_in 'Discount', with: percentage
   select "percent", from: "book_discount_type"
+end
+
+Given(/^the database has the following book:$/) do |table|
+  table.hashes.each do |hash|
+    @book = FactoryGirl.create(:book, hash)
+  end
 end

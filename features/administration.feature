@@ -48,8 +48,9 @@ Feature: Bookstore Administration Panel
   Scenario: Editing a book
     Given I am logged into the admin panel
     And I am logged into the site
-    And there is a book named "Book To Be Edited"
-    And the book is valued at "$135.99"
+    And the database has the following book:
+      | title             | price |
+      | Book To Be Edited | $135.99 |
     When I visit the admin books url
     And I click the edit link for the book "Book To Be Edited"
     And I change the book name to "Book That Has Been Edited"
@@ -70,8 +71,9 @@ Feature: Bookstore Administration Panel
   Scenario: Adding a book discount
     Given I am logged into the admin panel
     And I am logged into the site
-    And there is a book named "Book To Be Discounted"
-    And the book is valued at "$20.00"
+    And the database has the following book:
+      | title                 | price |
+      | Book To Be Discounted | $20.00 |
     When I visit the admin books url
     And I click the edit link for the book "Book To Be Discounted"
     And I change the book discount to "3.50"
