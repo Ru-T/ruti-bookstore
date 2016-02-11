@@ -50,7 +50,7 @@ When(/^I enter the title "(.*?)"$/) do |title|
 end
 
 When(/^I enter the price "(.*?)"$/) do |price|
-  fill_in "Price cents", with: price
+  fill_in "Price", with: price
 end
 
 And(/^I select the date "([^"]*)" for "(.*?)"$/) do |in_date_str, field|
@@ -119,14 +119,42 @@ Then(/^I don't see "(.*?)"$/) do |title|
   expect(page).not_to have_content(title)
 end
 
-Given(/^the book is valued at "(.*?)"$/) do |price|
-  FactoryGirl.create(:book, price: price)
-end
-
 When(/^I change the book name to "(.*?)"$/) do |new_title|
   fill_in 'Title', with: new_title
 end
 
 When(/^I change the book price to "(.*?)"$/) do |new_price|
   fill_in 'Price', with: new_price
+end
+
+When(/^I visit the admin orders url$/) do
+  visit admin_orders_path
+end
+
+Then(/^I see the orders$/) do
+  expect(page).to have_content("Total")
+  expect(page).not_to have_content("There are no Orders yet.")
+end
+
+When(/^I change the book discount to "([^"]*)"$/) do |discount|
+  fill_in 'Discount', with: discount
+end
+
+Then(/^I see the book has the discount "([^"]*)"$/) do |discount|
+  expect(page).to have_content(discount)
+end
+
+Then(/^I see the book has the discount price "([^"]*)"$/) do |discount_price|
+  expect(page).to have_content(discount_price)
+end
+
+Then(/^I change the book discount to (\d+) percent$/) do |percentage|
+  fill_in 'Discount', with: percentage
+  select "percent", from: "book_discount_type"
+end
+
+Given(/^the database has the following book:$/) do |table|
+  table.hashes.each do |hash|
+    @book = FactoryGirl.create(:book, hash)
+  end
 end
