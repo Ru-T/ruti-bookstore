@@ -3,7 +3,7 @@ Given(/^there are (\d+) books in the database$/) do |number|
 end
 
 Then(/^I see a list of books in the database$/) do
-  expect(Book.all.ids).to include (1...100)
+  expect(Book.all.count).to eq 100
 end
 
 Then(/^the books are ordered by published date$/) do
