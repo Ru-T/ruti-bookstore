@@ -23,5 +23,5 @@
 /config/database.yml
 
 #Ignore tape files
-.tape
-.taperole
+/.tape/*
+/.taperole/*
