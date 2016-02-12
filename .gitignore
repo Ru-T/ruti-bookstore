@@ -24,4 +24,4 @@
 
 #Ignore tape files
 /.tape/*
-/.taperole/*
+/taperole/*
