@@ -80,8 +80,17 @@ Rails.application.configure do
   # Mailgun configurations for sending email on staging
   config.action_mailer.default_url_options = { host: '162.243.113.144' }
   config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
+  # config.action_mailer.mailgun_settings = {
+  #   api_key: Rails.application.secrets.mailgun_api_key,
+  #   domain: Rails.application.secrets.mailgun_domain
+  # }
+  config.action_mailer.smtp_settings = {
+    port:           587,
+    address:        'smtp.mailgun.org',
+    user_name:      'postmaster@sandbox85b185dc6fa44a7bbb05e2ce19beca69.mailgun.org',
+    password:       '065168f69b0027f0cb9f05b917383d0a',
+    domain:         Rails.application.secrets.mailgun_domain,
     api_key: Rails.application.secrets.mailgun_api_key,
-    domain: Rails.application.secrets.mailgun_domain
+    authentication: :plain
   }
 end
