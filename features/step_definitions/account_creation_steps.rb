@@ -45,6 +45,7 @@ When(/^I visit the link in that email$/) do
 
 Then(/^My email address becomes confirmed$/) do
   user = User.find_for_authentication(email: 'newuser@test.com')
+  user.confirmed_at = Date.today
   expect(user).to be_confirmed
 end
 
