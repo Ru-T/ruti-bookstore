@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
+# Use Unicorn as the app server
+gem 'unicorn'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -32,11 +34,13 @@ gem 'ransack'
 gem 'rubocop'
 gem 'stripe'
 gem 'money-rails'
+gem 'mailgun_rails'
+
+gem 'taperole'
+gem 'faker'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -50,7 +54,6 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
-  gem 'faker'
   gem 'capybara-screenshot'
   gem 'ap'
   gem 'stripe-ruby-mock'

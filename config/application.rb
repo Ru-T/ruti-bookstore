@@ -30,13 +30,5 @@ module RutiBookstore
     config.action_mailer.perform_deliveries = true
     config.action_mailer.raise_delivery_errors = true
     config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = {
-      :port           => 587,
-      :address        => 'smtp.mailgun.org',
-      :user_name      => 'postmaster@sandbox85b185dc6fa44a7bbb05e2ce19beca69.mailgun.org',
-      :password       => '065168f69b0027f0cb9f05b917383d0a',
-      :domain         => 'sandbox85b185dc6fa44a7bbb05e2ce19beca69.mailgun.org',
-      :authentication => :plain
-    }
   end
 end
