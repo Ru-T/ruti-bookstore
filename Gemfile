@@ -34,6 +34,7 @@ gem 'ransack'
 gem 'rubocop'
 gem 'stripe'
 gem 'money-rails'
+gem 'mailgun_rails'
 
 gem 'taperole'
 gem 'faker'
